@@ -1,12 +1,15 @@
 package com.netbuilder.thejuke;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -36,13 +39,23 @@ public class Song
     @JoinColumn(name="Genre_ID",referencedColumnName="id")
     private Genre genre;
 	
-	public Song(String name, float length, String audioPath,long genreId,Genre genre)
+	@ManyToMany(mappedBy="songList",fetch=FetchType.EAGER)
+    private List<Album> albumList;   
+	
+	public Song(String name, float length, String audioPath,long genreId,Genre genre,List<Album> albumList)
 	{
 		this.name = name;
 		this.length=length;
 		this.audioPath=audioPath;
 		this.genreId=genreId;
 		this.genre=genre;
+		this.albumList=albumList;
+	}
+	public List<Album> getAlbumList() {
+		return albumList;
+	}
+	public void setAlbumList(List<Album> albumList) {
+		this.albumList = albumList;
 	}
 	public long getId() {
 		return id;
@@ -89,7 +102,7 @@ public class Song
 	
 	public String toString(){
 		final StringBuilder sb = new StringBuilder();
-		sb.append("Album {");
+		sb.append("Song {");
 		sb.append("id='").append(id).append("', ");
 		sb.append("name='").append(name);
 		sb.append("length='").append(length).append("', ");
