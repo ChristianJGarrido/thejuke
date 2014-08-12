@@ -60,38 +60,13 @@ public class Album {
 		this.producer = "Unknown Producer";
 	}
 	
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getProducer() {
-		return producer;
-	}
-
-	public void setProducer(String producer) {
-		this.producer = producer;
-	}
-
 	public String toString(){
 		final StringBuilder sb = new StringBuilder();
 		sb.append("Album {");
 		sb.append("id='").append(id).append("', ");
 		sb.append("name='").append(name);
 		sb.append("producer='").append(producer).append("', ");
-		sb.append("date released='").append(dateCreated).append("', ");
-		sb.append('}');
+		sb.append("date released='").append(dateCreated).append("'}");
 		return sb.toString();
 		
 	}
