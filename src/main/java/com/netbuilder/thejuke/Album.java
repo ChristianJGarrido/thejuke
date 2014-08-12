@@ -1,13 +1,18 @@
 package com.netbuilder.thejuke;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.JoinColumn;
 import javax.swing.ImageIcon;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -30,14 +35,35 @@ public class Album {
 	private Date dateCreated;
 	@Column(name = "artPath")
 	private String artPath;
-	public Album(String name, String producer,Date dateCreated, String artPath)
+    @ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(name="ORDER_DETAIL",
+            joinColumns=
+            @JoinColumn(name="Album_id", referencedColumnName="id"),
+      inverseJoinColumns=
+            @JoinColumn(name="Song_id", referencedColumnName="id")
+    )
+    private List<Song> songList; 
+	public Album(String name, String producer,Date dateCreated, String artPath,List<Song> songList)
 	{
 		this.name = name;
 		this.producer = producer;
 		this.dateCreated=dateCreated;
 		this.artPath=artPath;
+		this.songList=songList;
 	}
 	
+	public List<Song> getSongList() {
+		return songList;
+	}
+
+	public void setSongList(List<Song> songList) {
+		this.songList = songList;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public Date getDateCreated() {
 		return dateCreated;
 	}
@@ -66,7 +92,8 @@ public class Album {
 		sb.append("id='").append(id).append("', ");
 		sb.append("name='").append(name);
 		sb.append("producer='").append(producer).append("', ");
-		sb.append("date released='").append(dateCreated).append("'}");
+		sb.append("date released='").append(dateCreated).append("', ");
+		sb.append("songs='").append(songList).append("}");
 		return sb.toString();
 		
 	}
