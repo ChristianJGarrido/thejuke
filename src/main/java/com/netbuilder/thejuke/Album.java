@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="lbum")
+@Table(name="Album")
 public class Album {
 
 	@Id
@@ -46,9 +46,31 @@ public class Album {
 		sb.append("Album {");
 		sb.append("id='").append(id).append("', ");
 		sb.append("name='").append(name);
-		sb.append("producer='").append(producer).append("', ");
-		sb.append('}');
+		sb.append("producer='").append(producer).append("'}");
 		return sb.toString();
 		
 	}
+
+	public long getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getProducer() {
+		return producer;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setProducer(String producer) {
+		this.producer = producer;
+	}
+	
+	
+	
 }

@@ -25,7 +25,7 @@ public class ArtistService {
 	public void listArtists(){
 		List<Artist> list = entityManager.createQuery("Select a from Artist a", Artist.class).getResultList();
 		for(Artist artist : list){
-			System.out.println(artist);
+			System.out.println(artist.toString());
 		}
 	}
 	

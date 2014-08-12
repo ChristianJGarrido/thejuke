@@ -39,8 +39,7 @@ public class Artist {
 		sb.append("Artist {");
 		sb.append("id='").append(id).append("', ");
 		sb.append("name='").append(name);
-		sb.append("bio='").append(bio).append("', ");
-		sb.append('}');
+		sb.append("bio='").append(bio).append("'}");
 		return sb.toString();
 		
 	}
@@ -48,18 +47,19 @@ public class Artist {
 	public long getId() {
 		return id;
 	}
+	
 	public String getName() {
 		return name;
 	}
+	
 	public String getBio() {
 		return bio;
 	}
-	public void setId(long id) {
-		this.id = id;
-	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	public void setBio(String bio) {
 		this.bio = bio;
 	}
