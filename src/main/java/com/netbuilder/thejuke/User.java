@@ -34,6 +34,10 @@ public class User {
 		this.passWord = passWord;
 	}
 	public User() {
+		id=0;
+		userName="not set";
+		passWord="";
+		balance=0;
 	}
 	public long getId() {
 		return id;

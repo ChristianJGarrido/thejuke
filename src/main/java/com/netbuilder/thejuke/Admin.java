@@ -18,7 +18,8 @@ public class Admin {
 		this.id = id;
 	}
 	public Admin() {
-		
+		id=0;
+		user=new User();
 	}
 
 	public User getUser() {
