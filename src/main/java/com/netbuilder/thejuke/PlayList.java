@@ -5,13 +5,13 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,8 +22,9 @@ public class PlayList {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	@Column(name = "Admin_id")
-	private long adminId;
+	@ManyToOne(optional=false)
+	@JoinColumn(name="Admin_ID", referencedColumnName="id")
+	private Admin adminId;
 	
 	@Column(name = "name")
 	private String name;
@@ -44,11 +45,11 @@ public class PlayList {
 	public PlayList()
 	{
 		this.name = "Unknown Name";
-		this.adminId = -1L;
+		this.adminId = new Admin();
 		this.songList = null;
 	}
 	
-	public PlayList(String name, List<Song> songList, long adminId) {
+	public PlayList(String name, List<Song> songList, Admin adminId) {
 		
 		this.adminId = adminId;
 		this.name = name;
@@ -60,11 +61,11 @@ public class PlayList {
 		this.id = id;
 	}
 
-	public long getAdminId() {
+	public Admin getAdminId() {
 		return adminId;
 	}
 
-	public void setAdminId(long adminId) {
+	public void setAdminId(Admin adminId) {
 		this.adminId = adminId;
 	}
 	

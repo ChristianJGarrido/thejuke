@@ -14,8 +14,8 @@ public class Admin {
 	@JoinColumn(name="User_id", referencedColumnName="id")
 	private User user;
 
-	public Admin(long id) {
-		this.id = id;
+	public Admin(User user) {
+		this.user = user;
 	}
 	public Admin() {
 		id=0;

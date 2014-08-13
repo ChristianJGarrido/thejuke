@@ -19,6 +19,8 @@ public class App {
 	static List<Album> albumList;
 
 	static List<PlayList> playlistList;
+	static List<User> userList;
+	static List<Admin> adminList;
 	
 	public static void main(String[] args) {
 		EntityManagerFactory emf = Persistence
@@ -30,31 +32,36 @@ public class App {
 		songList = populateSongList();
 		artistList = populateArtistList();
 		albumList = populateAlbumList();
+		userList = populateUserList();
+		adminList = populateAdminList();
+		playlistList = populatePlayListList();		
 
 		ArtistService artistService = new ArtistService(em);
-
 		artistService.persistArtist(artistList);
 		artistService.listArtists();
 
 		GenreService genreService = new GenreService(em);
-
 		genreService.persistGenres(genreList);
 		genreService.listGenres();
 
 		SongService songService = new SongService(em);
-
 		songService.persistSongs(songList);
 		songService.listSongs();
 		
 
 		AlbumService albumService = new AlbumService(em);
-		
 		albumService.persistAlbum(albumList);
 		albumService.listAlbums();
 
-		PlayListService playlistService = new PlayListService(em);
-		playlistList = populatePlayListList();
+		UserService userService = new UserService(em);
+		userService.persistUser(userList);
+		userService.listUsers();
 		
+		AdminService adminService = new AdminService(em);
+		adminService.persistAdmin(adminList);
+		adminService.listAdmins();
+		
+		PlayListService playlistService = new PlayListService(em);
 		playlistService.persistPlayList(playlistList);
 		playlistService.listPlayLists();
 		
@@ -103,7 +110,6 @@ public class App {
 				"C:\\Music\\Nirvana\\Nevermind\\Comeasyouare.mp3", genreList.get(1)));
 		result.add(new Song("Lithium", 4.16f, 
 				"C:\\Music\\Nirvana\\Nevermind\\Lithium.mp3", genreList.get(1)));
-		songList.addAll(result);
 		return result;
 	}
 
@@ -114,12 +120,29 @@ public class App {
 		return result;
 	}
 	
+	private static List<User> populateUserList(){
+		List<User> result = new ArrayList<User>();
+		
+		result.add(new User("Alorty", "pass"));
+		result.add(new User("Erlym", "pass2"));
+		return result;
+	}
+	
+	private static List<Admin> populateAdminList(){
+		List<Admin> result = new ArrayList<Admin>();
+		
+		result.add(new Admin(userList.get(0)));
+		return result;
+	}
+	
 	private static List<PlayList> populatePlayListList()
 	{
 		List<PlayList> result = new ArrayList<PlayList>();
-		List<Song> p1 = new ArrayList<Song>();
-		p1.add(new Song("Hail To The Hammer",3.00F,"C:\\Music\\Tyr\\HailToTheHammer.mp3", genreList.get(0)));
-		result.add(new PlayList("1", p1, 4));
+		List<Song>playSongs = new ArrayList<Song>();
+		playSongs.add(songList.get(0));
+		playSongs.add(songList.get(2));
+		PlayList play = new PlayList("My Playlist", playSongs, adminList.get(0));
+		result.add(play);
 		return result;
 	}
 	
