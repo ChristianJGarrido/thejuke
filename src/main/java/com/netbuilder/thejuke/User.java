@@ -33,7 +33,8 @@ public class User {
 		this.userName =  userName;
 		this.passWord = passWord;
 	}
-	
+	public User() {
+	}
 	public long getId() {
 		return id;
 	}
