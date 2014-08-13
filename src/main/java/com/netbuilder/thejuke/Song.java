@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
@@ -33,12 +34,17 @@ public class Song
 	
 	@Column(name = "Genre_ID")
     private long genreId;
-	
-	//@ManyToOne(optional=false)
+	@ManyToOne(optional=false)
     @JoinColumn(name="Genre_ID",referencedColumnName="id")
     private Genre genre;
 	
-	@ManyToMany(mappedBy="songList",fetch=FetchType.EAGER)
+	@ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(name="Album_has_Song",
+    		joinColumns=
+            @JoinColumn(name="Song_id", referencedColumnName="id"),
+            inverseJoinColumns=
+            @JoinColumn(name="Album_id", referencedColumnName="id")
+    )
     private List<Album> albumList;   
 	
 	public Song(String name, float length, String audioPath,long genreId,Genre genre,List<Album> albumList)
@@ -47,7 +53,7 @@ public class Song
 		this.length=length;
 		this.audioPath=audioPath;
 		this.genreId=genreId;
-		this.genre=genre;
+//		this.genre=genre;
 		this.albumList=albumList;
 	}
 	public List<Album> getAlbumList() {

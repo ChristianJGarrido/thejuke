@@ -35,11 +35,11 @@ public class App {
 	private static List<Artist> populateArtistList(){
 		List<Artist> result = new ArrayList<Artist>();
 		
-		result.add(new Artist("Nirvana", "The original grunge"));
-		result.add(new Artist("The Glitch Mob", "Popular electric music"));
-		result.add(new Artist("Rattatat", "More Muzak"));
-		result.add(new Artist("MGMT", "I like these guys"));
-		result.add(new Artist("Kanye West", "Gay Fish"));
+//		result.add(new Artist("Nirvana", "The original grunge"));
+//		result.add(new Artist("The Glitch Mob", "Popular electric music"));
+//		result.add(new Artist("Rattatat", "More Muzak"));
+//		result.add(new Artist("MGMT", "I like these guys"));
+//		result.add(new Artist("Kanye West", "Gay Fish"));
 		
 		return result;
 	}
