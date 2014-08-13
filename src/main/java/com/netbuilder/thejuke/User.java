@@ -68,9 +68,9 @@ public class User {
 		final StringBuilder sb = new StringBuilder();
 		sb.append("User {");
 		sb.append("id='").append(id).append("', ");
-		sb.append("userNamee='").append(userName);
+		sb.append("userNamee='").append(userName).append("', ");
 		sb.append("passWord='").append(passWord).append("', ");
-		sb.append("balance='").append(balance).append("'}");
+		sb.append("balance='").append(balance).append("'}\n");
 		return sb.toString();
 		
 	}

@@ -74,13 +74,13 @@ public class PlayList {
 		final StringBuilder sb = new StringBuilder();
 		sb.append("Playlist {");
 		sb.append("id='").append(id).append("', ");
-		sb.append("name='").append(name);
-		sb.append("'\n");
+		sb.append("name='").append(name).append("', SongList {");
 		for(Song s: songList) {
-			
-			sb.append(s + " ");
+			sb.append(s);
+			if(songList.get(songList.size()-1)!=s)
+				sb.append(", ");
 		}
-		//sb.append("ong='").append(bio).append("'}");
+		sb.append("}}");
 		return sb.toString();
 		
 	}

@@ -118,7 +118,7 @@ public class Song
 		final StringBuilder sb = new StringBuilder();
 		sb.append("Song {");
 		sb.append("id='").append(id).append("', ");
-		sb.append("name='").append(name);
+		sb.append("name='").append(name).append(", ");
 		sb.append("length='").append(length).append("', ");
 		sb.append("genre='").append(genre).append("'}");
 		return sb.toString();

@@ -17,9 +17,18 @@ public class Admin {
 	public Admin(User user) {
 		this.user = user;
 	}
+	
 	public Admin() {
 		id=0;
 		user=new User();
+	}
+	
+	public String toString(){
+		final StringBuilder sb = new StringBuilder();
+		sb.append("Admin {");
+		sb.append("id='").append(id).append("', ");
+		sb.append("user_id='").append(user.getId()).append("'}");
+		return sb.toString();
 	}
 
 	public User getUser() {

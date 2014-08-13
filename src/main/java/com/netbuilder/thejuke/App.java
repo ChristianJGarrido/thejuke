@@ -37,32 +37,32 @@ public class App {
 		playlistList = populatePlayListList();		
 
 		ArtistService artistService = new ArtistService(em);
-		artistService.persistArtist(artistList);
+//		artistService.persistArtist(artistList);
 		artistService.listArtists();
 
 		GenreService genreService = new GenreService(em);
-		genreService.persistGenres(genreList);
+//		genreService.persistGenres(genreList);
 		genreService.listGenres();
 
 		SongService songService = new SongService(em);
-		songService.persistSongs(songList);
+//		songService.persistSongs(songList);
 		songService.listSongs();
 		
 
 		AlbumService albumService = new AlbumService(em);
-		albumService.persistAlbum(albumList);
+//		albumService.persistAlbum(albumList);
 		albumService.listAlbums();
 
 		UserService userService = new UserService(em);
-		userService.persistUser(userList);
+//		userService.persistUser(userList);
 		userService.listUsers();
 		
 		AdminService adminService = new AdminService(em);
-		adminService.persistAdmin(adminList);
+//		adminService.persistAdmin(adminList);
 		adminService.listAdmins();
 		
 		PlayListService playlistService = new PlayListService(em);
-		playlistService.persistPlayList(playlistList);
+//		playlistService.persistPlayList(playlistList);
 		playlistService.listPlayLists();
 		
 		if(em != null){
@@ -73,6 +73,10 @@ public class App {
 
 		em.close();
 		emf.close();
+	}
+	
+	private static void populateDB(){
+		
 	}
 
 	private static List<Artist> populateArtistList() {

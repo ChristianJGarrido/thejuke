@@ -25,7 +25,7 @@ public class GenreService {
 	public void listGenres(){
 		List<Genre> list = entityManager.createQuery("Select g from Genre g", Genre.class).getResultList();
 		for(Genre genre : list){
-			System.out.println(genre.toString());
+			System.out.print(genre.toString());
 		}
 	}
 }

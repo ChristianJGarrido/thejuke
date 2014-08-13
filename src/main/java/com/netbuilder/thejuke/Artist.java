@@ -38,7 +38,7 @@ public class Artist {
 		final StringBuilder sb = new StringBuilder();
 		sb.append("Artist {");
 		sb.append("id='").append(id).append("', ");
-		sb.append("name='").append(name);
+		sb.append("name='").append(name).append("', ");
 		sb.append("bio='").append(bio).append("'}");
 		return sb.toString();
 		

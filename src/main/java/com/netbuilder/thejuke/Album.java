@@ -94,10 +94,16 @@ public class Album {
 		final StringBuilder sb = new StringBuilder();
 		sb.append("Album {");
 		sb.append("id='").append(id).append("', ");
-		sb.append("name='").append(name);
+		sb.append("name='").append(name).append("', ");
 		sb.append("producer='").append(producer).append("', ");
 		sb.append("date released='").append(dateCreated).append("', ");
-		sb.append("songs='").append(songList).append("}");
+		sb.append("songs='");
+		for(Song s: songList) {
+			sb.append(s);
+			if(songList.get(songList.size()-1)!=s)
+				sb.append(", ");
+		}
+		sb.append("}}");
 		return sb.toString();
 		
 	}
