@@ -73,6 +73,7 @@ public class App {
 		}
 
 		em.close();
+		emf.close();
 	}
 
 	private static List<Artist> populateArtistList() {
