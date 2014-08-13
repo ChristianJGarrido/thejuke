@@ -110,6 +110,7 @@ public class App {
 				"C:\\Music\\Nirvana\\Nevermind\\Comeasyouare.mp3", genreList.get(1)));
 		result.add(new Song("Lithium", 4.16f, 
 				"C:\\Music\\Nirvana\\Nevermind\\Lithium.mp3", genreList.get(1)));
+		songList.addAll(result);
 		return result;
 	}
 
@@ -140,7 +141,7 @@ public class App {
 		List<PlayList> result = new ArrayList<PlayList>();
 		List<Song>playSongs = new ArrayList<Song>();
 		playSongs.add(songList.get(0));
-		playSongs.add(songList.get(2));
+		playSongs.add(songList.get(1));
 		PlayList play = new PlayList("My Playlist", playSongs, adminList.get(0));
 		result.add(play);
 		return result;
