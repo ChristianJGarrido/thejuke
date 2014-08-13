@@ -40,9 +40,16 @@ public class PlayList {
 		return id;
 	}
 
-	public PlayList(String name, List<Song> songList) {
+	public PlayList()
+	{
+		this.name = "Unknown Name";
+		this.adminId = -1L;
+		this.songList = null;
+	}
+	
+	public PlayList(String name, List<Song> songList, long adminId) {
 		
-		//this.adminId = adminId;
+		this.adminId = adminId;
 		this.name = name;
 		this.songList = songList;
 		
