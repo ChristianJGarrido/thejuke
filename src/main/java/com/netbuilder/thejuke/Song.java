@@ -19,7 +19,7 @@ import javax.validation.constraints.Size;
 @Table(name="Song")
 public class Song 
 {
-
+	//Declarations and Entity annotations
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -48,22 +48,21 @@ public class Song
     )
     private List<Album> albumList;   
 
-	
-	public Song(String name, float length, String audioPath,Genre genre/*,List<Album> albumList*/)
+	//Constructor
+	public Song(String name, float length, String audioPath,Genre genre)
 	{
 		this.name = name;
 		this.length=length;
 		this.audioPath=audioPath;
-
 		this.genre=genre;
 	}
+	//Getters and Setters
 	public List<Album> getAlbumList() {
 		return albumList;
 	}
 	public void setAlbumList(List<Album> albumList) {
 		this.albumList = albumList;
 	}
-
 	public long getId() {
 		return id;
 	}
@@ -88,12 +87,6 @@ public class Song
 	public void setAudioPath(String audioPath) {
 		this.audioPath = audioPath;
 	}
-//	public long getGenreId() {
-//		return genreId;
-//	}
-//	public void setGenreId(long genreId) {
-//		this.genreId = genreId;
-//	}
 	public Genre getGenre() {
 		return genre;
 	}
@@ -106,7 +99,7 @@ public class Song
 		this.length = 0F;
 		this.audioPath="";
 	}
-	
+	//toString for easy testing.
 	public String toString(){
 		final StringBuilder sb = new StringBuilder();
 		sb.append("Song {");

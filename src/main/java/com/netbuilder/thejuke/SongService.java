@@ -12,6 +12,7 @@ public class SongService {
 		this.entityManager = entity;
 	}
 	
+	/**Takes in a list of songs. Commits them to database in its entityManager. **/
 	public void persistSongs(List<Song> list)
 	{
 		entityManager.getTransaction().begin();
@@ -24,7 +25,7 @@ public class SongService {
 		entityManager.getTransaction().commit();
 	}
 	
-	
+	/**Queries the database for songs, then prints them.(For testing) **/
 	public void listSongs()
 	{
 		List<Song> list = entityManager.createQuery("Select s from Song s", Song.class).getResultList();
