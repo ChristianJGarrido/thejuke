@@ -12,14 +12,14 @@ public class Admin {
 	
 	@OneToOne(optional=false)
 	@JoinColumn(name="User_id", referencedColumnName="id")
-	private long userId;
+	private User user;
 
 	public Admin(long id) {
 		this.id = id;
 	}
 
-	public long getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
 	public long getId() {
