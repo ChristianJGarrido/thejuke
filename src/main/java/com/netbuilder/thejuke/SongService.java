@@ -25,7 +25,7 @@ public class SongService {
 		entityManager.getTransaction().commit();
 	}
 	
-	/**Queries the database for songs, then prints them. **/
+	/**Queries the database for songs, then prints them.(For testing) **/
 	public void listSongs()
 	{
 		List<Song> list = entityManager.createQuery("Select s from Song s", Song.class).getResultList();
