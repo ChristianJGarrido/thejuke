@@ -15,7 +15,6 @@ public class ArtistService {
 		entityManager.getTransaction().begin();
 		for(Artist artist : list){
 			entityManager.persist(artist);
-
 		}
 		
 		entityManager.getTransaction().commit();

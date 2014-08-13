@@ -25,8 +25,8 @@ public class PlayList {
 	@Column(name = "name")
 	private String name;
 	
-	@ManyToMany(mappedBy = "Playlist_has_song", fetch=FetchType.EAGER)
-	private List<Song> songList;
+//	@ManyToMany(mappedBy = "Playlist_has_song", fetch=FetchType.EAGER)
+//	private List<Song> songList;
 
 	public long getId() {
 		return id;
@@ -34,7 +34,7 @@ public class PlayList {
 
 	public PlayList(List<Song> songList) {
 		
-		this.songList = songList;
+//		this.songList = songList;
 		
 	}
 

@@ -1,6 +1,5 @@
 package com.netbuilder.thejuke;
 
-import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -35,7 +34,7 @@ public class Song
 	@Column(name = "Genre_ID")
     private long genreId;
 	
-	@ManyToOne(optional=false)
+	//@ManyToOne(optional=false)
     @JoinColumn(name="Genre_ID",referencedColumnName="id")
     private Genre genre;
 	

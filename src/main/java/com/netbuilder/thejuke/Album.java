@@ -28,36 +28,41 @@ public class Album {
 	@NotNull
 	@Size(min = 1, max = 45)
 	private String name;
+	
 	@Column(name = "producer")
 	private String producer;
+	
 	@Column(name = "dateCreated")
 	private Date dateCreated;
+	
 	@Column(name = "artPath")
 	private String artPath;
-    @ManyToMany(fetch=FetchType.EAGER)
-    @JoinTable(name="ORDER_DETAIL",
-            joinColumns=
-            @JoinColumn(name="Album_id", referencedColumnName="id"),
-      inverseJoinColumns=
-            @JoinColumn(name="Song_id", referencedColumnName="id")
-    )
-    private List<Song> songList; 
+	
+//    @ManyToMany(fetch=FetchType.EAGER)
+//    @JoinTable(name="ORDER_DETAIL",
+//            joinColumns=
+//            @JoinColumn(name="Album_id", referencedColumnName="id"),
+//      inverseJoinColumns=
+//            @JoinColumn(name="Song_id", referencedColumnName="id")
+//    )
+//    private List<Song> songList;
+    
 	public Album(String name, String producer,Date dateCreated, String artPath,List<Song> songList)
 	{
 		this.name = name;
 		this.producer = producer;
 		this.dateCreated=dateCreated;
 		this.artPath=artPath;
-		this.songList=songList;
+//		this.songList=songList;
 	}
 	
-	public List<Song> getSongList() {
-		return songList;
-	}
+//	public List<Song> getSongList() {
+//		return songList;
+//	}
 
-	public void setSongList(List<Song> songList) {
-		this.songList = songList;
-	}
+//	public void setSongList(List<Song> songList) {
+//		this.songList = songList;
+//	}
 
 	public void setId(long id) {
 		this.id = id;
@@ -92,7 +97,7 @@ public class Album {
 		sb.append("name='").append(name);
 		sb.append("producer='").append(producer).append("', ");
 		sb.append("date released='").append(dateCreated).append("', ");
-		sb.append("songs='").append(songList).append("}");
+//		sb.append("songs='").append(songList).append("}");
 		return sb.toString();
 		
 	}
