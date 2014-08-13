@@ -15,6 +15,7 @@ public class App
 {
 	static List<Genre> genreList;
 	static List<Song> songList;
+	static List<PlayList> playlistList;
 	public static void main(String[] args) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("TheJuke");
 		
@@ -37,6 +38,12 @@ public class App
 		
 		songService.persistSongs(songList);
 		songService.listSongs();
+		
+		PlayListService playlistService = new PlayListService(em);
+		playlistList = populatePlayListList();
+		
+		playlistService.persistPlayList(playlistList);
+		playlistService.listPlayLists();
 		
 		if(em != null){
 			System.out.println("Entity Manager created successfully");
@@ -70,4 +77,14 @@ public class App
 		result.add(new Song("Hail To The Hammer",3.00F,"C:\\Music\\Tyr\\HailToTheHammer.mp3", genreList.get(0)));
 		return result;
 	}
+	
+	private static List<PlayList> populatePlayListList()
+	{
+		List<PlayList> result = new ArrayList<PlayList>();
+		List<Song> p1 = new ArrayList<Song>();
+		p1.add(new Song("Hail To The Hammer",3.00F,"C:\\Music\\Tyr\\HailToTheHammer.mp3", genreList.get(0)));
+		result.add(new PlayList("1", p1));
+		return result;
+	}
+	
 }
