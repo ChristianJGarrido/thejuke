@@ -24,7 +24,7 @@ public class AlbumService {
 	}
 	
 	
-	public void listArtists(){
+	public void listAlbums(){
 		List<Album> list = entityManager.createQuery("Select a from Album a", Album.class).getResultList();
 		for(Album album : list)
 		{
