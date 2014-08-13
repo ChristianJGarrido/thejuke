@@ -11,7 +11,7 @@ public class GenreService {
 		this.entityManager = entity;
 	}
 	
-	public void persistArtist(List<Genre> list){
+	public void persistGenres(List<Genre> list){
 		entityManager.getTransaction().begin();
 		for(Genre genre : list){
 			entityManager.persist(genre);
@@ -22,7 +22,7 @@ public class GenreService {
 	}
 	
 	
-	public void listArtists(){
+	public void listGenres(){
 		List<Genre> list = entityManager.createQuery("Select g from Genre g", Genre.class).getResultList();
 		for(Genre genre : list){
 			System.out.println(genre.toString());
