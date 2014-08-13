@@ -17,9 +17,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "Song")
-public class Song {
 
+@Table(name="Song")
+public class Song 
+{
+	//Declarations and Entity annotations
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -34,28 +36,29 @@ public class Song {
 
 	@Column(name = "audioPath")
 	private String audioPath;
+	
+	@ManyToOne(optional=false)
+    @JoinColumn(name="Genre_ID",referencedColumnName="id")
+    private Genre genre;
+	
+	@ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(name="Album_has_Song",
+    		joinColumns=
+            @JoinColumn(name="Song_id", referencedColumnName="id"),
+            inverseJoinColumns=
+            @JoinColumn(name="Album_id", referencedColumnName="id")
+    )
+    private List<Album> albumList;   
 
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "Genre_ID", referencedColumnName = "id")
-	private Genre genre;
-
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "Album_has_Song", joinColumns = @JoinColumn(name = "Song_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "Album_id", referencedColumnName = "id"))
-	private List<Album> albumList;
-
-	public Song(String name, float length, String audioPath, Genre genre/*
-																		 * ,List<
-																		 * Album
-																		 * >
-																		 * albumList
-																		 */) {
+	//Constructor
+	public Song(String name, float length, String audioPath,Genre genre)
+	{
 		this.name = name;
-		this.length = length;
-		this.audioPath = audioPath;
-
-		this.genre = genre;
+		this.length=length;
+		this.audioPath=audioPath;
+		this.genre=genre;
 	}
-
+	//Getters and Setters
 	public List<Album> getAlbumList() {
 		return albumList;
 	}
@@ -63,7 +66,6 @@ public class Song {
 	public void setAlbumList(List<Album> albumList) {
 		this.albumList = albumList;
 	}
-
 	public long getId() {
 		return id;
 	}
@@ -95,7 +97,7 @@ public class Song {
 	public void setAudioPath(String audioPath) {
 		this.audioPath = audioPath;
 	}
-
+	
 	public Genre getGenre() {
 		return genre;
 	}
@@ -107,10 +109,12 @@ public class Song {
 	public Song() {
 		this.name = "Unknown Name";
 		this.length = 0F;
-		this.audioPath = "";
-	}
 
-	public String toString() {
+		this.audioPath="";
+		this.genre=new Genre();
+	}
+	//toString for easy testing.
+	public String toString(){
 		final StringBuilder sb = new StringBuilder();
 		sb.append("Song {");
 		sb.append("id='").append(id).append("', ");

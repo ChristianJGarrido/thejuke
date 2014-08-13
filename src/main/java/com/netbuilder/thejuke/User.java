@@ -33,7 +33,12 @@ public class User {
 		this.userName =  userName;
 		this.passWord = passWord;
 	}
-	
+	public User() {
+		id=0;
+		userName="not set";
+		passWord="";
+		balance=0;
+	}
 	public long getId() {
 		return id;
 	}
