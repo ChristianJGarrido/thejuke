@@ -17,6 +17,9 @@ public class Admin {
 	public Admin(long id) {
 		this.id = id;
 	}
+	public Admin() {
+		
+	}
 
 	public User getUser() {
 		return user;
