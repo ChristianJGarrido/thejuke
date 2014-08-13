@@ -2,6 +2,7 @@ package com.netbuilder.thejuke;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,7 +28,7 @@ public class PlayList {
 	@Column(name = "name")
 	private String name;
 	
-	 @ManyToMany(fetch=FetchType.EAGER)
+	 @ManyToMany(cascade = CascadeType.ALL)
 	    @JoinTable(name="Playlist_has_Song",
 	    		joinColumns=
 	            @JoinColumn(name="Playlist_id", referencedColumnName="id"),
@@ -73,7 +74,7 @@ public class PlayList {
 		sb.append("Playlist {");
 		sb.append("id='").append(id).append("', ");
 		sb.append("name='").append(name);
-		sb.append("\n");
+		sb.append("'\n");
 		for(Song s: songList) {
 			
 			sb.append(s + " ");
