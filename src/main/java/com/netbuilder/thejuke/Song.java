@@ -98,6 +98,7 @@ public class Song
 		this.name = "Unknown Name";
 		this.length = 0F;
 		this.audioPath="";
+		this.genre=new Genre();
 	}
 	//toString for easy testing.
 	public String toString(){
