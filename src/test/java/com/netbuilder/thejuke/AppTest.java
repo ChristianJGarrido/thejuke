@@ -35,4 +35,14 @@ public class AppTest
     {
         assertTrue( true );
     }
+    public void test2()
+    {
+    	assertFalse(false);
+    }
+    public void GenreHasDefaultName()
+    {
+    	Genre metal = new Genre();
+    	assertFalse(metal.getName().equals("metal"));
+    	assertTrue(metal.getName().equals("Not Found"));
+    }
 }
