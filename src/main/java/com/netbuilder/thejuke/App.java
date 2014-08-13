@@ -66,13 +66,13 @@ public class App {
 		playlistService.listPlayLists();
 		
 		if(em != null){
-
 			System.out.println("Entity Manager created successfully");
 		} else {
 			System.out.println("Failed to create Entity Manager");
 		}
 
 		em.close();
+		emf.close();
 	}
 
 	private static List<Artist> populateArtistList() {
