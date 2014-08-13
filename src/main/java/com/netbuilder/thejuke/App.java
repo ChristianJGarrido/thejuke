@@ -118,7 +118,8 @@ public class App {
 	{
 		List<PlayList> result = new ArrayList<PlayList>();
 		List<Song> p1 = new ArrayList<Song>();
-		p1.add(new Song("Hail To The Hammer",3.00F,"C:\\Music\\Tyr\\HailToTheHammer.mp3", genreList.get(0)));
+		//p1.add(new Song("Hail To The Hammer",3.00F,"C:\\Music\\Tyr\\HailToTheHammer.mp3", genreList.get(0)));
+		p1.add(songList.get(0));
 		result.add(new PlayList("1", p1, 4));
 		return result;
 	}
