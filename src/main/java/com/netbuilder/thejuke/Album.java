@@ -38,6 +38,15 @@ public class Album {
 	@Column(name = "artPath")
 	private String artPath;
 	
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(name="artist_has_album", 
+	joinColumns=
+			@JoinColumn(name="Album_id", referencedColumnName="id"),
+			inverseJoinColumns=
+			@JoinColumn(name="Artist_id", referencedColumnName="id")
+	)
+	private List<Artist> artistList;
+	
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(name="Album_has_Song",
     		joinColumns=
@@ -47,13 +56,14 @@ public class Album {
     )
     private List<Song> songList;
     
-	public Album(String name, String producer,Date dateCreated, String artPath,List<Song> songList)
+	public Album(String name, String producer,Date dateCreated, String artPath, List<Song> songList)
 	{
 		this.name = name;
 		this.producer = producer;
 		this.dateCreated=dateCreated;
 		this.artPath=artPath;
 		this.songList=songList;
+
 	}
 	
 	public List<Song> getSongList() {
@@ -122,6 +132,14 @@ public class Album {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public List<Artist> getArtistList() {
+		return artistList;
+	}
+
+	public void setArtistList(List<Artist> artistList) {
+		this.artistList = artistList;
 	}
 
 	public void setProducer(String producer) {

@@ -37,32 +37,32 @@ public class App {
 		playlistList = populatePlayListList();		
 
 		ArtistService artistService = new ArtistService(em);
-//		artistService.persistArtist(artistList);
+		artistService.persistArtist(artistList);
 		artistService.listArtists();
 
 		GenreService genreService = new GenreService(em);
-//		genreService.persistGenres(genreList);
+		genreService.persistGenres(genreList);
 		genreService.listGenres();
 
 		SongService songService = new SongService(em);
-//		songService.persistSongs(songList);
+		songService.persistSongs(songList);
 		songService.listSongs();
 		
 
 		AlbumService albumService = new AlbumService(em);
-//		albumService.persistAlbum(albumList);
+		albumService.persistAlbum(albumList);
 		albumService.listAlbums();
 
 		UserService userService = new UserService(em);
-//		userService.persistUser(userList);
+		userService.persistUser(userList);
 		userService.listUsers();
 		
 		AdminService adminService = new AdminService(em);
-//		adminService.persistAdmin(adminList);
+		adminService.persistAdmin(adminList);
 		adminService.listAdmins();
 		
 		PlayListService playlistService = new PlayListService(em);
-//		playlistService.persistPlayList(playlistList);
+		playlistService.persistPlayList(playlistList);
 		playlistService.listPlayLists();
 		
 		if(em != null){
@@ -82,11 +82,11 @@ public class App {
 	private static List<Artist> populateArtistList() {
 		List<Artist> result = new ArrayList<Artist>();
 
-		result.add(new Artist("Nirvana", "The original grunge"));
-		result.add(new Artist("The Glitch Mob", "Popular electric music"));
-		result.add(new Artist("Rattatat", "More Muzak"));
-		result.add(new Artist("MGMT", "I like these guys"));
-		result.add(new Artist("Kanye West", "Gay Fish"));
+		result.add(new Artist("Nirvana", "The original grunge", albumList));
+		result.add(new Artist("The Glitch Mob", "Popular electric music", albumList));
+		result.add(new Artist("Rattatat", "More Muzak", albumList));
+		result.add(new Artist("MGMT", "I like these guys", albumList));
+		result.add(new Artist("Kanye West", "Gay Fish", albumList));
 		return result;
 	}
 	
