@@ -34,4 +34,16 @@ public class SongService {
 			System.out.println(song.toString());
 		}
 	}
+	
+	public List<Song> readAll() {
+		
+		List<Song> list = entityManager.createQuery("Select a Song a", Song.class).getResultList();
+		return list;
+		
+	}
+	
+	public Song find(long key) {
+		
+		return entityManager.find(Song.class, key);
+	}
 }

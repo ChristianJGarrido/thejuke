@@ -65,6 +65,9 @@ public class App {
 //		playlistService.persistPlayList(playlistList);
 		playlistService.listPlayLists();
 		
+//		PlayList test = playlistService.find(1);
+//		System.out.println(test);
+		
 		if(em != null){
 			System.out.println("Entity Manager created successfully");
 		} else {

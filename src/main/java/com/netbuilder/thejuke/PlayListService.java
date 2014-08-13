@@ -29,5 +29,16 @@ public class PlayListService {
 		}
 	}
 	
+	public List<PlayList> readAll() {
+		
+		List<PlayList> list = entityManager.createQuery("Select a from PlayList a", PlayList.class).getResultList();
+		return list;
+		
+	}
+	
+	public PlayList find(long key) {
+		
+		return entityManager.find(PlayList.class, key);
+	}
 
 }
