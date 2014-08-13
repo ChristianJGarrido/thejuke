@@ -55,10 +55,7 @@ public class PlayList {
 		this.songList = songList;
 		
 	}
-<<<<<<< HEAD
-	
-=======
->>>>>>> f3874a9395c7b4e3cc49100d2c50d682edeb8aec
+
 	public void setId(long id) {
 		this.id = id;
 	}
