@@ -54,9 +54,6 @@ public class PlayList {
 		this.songList = songList;
 		
 	}
-	public PlayList() {
-		
-	}
 	public void setId(long id) {
 		this.id = id;
 	}
