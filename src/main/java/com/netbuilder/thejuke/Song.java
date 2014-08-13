@@ -3,16 +3,20 @@ package com.netbuilder.thejuke;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
+@Entity
+@Table(name="Song")
 public class Song 
 {
 
@@ -31,24 +35,27 @@ public class Song
 	@Column(name = "audioPath")
 	private String audioPath;
 	
-	@Column(name = "Genre_ID")
-    private long genreId;
-	
-	//@ManyToOne(optional=false)
+	@ManyToOne(optional=false)
     @JoinColumn(name="Genre_ID",referencedColumnName="id")
     private Genre genre;
 	
-	@ManyToMany(mappedBy="songList",fetch=FetchType.EAGER)
+	@ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(name="Album_has_Song",
+    		joinColumns=
+            @JoinColumn(name="Song_id", referencedColumnName="id"),
+            inverseJoinColumns=
+            @JoinColumn(name="Album_id", referencedColumnName="id")
+    )
     private List<Album> albumList;   
+
 	
-	public Song(String name, float length, String audioPath,long genreId,Genre genre,List<Album> albumList)
+	public Song(String name, float length, String audioPath,Genre genre/*,List<Album> albumList*/)
 	{
 		this.name = name;
 		this.length=length;
 		this.audioPath=audioPath;
-		this.genreId=genreId;
+
 		this.genre=genre;
-		this.albumList=albumList;
 	}
 	public List<Album> getAlbumList() {
 		return albumList;
@@ -56,6 +63,7 @@ public class Song
 	public void setAlbumList(List<Album> albumList) {
 		this.albumList = albumList;
 	}
+
 	public long getId() {
 		return id;
 	}
@@ -80,12 +88,12 @@ public class Song
 	public void setAudioPath(String audioPath) {
 		this.audioPath = audioPath;
 	}
-	public long getGenreId() {
-		return genreId;
-	}
-	public void setGenreId(long genreId) {
-		this.genreId = genreId;
-	}
+//	public long getGenreId() {
+//		return genreId;
+//	}
+//	public void setGenreId(long genreId) {
+//		this.genreId = genreId;
+//	}
 	public Genre getGenre() {
 		return genre;
 	}
