@@ -1,14 +1,11 @@
 package com.netbuilder.thejuke.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.validation.ValidationException;
 
 import com.netbuilder.thejuke.entities.Genre;
-
-import junit.framework.TestCase;
 
 public class GenreService {
 	private EntityManager entityManager;
@@ -25,9 +22,7 @@ public class GenreService {
 	public void persistGenres(List<Genre> list) {
 		for (Genre genre : list) {
 			entityManager.persist(genre);
-
 		}
-
 	}
 
 	/**

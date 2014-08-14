@@ -94,10 +94,6 @@ public class App {
 		em.close();
 		emf.close();
 	}
-	
-	private static void populateDB(){
-		
-	}
 
 	private static List<Artist> populateArtistList() {
 		List<Artist> result = new ArrayList<Artist>();

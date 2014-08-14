@@ -6,14 +6,11 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
+
+import junit.framework.TestCase;
 
 import com.netbuilder.thejuke.entities.Genre;
 import com.netbuilder.thejuke.services.GenreService;
-
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 /**
  * Unit test for simple App.
