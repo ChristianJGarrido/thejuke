@@ -3,6 +3,7 @@ package com.netbuilder.thejuke.services;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.validation.ValidationException;
 
 import com.netbuilder.thejuke.entities.Admin;
 
@@ -12,8 +13,11 @@ public class AdminService {
 	public AdminService(EntityManager entity) {
 		this.entityManager = entity;
 	}
-	
+	/** Adds Admins to Database **/
 	public void persistAdmin(List<Admin> list){
+		if (list == null){
+            throw new ValidationException("Admin List is null");
+		}	
 		entityManager.getTransaction().begin();
 		for(Admin admin : list){
 			entityManager.persist(admin);
@@ -22,33 +26,40 @@ public class AdminService {
 		entityManager.getTransaction().commit();
 	}
 	
-	
+	/** Prints out all Admins **/
 	public void listAdmins(){
 		List<Admin> list = entityManager.createQuery("SELECT a FROM Admin a", Admin.class).getResultList();
 		for(Admin admin : list){
 			System.out.println(admin.toString());
 		}
 	}
-	
-	public List<Admin> readAll() {
+	/** Returns list of all admins **/
+	public List<Admin> findAllAdmin() {
 		
 		List<Admin> list = entityManager.createQuery("Select a from Admin a", Admin.class).getResultList();
 		return list;
 		
 	}
-	
-	public Admin read(long key) {
+	/** Finds Admin by Key **/
+	public Admin findAdmin(long key) {
 		
 		return entityManager.find(Admin.class, key);
 	}
-	
-	public void update(long key, Admin admin) {
-		
-		Admin get = entityManager.find(Admin.class, key);
-		
-		entityManager.getTransaction().begin();
-		get.update(admin);
-		entityManager.getTransaction().commit();
+	/**Commits updated Admin to Database **/
+	public Admin updateAdmin(Admin admin) {
+		if (admin == null){
+            throw new ValidationException("Admin object is null");
+		}		
+		entityManager.merge(admin);
+		return admin;
+	}
+	/** Removes selected Admin from Database **/
+	public void removeAdmin(final Admin admin)
+	{
+		if (admin == null){
+            throw new ValidationException("Admin object is null");
+		}	
+		entityManager.remove(entityManager.merge(admin));
 	}
 
 }

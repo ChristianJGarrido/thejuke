@@ -26,20 +26,20 @@ public class GenreService {
 		
 		entityManager.getTransaction().commit();
 	}
-	//Readall
+	/**Returns all the genres in the database **/
 	public List<Genre> readAll()
 	{
 		List<Genre> list =  entityManager.createQuery("Select g from Genre g", Genre.class).getResultList();
 		return list;	
 	}
-	//ReadbyKey
-	
+	/**Prints out all genres in database. **/
 	public void listGenres(){
 		List<Genre> list = entityManager.createQuery("Select g from Genre g", Genre.class).getResultList();
 		for(Genre genre : list){
 			System.out.print(genre.toString());
 		}
 	}
+	/**Deletes selected genre from database **/
 	public void delete(Genre genre)
 	{
 	if (genre == null)
@@ -50,6 +50,7 @@ public class GenreService {
 	entityManager.remove(entityManager.merge(genre));
 	entityManager.getTransaction().commit();
 	}
+	/**Commits changes to genre to database **/
 	public void update(Genre genre)
 	{
 		// Make sure the object is valid
@@ -61,6 +62,7 @@ public class GenreService {
         entityManager.getTransaction().commit();
 		
 	}
+	/**Returns genre with given id**/
 	public Genre read(int id)
 	{
 		List<Genre> list =  entityManager.createQuery("Select g from Genre g WHERE g.id ="+id, Genre.class).getResultList();
@@ -70,6 +72,7 @@ public class GenreService {
 		}
 		return list.get(0);
 	}
+	/**Returns all genres with given name. **/
 	public List<Genre> readByName(String name)
 	{
 		List<Genre> list =  entityManager.createQuery("Select g from Genre g WHERE g.name ='"+name+"'", Genre.class).getResultList();
