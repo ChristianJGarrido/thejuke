@@ -10,7 +10,7 @@ public class Admin {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@OneToOne(optional = false)
+	@OneToOne(optional = false, cascade=CascadeType.ALL)
 	@JoinColumn(name = "User_id", referencedColumnName = "id")
 	private User user;
 
@@ -19,7 +19,7 @@ public class Admin {
 	}
 
 	public Admin() {
-		id = 0;
+		//id = 0;
 		user = new User();
 	}
 

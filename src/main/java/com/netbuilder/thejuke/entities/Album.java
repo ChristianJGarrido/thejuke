@@ -3,6 +3,7 @@ package com.netbuilder.thejuke.entities;
 import java.sql.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -43,11 +44,11 @@ public class Album {
 	@Column(name = "artPath")
 	private String artPath;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "Artist_has_Album", joinColumns = @JoinColumn(name = "Album_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "Artist_id", referencedColumnName = "id"))
 	private List<Artist> artistList;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "Album_has_Song", joinColumns = @JoinColumn(name = "Album_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "Song_id", referencedColumnName = "id"))
 	private List<Song> songList;
 
