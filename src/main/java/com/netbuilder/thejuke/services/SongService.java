@@ -17,7 +17,7 @@ public class SongService {
 	
 	
 	/**
-	 * 
+	 * Constructor
 	 * @param entity
 	 */
 	public SongService(EntityManager entity) 
@@ -90,7 +90,7 @@ public class SongService {
 	 * @param song
 	 * @return
 	 */
-	 public Song createSong(Song song) {
+	 public Song persistSong(Song song) {
 	        if (song == null)
 	            throw new ValidationException("Song object is null");
 
