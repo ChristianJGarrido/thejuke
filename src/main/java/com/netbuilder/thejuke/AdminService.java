@@ -39,5 +39,14 @@ public class AdminService {
 		
 		return entityManager.find(Admin.class, key);
 	}
+	
+	public void update(long key, Admin admin) {
+		
+		Admin get = entityManager.find(Admin.class, key);
+		
+		entityManager.getTransaction().begin();
+		get.update(admin);
+		entityManager.getTransaction().commit();
+	}
 
 }

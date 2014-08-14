@@ -42,5 +42,11 @@ public class Admin {
 	public void setId(long id) {
 		this.id = id;
 	}
+	
+	public void update(Admin admin) {
+	
+		this.user = admin.getUser();
+	}
 }
+	
 

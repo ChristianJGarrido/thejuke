@@ -74,5 +74,11 @@ public class User {
 		return sb.toString();
 		
 	}
+	
+	public void update (User user) {
+		this.userName = user.getUserName();
+		this.passWord = user.getPassWord();
+		this.balance = user.getBalance();
+	}
 
 }

@@ -46,4 +46,14 @@ public class SongService {
 		
 		return entityManager.find(Song.class, key);
 	}
+	
+	public void update(long key, Song song) {
+		
+		Song sg = entityManager.find(Song.class, key);
+		
+		entityManager.getTransaction().begin();
+		sg.update(song);
+		entityManager.getTransaction().commit();
+		
+	}
 }

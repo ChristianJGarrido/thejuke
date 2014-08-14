@@ -40,5 +40,14 @@ public class PlayListService {
 		
 		return entityManager.find(PlayList.class, key);
 	}
+	
+	public void update(long key, PlayList pl) {
+		
+		PlayList play = entityManager.find(PlayList.class, key);
+		
+		entityManager.getTransaction().begin();
+		play.update(pl);
+		entityManager.getTransaction().commit();
+	}
 
 }
