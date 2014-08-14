@@ -37,32 +37,32 @@ public class App {
 		playlistList = populatePlayListList();		
 
 		ArtistService artistService = new ArtistService(em);
-//		artistService.persistArtist(artistList);
+		artistService.persistArtist(artistList);
 		artistService.listArtists();
 
 		GenreService genreService = new GenreService(em);
-//		genreService.persistGenres(genreList);
+		genreService.persistGenres(genreList);
 		genreService.listGenres();
 
 		SongService songService = new SongService(em);
-//		songService.persistSongs(songList);
+		songService.persistSongs(songList);
 		songService.listSongs();
 		
 
 		AlbumService albumService = new AlbumService(em);
-//		albumService.persistAlbum(albumList);
+		albumService.persistAlbum(albumList);
 		albumService.listAlbums();
 
 		UserService userService = new UserService(em);
-//		userService.persistUser(userList);
+		userService.persistUser(userList);
 		userService.listUsers();
 		
 		AdminService adminService = new AdminService(em);
-//		adminService.persistAdmin(adminList);
+		adminService.persistAdmin(adminList);
 		adminService.listAdmins();
 		
 		PlayListService playlistService = new PlayListService(em);
-//		playlistService.persistPlayList(playlistList);
+		playlistService.persistPlayList(playlistList);
 		playlistService.listPlayLists();
 		
 //		PlayList test = playlistService.find(1);
@@ -95,8 +95,9 @@ public class App {
 	
 	private static List<Album> populateAlbumList(){
 		List<Album> result = new ArrayList<Album>();
-		
-		result.add(new Album("Nevermind", "Yalort", Date.valueOf("1991-6-30"), "path", getNirvanaSongs()));
+		List<Artist> artist = new ArrayList<Artist>();
+		artist.add(artistList.get(0));
+		result.add(new Album("Nevermind", "Yalort", Date.valueOf("1991-6-30"), "path",artist, getNirvanaSongs()));
 		return result;
 	}
 

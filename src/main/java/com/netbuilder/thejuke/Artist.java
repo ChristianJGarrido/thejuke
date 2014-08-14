@@ -1,10 +1,16 @@
 package com.netbuilder.thejuke;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -21,6 +27,17 @@ public class Artist {
 	@NotNull
 	@Size(min = 1, max = 45)
 	private String name;
+	
+
+	@ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(name="Artist_has_Album",
+    		joinColumns=
+            @JoinColumn(name="Artist_id", referencedColumnName="id"),
+            inverseJoinColumns=
+            @JoinColumn(name="Album_id", referencedColumnName="id")
+    )
+	private List<Album> albumList;
+	
 	@Column(name = "bio")
 	private String bio;
 	
@@ -62,5 +79,13 @@ public class Artist {
 	
 	public void setBio(String bio) {
 		this.bio = bio;
+	}
+
+	public List<Album> getAlbumList() {
+		return albumList;
+	}
+
+	public void setAlbumList(List<Album> albumList) {
+		this.albumList = albumList;
 	}
 }
