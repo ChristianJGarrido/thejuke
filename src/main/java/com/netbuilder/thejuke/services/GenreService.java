@@ -21,13 +21,13 @@ public class GenreService {
 	 * @param list
 	 */
 	public void persistGenres(List<Genre> list){
-		entityManager.getTransaction().begin();
+		//entityManager.getTransaction().begin();
 		for(Genre genre : list){
 			entityManager.persist(genre);
 
 		}
 		
-		entityManager.getTransaction().commit();
+		//entityManager.getTransaction().commit();
 	}
 	
 	/**
@@ -35,9 +35,9 @@ public class GenreService {
 	 * @param genre
 	 */
 	public void persistGenre(Genre genre){
-		entityManager.getTransaction().begin();
+		//entityManager.getTransaction().begin();
 		entityManager.persist(genre);
-		entityManager.getTransaction().commit();
+		//entityManager.getTransaction().commit();
 	}
 	/**Returns all the genres in the database **/
 	public List<Genre> readAll()
@@ -61,7 +61,9 @@ public class GenreService {
 	{
         throw new ValidationException("genre object is null");
 	}
+	//entityManager.getTransaction().begin();
 	entityManager.remove(entityManager.merge(genre));
+	//entityManager.getTransaction().commit();
 	}
 	/**Commits changes to genre to database
 	 * @param genre

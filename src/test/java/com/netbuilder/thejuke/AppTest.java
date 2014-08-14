@@ -26,27 +26,17 @@ public class AppTest
 	EntityManagerFactory emf;
 	GenreService genreService;
 	/**Runs after every test. **/
-//	@Override
-//	protected void tearDown() throws Exception 
-//	{
-//		try
+	@Override
+	protected void tearDown() throws Exception 
+	{
+//		List<Genre> genreList= genreService.readAll();
+//		for(Genre genre : genreList)
 //		{
-//		em.getTransaction().begin();
-//		Query query1=em.createNativeQuery("SET SQL_SAFE_UPDATES = 0;");
-//		Query query2=em.createNativeQuery("DELETE from genre");
-//		Query query3=em.createNativeQuery("SET SQL_SAFE_UPDATES = 1;");
-//		query1.executeUpdate();
-//		query2.executeUpdate();
-//		query3.executeUpdate();
-//		em.close();
-//		emf.close();
-//		}
-//		catch(Exception e)
-//		{
-//			e.printStackTrace();
+//			System.out.println(genre);
+//			//genreService.removeGenre(genre);
 //		}
 //		super.tearDown();
-//	}
+	}
 	
 	//Runs before every test
 	 public void initialize() 
@@ -56,8 +46,7 @@ public class AppTest
     @Override
 	protected void setUp() throws Exception 
     {
-    	emf = Persistence
-				.createEntityManagerFactory("TheJuke");
+    	emf = Persistence.createEntityManagerFactory("TheJuke");
 
 		em = emf.createEntityManager();
 		genreService = new GenreService(em);
@@ -125,11 +114,13 @@ public class AppTest
     
     public void testReadByName()
     {
+    	em.getTransaction().begin();
     	Genre metal = new Genre("metal");
     	List<Genre> genreList = new ArrayList<Genre>();
     	genreList.add(metal);
     	genreService.persistGenres(genreList);
     	assertTrue(genreService.findGenre("metal").get(0).getName().equals("metal"));
     	genreService.removeGenre(metal);
+    	em.getTransaction().commit();
     }
 }
