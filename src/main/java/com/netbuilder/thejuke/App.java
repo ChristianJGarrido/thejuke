@@ -67,7 +67,7 @@ public class App {
 		
 
 		AlbumService albumService = new AlbumService(em);
-		albumService.persistAlbum(albumList);
+		albumService.persistAlbums(albumList);
 		albumService.listAlbums();
 
 		UserService userService = new UserService(em);

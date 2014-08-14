@@ -12,11 +12,17 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name=Album.FIND_ALL, query="SELECT a FROM Album a"),
+	@NamedQuery(name=Album.FIND_BY_NAME, query="SELECT a FROM Album a WHERE a.name = :name")
+})
 @Table(name="Album")
 public class Album {
 
@@ -55,6 +61,9 @@ public class Album {
             @JoinColumn(name="Song_id", referencedColumnName="id")
     )
     private List<Song> songList;
+    
+    public static final String FIND_ALL = "Customer.findAll";
+    public static final String FIND_BY_NAME = "Customer.findByName";
     
 	public Album(String name, String producer,Date dateCreated, String artPath, List<Artist> artistList, List<Song> songList){
 		this.name = name;
