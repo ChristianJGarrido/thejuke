@@ -28,10 +28,9 @@ public class Artist {
 	@Size(min = 1, max = 45)
 	private String name;
 	
-	
-	// TODO: get this to fill in the artist_has_album table.
+
 	@ManyToMany(fetch=FetchType.EAGER)
-    @JoinTable(name="artist_has_album",
+    @JoinTable(name="Artist_has_Album",
     		joinColumns=
             @JoinColumn(name="Artist_id", referencedColumnName="id"),
             inverseJoinColumns=
@@ -42,10 +41,9 @@ public class Artist {
 	@Column(name = "bio")
 	private String bio;
 	
-	public Artist(String name, String bio, List<Album> albumList){
+	public Artist(String name, String bio){
 		this.name = name;
 		this.bio = bio;
-		this.albumList = albumList;
 	}
 	
 	public Artist(){

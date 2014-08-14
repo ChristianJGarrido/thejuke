@@ -39,12 +39,12 @@ public class Album {
 	private String artPath;
 	
 	@ManyToMany(fetch=FetchType.EAGER)
-	@JoinTable(name="artist_has_album", 
-	joinColumns=
-			@JoinColumn(name="Album_id", referencedColumnName="id"),
-			inverseJoinColumns=
-			@JoinColumn(name="Artist_id", referencedColumnName="id")
-	)
+    @JoinTable(name="Artist_has_Album",
+    		joinColumns=
+            @JoinColumn(name="Album_id", referencedColumnName="id"),
+            inverseJoinColumns=
+            @JoinColumn(name="Artist_id", referencedColumnName="id")
+    )
 	private List<Artist> artistList;
 	
     @ManyToMany(fetch=FetchType.EAGER)
@@ -56,13 +56,13 @@ public class Album {
     )
     private List<Song> songList;
     
-	public Album(String name, String producer,Date dateCreated, String artPath, List<Song> songList)
-	{
+	public Album(String name, String producer,Date dateCreated, String artPath, List<Artist> artistList, List<Song> songList){
 		this.name = name;
 		this.producer = producer;
-		this.dateCreated=dateCreated;
-		this.artPath=artPath;
-		this.songList=songList;
+		this.dateCreated = dateCreated;
+		this.artPath = artPath;
+		this.songList = songList;
+		this.artistList = artistList;
 
 	}
 	
@@ -94,8 +94,7 @@ public class Album {
 		this.artPath = artPath;
 	}
 
-	public Album()
-	{
+	public Album(){
 		this.name = "Unknown Name";
 		this.producer = "Unknown Producer";
 	}
@@ -109,7 +108,7 @@ public class Album {
 		sb.append("date released='").append(dateCreated).append("', ");
 		sb.append("songs='");
 		for(Song s: songList) {
-			sb.append(s);
+			sb.append(s.getName());
 			if(songList.get(songList.size()-1)!=s)
 				sb.append(", ");
 		}

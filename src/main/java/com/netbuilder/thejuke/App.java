@@ -82,18 +82,19 @@ public class App {
 	private static List<Artist> populateArtistList() {
 		List<Artist> result = new ArrayList<Artist>();
 
-		result.add(new Artist("Nirvana", "The original grunge", albumList));
-		result.add(new Artist("The Glitch Mob", "Popular electric music", albumList));
-		result.add(new Artist("Rattatat", "More Muzak", albumList));
-		result.add(new Artist("MGMT", "I like these guys", albumList));
-		result.add(new Artist("Kanye West", "Gay Fish", albumList));
+		result.add(new Artist("Nirvana", "The original grunge"));
+		result.add(new Artist("The Glitch Mob", "Popular electric music"));
+		result.add(new Artist("Rattatat", "More Muzak"));
+		result.add(new Artist("MGMT", "I like these guys"));
+		result.add(new Artist("Kanye West", "Gay Fish"));
 		return result;
 	}
 	
 	private static List<Album> populateAlbumList(){
 		List<Album> result = new ArrayList<Album>();
-		
-		result.add(new Album("Nevermind", "Yalort", Date.valueOf("1991-6-30"), "path", getNirvanaSongs()));
+		List<Artist> artist = new ArrayList<Artist>();
+		artist.add(artistList.get(0));
+		result.add(new Album("Nevermind", "Yalort", Date.valueOf("1991-6-30"), "path",artist, getNirvanaSongs()));
 		return result;
 	}
 
