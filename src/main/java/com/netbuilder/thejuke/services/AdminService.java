@@ -23,7 +23,7 @@ public class AdminService implements Serializable {
 	}
 
 	/** Adds Admins to Database **/
-	public void persistAdmin(List<Admin> list) {
+	public void persistAdmins(List<Admin> list) {
 		if (list == null) {
 			throw new ValidationException("Admin List is null");
 		}
@@ -57,7 +57,7 @@ public class AdminService implements Serializable {
 	}
 
 	/** Commits updated Admin to Database **/
-	public Admin updateAdmin(Admin admin) {
+	public Admin persistAdmin(Admin admin) {
 		if (admin == null) {
 			throw new ValidationException("Admin object is null");
 		}

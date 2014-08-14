@@ -46,7 +46,7 @@ public class User {
 	}
 
 	public User() {
-		id = 0;
+		//id = 0;
 		userName = "not set";
 		password = "";
 		balance = 0;

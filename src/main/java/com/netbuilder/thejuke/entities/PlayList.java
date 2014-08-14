@@ -33,14 +33,14 @@ public class PlayList {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = false, cascade=CascadeType.ALL)
 	@JoinColumn(name = "Admin_ID", referencedColumnName = "id")
 	private Admin adminId;
 
 	@Column(name = "name")
 	private String name;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany
 	@JoinTable(name = "Playlist_has_Song", joinColumns = @JoinColumn(name = "Playlist_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "Song_id", referencedColumnName = "id"))
 	private List<Song> songList;
 

@@ -24,10 +24,6 @@ import com.netbuilder.thejuke.services.PlayListService;
 import com.netbuilder.thejuke.services.SongService;
 import com.netbuilder.thejuke.services.UserService;
 
-/**
- * Hello world!
- *
- */
 public class App implements Serializable {
 	/**
 	 * 
@@ -173,5 +169,6 @@ public class App implements Serializable {
 		result.add(play);
 		return result;
 	}
+
 	
 }
