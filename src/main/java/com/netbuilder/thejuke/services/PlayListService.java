@@ -22,13 +22,10 @@ public class PlayListService {
 	 * @param list
 	 */
 	public void persistPlayLists(List<PlayList> list){
-		entityManager.getTransaction().begin();
 		for(PlayList PlayList : list){
 			entityManager.persist(PlayList);
 
 		}
-		
-		entityManager.getTransaction().commit();
 	}
 	
 	/**

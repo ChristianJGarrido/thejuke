@@ -29,12 +29,9 @@ public class ArtistService {
 	 * @param list List of artists to be added
 	 */
 	public void persistArtists(List<Artist> list){
-		em.getTransaction().begin();
 		for(Artist artist : list){
 			em.persist(artist);
 		}
-		
-		em.getTransaction().commit();
 	}
 	
 	/**
