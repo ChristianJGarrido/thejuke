@@ -119,7 +119,7 @@ public class SongService {
 	 */
 	public void removeSong(Long songId) {
 		if (songId == null)
-	            throw new ValidationException("itemId is null");
+	            throw new ValidationException("SongId is null");
 
 	        removeSong(findSong(songId));
 	}
@@ -159,7 +159,7 @@ public class SongService {
 	 * @param keyword
 	 * @return
 	 */
-	public List<Song> searchItems(String keyword) {
+	public List<Song> searchSongs(String keyword) {
 		 if (keyword == null)
 	            keyword = "";
 		 
