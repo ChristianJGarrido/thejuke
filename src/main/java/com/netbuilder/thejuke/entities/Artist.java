@@ -1,4 +1,4 @@
-package com.netbuilder.thejuke;
+package com.netbuilder.thejuke.entities;
 
 import java.util.List;
 

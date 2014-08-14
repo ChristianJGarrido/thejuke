@@ -8,6 +8,21 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import com.netbuilder.thejuke.entities.Admin;
+import com.netbuilder.thejuke.entities.Album;
+import com.netbuilder.thejuke.entities.Artist;
+import com.netbuilder.thejuke.entities.Genre;
+import com.netbuilder.thejuke.entities.PlayList;
+import com.netbuilder.thejuke.entities.Song;
+import com.netbuilder.thejuke.entities.User;
+import com.netbuilder.thejuke.services.AdminService;
+import com.netbuilder.thejuke.services.AlbumService;
+import com.netbuilder.thejuke.services.ArtistService;
+import com.netbuilder.thejuke.services.GenreService;
+import com.netbuilder.thejuke.services.PlayListService;
+import com.netbuilder.thejuke.services.SongService;
+import com.netbuilder.thejuke.services.UserService;
+
 /**
  * Hello world!
  *
