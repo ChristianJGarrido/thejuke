@@ -27,5 +27,26 @@ public class AdminService {
 			System.out.println(admin.toString());
 		}
 	}
+	
+	public List<Admin> readAll() {
+		
+		List<Admin> list = entityManager.createQuery("Select a from Admin a", Admin.class).getResultList();
+		return list;
+		
+	}
+	
+	public Admin read(long key) {
+		
+		return entityManager.find(Admin.class, key);
+	}
+	
+	public void update(long key, Admin admin) {
+		
+		Admin get = entityManager.find(Admin.class, key);
+		
+		entityManager.getTransaction().begin();
+		get.update(admin);
+		entityManager.getTransaction().commit();
+	}
 
 }

@@ -34,4 +34,26 @@ public class SongService {
 			System.out.println(song.toString());
 		}
 	}
+	
+	public List<Song> readAll() {
+		
+		List<Song> list = entityManager.createQuery("Select a Song a", Song.class).getResultList();
+		return list;
+		
+	}
+	
+	public Song read(long key) {
+		
+		return entityManager.find(Song.class, key);
+	}
+	
+	public void update(long key, Song song) {
+		
+		Song sg = entityManager.find(Song.class, key);
+		
+		entityManager.getTransaction().begin();
+		sg.update(song);
+		entityManager.getTransaction().commit();
+		
+	}
 }

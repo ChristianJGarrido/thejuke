@@ -93,6 +93,19 @@ public class PlayList {
 		this.name = name;
 	}
 	
+	public void update(PlayList pl) {
+		this.name =  pl.getName();
+		this.songList =  pl.getSongList();
+		this.adminId = pl.getAdminId();
+	}
+
+	public List<Song> getSongList() {
+		return songList;
+	}
+
+	public void setSongList(List<Song> songList) {
+		this.songList = songList;
+	}
 	
 
 }

@@ -124,5 +124,13 @@ public class Song
 		return sb.toString();
 
 	}
+	
+	public void update(Song song) {
+		this.name = song.getName();
+		this.length = song.getLength();
+		this.audioPath = song.getAudioPath();
+		this.genre = song.getGenre();
+		this.albumList = song.getAlbumList();
+	}
 
 }
