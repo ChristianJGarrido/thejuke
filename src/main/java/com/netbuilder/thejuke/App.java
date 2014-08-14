@@ -1,5 +1,6 @@
 package com.netbuilder.thejuke;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,12 @@ import com.netbuilder.thejuke.services.UserService;
  * Hello world!
  *
  */
-public class App {
+public class App implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -363084039824268881L;
+	
 	static List<Genre> genreList;
 	static List<Song> songList;
 	static List<Artist> artistList;

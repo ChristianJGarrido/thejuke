@@ -45,6 +45,9 @@ public class Song {
 
 	@Column(name = "audioPath")
 	private String audioPath;
+	
+	@Column(name = "cost")
+	private float cost;
 
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "Genre_ID", referencedColumnName = "id")
@@ -118,6 +121,14 @@ public class Song {
 		this.genre = genre;
 	}
 
+	public float getCost() {
+		return cost;
+	}
+
+	public void setCost(float cost) {
+		this.cost = cost;
+	}
+
 	public Song() {
 		this.name = "Unknown Name";
 		this.length = 0F;
@@ -131,9 +142,10 @@ public class Song {
 		final StringBuilder sb = new StringBuilder();
 		sb.append("Song {");
 		sb.append("id='").append(id).append("', ");
-		sb.append("name='").append(name).append(", ");
+		sb.append("name='").append(name).append("', ");
 		sb.append("length='").append(length).append("', ");
-		sb.append("genre='").append(genre).append("'}");
+		sb.append("genre='").append(genre).append("', ");
+		sb.append("cost='").append(cost).append("'}");
 		return sb.toString();
 
 	}
