@@ -26,27 +26,17 @@ public class AppTest
 	EntityManagerFactory emf;
 	GenreService genreService;
 	/**Runs after every test. **/
-//	@Override
-//	protected void tearDown() throws Exception 
-//	{
-//		try
+	@Override
+	protected void tearDown() throws Exception 
+	{
+//		List<Genre> genreList= genreService.readAll();
+//		for(Genre genre : genreList)
 //		{
-//		em.getTransaction().begin();
-//		Query query1=em.createNativeQuery("SET SQL_SAFE_UPDATES = 0;");
-//		Query query2=em.createNativeQuery("DELETE from genre");
-//		Query query3=em.createNativeQuery("SET SQL_SAFE_UPDATES = 1;");
-//		query1.executeUpdate();
-//		query2.executeUpdate();
-//		query3.executeUpdate();
-//		em.close();
-//		emf.close();
-//		}
-//		catch(Exception e)
-//		{
-//			e.printStackTrace();
+//			System.out.println(genre);
+//			//genreService.removeGenre(genre);
 //		}
 //		super.tearDown();
-//	}
+	}
 	
 	//Runs before every test
 	 public void initialize() 
@@ -56,8 +46,7 @@ public class AppTest
     @Override
 	protected void setUp() throws Exception 
     {
-    	emf = Persistence
-				.createEntityManagerFactory("TheJuke");
+    	emf = Persistence.createEntityManagerFactory("TheJuke");
 
 		em = emf.createEntityManager();
 		genreService = new GenreService(em);
@@ -82,7 +71,7 @@ public class AppTest
     	genreService.persistGenres(genreList);
     	List<Genre> genreList2=genreService.readAll();
     	assertTrue(genreList2.get(0).getName().equals("metal"));
-    	genreService.delete(metal);
+    	genreService.removeGenre(metal);
     }
     public void testDeleteoneObject()
     {
@@ -92,10 +81,10 @@ public class AppTest
     	genreList.add(metal);
     	genreList.add(rock);
     	genreService.persistGenres(genreList);
-    	genreService.delete(metal);
+    	genreService.removeGenre(metal);
     	assertTrue(genreService.readAll().get(0).getName().equals("rock"));
-    	genreService.delete(metal);
-    	genreService.delete(rock);
+    	genreService.removeGenre(metal);
+    	genreService.removeGenre(rock);
     }
     public void testUpdate()
     {
@@ -106,7 +95,7 @@ public class AppTest
     	metal.setName("Power Metal");
     	genreService.update(metal);
     	assertTrue(genreService.readAll().get(0).getName().equals("Power Metal"));
-    	genreService.delete(metal);
+    	genreService.removeGenre(metal);
     }
     public void testReadByID()
     {
@@ -115,21 +104,23 @@ public class AppTest
     	genreList.add(metal);
     	genreService.persistGenres(genreList);
     	
-    	assertTrue(genreService.read(metal.getId()).getName().equals("metal"));
-    	genreService.delete(metal);
+    	assertTrue(genreService.findGenre(metal.getId()).getName().equals("metal"));
+    	genreService.removeGenre(metal);
     }
     public void testReturnNullIfImproperId()
     {
-    	assertTrue(genreService.read(-1)==null);
+    	assertTrue(genreService.findGenre(-1)==null);
     }
     
     public void testReadByName()
     {
+    	em.getTransaction().begin();
     	Genre metal = new Genre("metal");
     	List<Genre> genreList = new ArrayList<Genre>();
     	genreList.add(metal);
     	genreService.persistGenres(genreList);
-    	assertTrue(genreService.readByName("metal").get(0).getName().equals("metal"));
-    	genreService.delete(metal);
+    	assertTrue(genreService.findGenre("metal").get(0).getName().equals("metal"));
+    	genreService.removeGenre(metal);
+    	em.getTransaction().commit();
     }
 }

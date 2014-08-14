@@ -79,7 +79,7 @@ public class App {
 		adminService.listAdmins();
 		
 		PlayListService playlistService = new PlayListService(em);
-		playlistService.persistPlayList(playlistList);
+		playlistService.persistPlayLists(playlistList);
 		playlistService.listPlayLists();
 		
 //		PlayList test = playlistService.find(1);

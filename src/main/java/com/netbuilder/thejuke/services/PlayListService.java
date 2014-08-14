@@ -12,21 +12,25 @@ import com.netbuilder.thejuke.entities.PlayList;
 public class PlayListService {
 	private EntityManager entityManager;
 
+	//Constructor
 	public PlayListService(EntityManager entity) {
 		this.entityManager = entity;
 	}
 	
-	public void persistPlayList(List<PlayList> list){
-		entityManager.getTransaction().begin();
+	/**
+	 * Adds a list of if PlayLists to the database
+	 * @param list
+	 */
+	public void persistPlayLists(List<PlayList> list){
 		for(PlayList PlayList : list){
 			entityManager.persist(PlayList);
 
 		}
-		
-		entityManager.getTransaction().commit();
 	}
 	
-	
+	/**
+	 * Prints out PlayLists for testing
+	 */
 	public void listPlayLists(){
 		List<PlayList> list = entityManager.createQuery("Select a from PlayList a", PlayList.class).getResultList();
 		for(PlayList PlayList : list){
@@ -76,7 +80,7 @@ public class PlayListService {
 	 * @param song
 	 * @return
 	 */
-	 public PlayList createPlayList(PlayList pl) {
+	 public PlayList persistPlayList(PlayList pl) {
 	        if (pl == null)
 	            throw new ValidationException("PlayList object is null");
 

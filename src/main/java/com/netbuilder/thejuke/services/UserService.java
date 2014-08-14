@@ -14,13 +14,9 @@ public class UserService {
 	}
 	
 	public void persistUser(List<User> list){
-		entityManager.getTransaction().begin();
 		for(User User : list){
 			entityManager.persist(User);
-
 		}
-		
-		entityManager.getTransaction().commit();
 	}
 	
 	
@@ -46,10 +42,7 @@ public class UserService {
 	public void update(long key, User user) {
 		
 		User get = entityManager.find(User.class, key);
-		
-		entityManager.getTransaction().begin();
 		get.update(user);
-		entityManager.getTransaction().commit();
 	}
 
 }

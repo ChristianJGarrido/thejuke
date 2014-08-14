@@ -17,7 +17,7 @@ public class SongService {
 	
 	
 	/**
-	 * 
+	 * Constructor
 	 * @param entity
 	 */
 	public SongService(EntityManager entity) 
@@ -28,14 +28,11 @@ public class SongService {
 	/**Takes in a list of songs. Commits them to database in its entityManager. **/
 	public void persistSongs(List<Song> list)
 	{
-		entityManager.getTransaction().begin();
 		for(Song song : list)
 		{
 			entityManager.persist(song);
 
 		}
-		
-		entityManager.getTransaction().commit();
 	}
 	
 	/**Queries the database for songs, then prints them.(For testing) **/
@@ -90,7 +87,7 @@ public class SongService {
 	 * @param song
 	 * @return
 	 */
-	 public Song createSong(Song song) {
+	 public Song persistSong(Song song) {
 	        if (song == null)
 	            throw new ValidationException("Song object is null");
 

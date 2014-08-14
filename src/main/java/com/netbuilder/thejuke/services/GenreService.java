@@ -16,15 +16,24 @@ public class GenreService {
 	public GenreService(EntityManager entity) {
 		this.entityManager = entity;
 	}
-	//Create
+	/**
+	 * Adds list of Genres to database
+	 * @param list
+	 */
 	public void persistGenres(List<Genre> list){
-		entityManager.getTransaction().begin();
 		for(Genre genre : list){
 			entityManager.persist(genre);
 
 		}
 		
-		entityManager.getTransaction().commit();
+	}
+	
+	/**
+	 * Adds Genre to database
+	 * @param genre
+	 */
+	public void persistGenre(Genre genre){
+		entityManager.persist(genre);
 	}
 	/**Returns all the genres in the database **/
 	public List<Genre> readAll()
@@ -39,31 +48,34 @@ public class GenreService {
 			System.out.print(genre.toString());
 		}
 	}
-	/**Deletes selected genre from database **/
-	public void delete(Genre genre)
+	/**Deletes selected genre from database 
+	 * @param genre
+	 */
+	public void removeGenre(final Genre genre)
 	{
 	if (genre == null)
 	{
         throw new ValidationException("genre object is null");
 	}
-	entityManager.getTransaction().begin();
 	entityManager.remove(entityManager.merge(genre));
-	entityManager.getTransaction().commit();
 	}
-	/**Commits changes to genre to database **/
-	public void update(Genre genre)
+	/**Commits changes to genre to database
+	 * @param genre
+	 */
+	public Genre update(Genre genre)
 	{
 		// Make sure the object is valid
         if (genre == null)
             throw new ValidationException("Customer object is null");
-        entityManager.getTransaction().begin();
-        // Update the object in the database
         entityManager.merge(genre);
-        entityManager.getTransaction().commit();
+		return genre;
 		
 	}
-	/**Returns genre with given id**/
-	public Genre read(int id)
+	/**Returns genre with given id
+	 * @param id
+	 * @return Genre
+	 */
+	public Genre findGenre(int id)
 	{
 		List<Genre> list =  entityManager.createQuery("Select g from Genre g WHERE g.id ="+id, Genre.class).getResultList();
 		if(list.size()==0)
@@ -72,8 +84,11 @@ public class GenreService {
 		}
 		return list.get(0);
 	}
-	/**Returns all genres with given name. **/
-	public List<Genre> readByName(String name)
+	/**Returns all genres with given name.
+	 * @param name
+	 * @return List<Genre>
+	 */
+	public List<Genre> findGenre(String name)
 	{
 		List<Genre> list =  entityManager.createQuery("Select g from Genre g WHERE g.name ='"+name+"'", Genre.class).getResultList();
 		if(name==null)
