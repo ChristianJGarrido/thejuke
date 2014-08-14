@@ -1,4 +1,4 @@
-package com.netbuilder.thejuke;
+package com.netbuilder.thejuke.entities;
 
 import java.sql.Date;
 import java.util.List;

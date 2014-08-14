@@ -8,6 +8,21 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import com.netbuilder.thejuke.entities.Admin;
+import com.netbuilder.thejuke.entities.Album;
+import com.netbuilder.thejuke.entities.Artist;
+import com.netbuilder.thejuke.entities.Genre;
+import com.netbuilder.thejuke.entities.PlayList;
+import com.netbuilder.thejuke.entities.Song;
+import com.netbuilder.thejuke.entities.User;
+import com.netbuilder.thejuke.services.AdminService;
+import com.netbuilder.thejuke.services.AlbumService;
+import com.netbuilder.thejuke.services.ArtistService;
+import com.netbuilder.thejuke.services.GenreService;
+import com.netbuilder.thejuke.services.PlayListService;
+import com.netbuilder.thejuke.services.SongService;
+import com.netbuilder.thejuke.services.UserService;
+
 /**
  * Hello world!
  *
@@ -37,12 +52,14 @@ public class App {
 		playlistList = populatePlayListList();		
 
 		ArtistService artistService = new ArtistService(em);
-		artistService.persistArtist(artistList);
+		artistService.persistArtists(artistList);
 		artistService.listArtists();
 
 		GenreService genreService = new GenreService(em);
-		genreService.persistGenres(genreList);
-		genreService.listGenres();
+
+//		genreService.persistGenres(genreList);
+//		genreService.listGenres();
+		System.out.println(genreService.readAll());
 
 		SongService songService = new SongService(em);
 		songService.persistSongs(songList);
@@ -62,7 +79,7 @@ public class App {
 		adminService.listAdmins();
 		
 		PlayListService playlistService = new PlayListService(em);
-		playlistService.persistPlayList(playlistList);
+		playlistService.persistPlayLists(playlistList);
 		playlistService.listPlayLists();
 		
 //		PlayList test = playlistService.find(1);

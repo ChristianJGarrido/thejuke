@@ -1,4 +1,4 @@
-package com.netbuilder.thejuke;
+package com.netbuilder.thejuke.services;
 
 import java.util.List;
 
@@ -7,6 +7,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
 
+import com.netbuilder.thejuke.entities.Genre;
+import com.netbuilder.thejuke.entities.Song;
+
 
 public class SongService {
 	
@@ -14,7 +17,7 @@ public class SongService {
 	
 	
 	/**
-	 * 
+	 * Constructor
 	 * @param entity
 	 */
 	public SongService(EntityManager entity) 
@@ -87,7 +90,7 @@ public class SongService {
 	 * @param song
 	 * @return
 	 */
-	 public Song createSong(Song song) {
+	 public Song persistSong(Song song) {
 	        if (song == null)
 	            throw new ValidationException("Song object is null");
 
@@ -116,7 +119,7 @@ public class SongService {
 	 */
 	public void removeSong(Long songId) {
 		if (songId == null)
-	            throw new ValidationException("itemId is null");
+	            throw new ValidationException("SongId is null");
 
 	        removeSong(findSong(songId));
 	}
@@ -156,7 +159,7 @@ public class SongService {
 	 * @param keyword
 	 * @return
 	 */
-	public List<Song> searchItems(String keyword) {
+	public List<Song> searchSongs(String keyword) {
 		 if (keyword == null)
 	            keyword = "";
 		 
