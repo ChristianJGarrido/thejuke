@@ -29,13 +29,14 @@ public class AppTest
 	@Override
 	protected void tearDown() throws Exception 
 	{
-//		List<Genre> genreList= genreService.readAll();
-//		for(Genre genre : genreList)
-//		{
-//			System.out.println(genre);
-//			//genreService.removeGenre(genre);
-//		}
-//		super.tearDown();
+		List<Genre> genreList= genreService.readAll();
+		for(Genre genre : genreList)
+		{
+			genreService.removeGenre(genre);
+		}
+		super.tearDown();
+		em.getTransaction().commit();
+    	
 	}
 	
 	//Runs before every test
@@ -50,6 +51,7 @@ public class AppTest
 
 		em = emf.createEntityManager();
 		genreService = new GenreService(em);
+		em.getTransaction().begin();
 		super.setUp();
 	}
 	/**
@@ -71,7 +73,6 @@ public class AppTest
     	genreService.persistGenres(genreList);
     	List<Genre> genreList2=genreService.readAll();
     	assertTrue(genreList2.get(0).getName().equals("metal"));
-    	genreService.removeGenre(metal);
     }
     public void testDeleteoneObject()
     {
@@ -83,8 +84,6 @@ public class AppTest
     	genreService.persistGenres(genreList);
     	genreService.removeGenre(metal);
     	assertTrue(genreService.readAll().get(0).getName().equals("rock"));
-    	genreService.removeGenre(metal);
-    	genreService.removeGenre(rock);
     }
     public void testUpdate()
     {
@@ -95,7 +94,6 @@ public class AppTest
     	metal.setName("Power Metal");
     	genreService.update(metal);
     	assertTrue(genreService.readAll().get(0).getName().equals("Power Metal"));
-    	genreService.removeGenre(metal);
     }
     public void testReadByID()
     {
@@ -105,7 +103,6 @@ public class AppTest
     	genreService.persistGenres(genreList);
     	
     	assertTrue(genreService.findGenre(metal.getId()).getName().equals("metal"));
-    	genreService.removeGenre(metal);
     }
     public void testReturnNullIfImproperId()
     {
@@ -114,13 +111,11 @@ public class AppTest
     
     public void testReadByName()
     {
-    	em.getTransaction().begin();
+    	
     	Genre metal = new Genre("metal");
     	List<Genre> genreList = new ArrayList<Genre>();
     	genreList.add(metal);
     	genreService.persistGenres(genreList);
     	assertTrue(genreService.findGenre("metal").get(0).getName().equals("metal"));
-    	genreService.removeGenre(metal);
-    	em.getTransaction().commit();
     }
 }
