@@ -12,13 +12,23 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@Entity
+//import org.agoncal.application.petstore.domain.Item;
 
+@Entity
 @Table(name="Song")
+@NamedQueries({
+    @NamedQuery(name = Song.FIND_BY_SONG_ID, query = "SELECT i FROM Song i WHERE i.id = :songId"),
+    @NamedQuery(name = Song.FIND_BY_GENRE_ID, query = "SELECT i FROM Song i WHERE i.genre.id = :genreId"),
+    @NamedQuery(name = Song.FIND_BY_SONG_NAME, query = "SELECT i from Song i where i.name = :songName"),
+    @NamedQuery(name = Song.SEARCH, query = "SELECT i FROM Song i WHERE UPPER(i.name) LIKE :keyword OR UPPER(i.genre.name) LIKE :keyword ORDER BY i.name, i.length, i.genre"),
+    @NamedQuery(name = Song.FIND_ALL, query = "SELECT i FROM Song i")
+})
 public class Song 
 {
 	//Declarations and Entity annotations
@@ -49,6 +59,12 @@ public class Song
             @JoinColumn(name="Album_id", referencedColumnName="id")
     )
     private List<Album> albumList;   
+	
+	public static final String FIND_BY_SONG_ID = "Song.findBySongId";
+	public static final String FIND_BY_GENRE_ID = "Song.findByGenreId";
+	public static final String FIND_BY_SONG_NAME = "Song.findBySongName";
+    public static final String SEARCH = "Song.search";
+    public static final String FIND_ALL = "Song.findAll";
 
 	//Constructor
 	public Song(String name, float length, String audioPath,Genre genre)
@@ -124,5 +140,7 @@ public class Song
 		return sb.toString();
 
 	}
+	
+	
 
 }

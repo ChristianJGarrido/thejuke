@@ -32,7 +32,7 @@ public class User {
 		
 		this.userName =  userName;
 		this.passWord = passWord;
-	}
+	}	
 	public User() {
 		id=0;
 		userName="not set";
@@ -63,7 +63,6 @@ public class User {
 	public void setBalance(float balance) {
 		this.balance = balance;
 	}
-
 	public String toString(){
 		final StringBuilder sb = new StringBuilder();
 		sb.append("User {");
@@ -73,6 +72,12 @@ public class User {
 		sb.append("balance='").append(balance).append("'}\n");
 		return sb.toString();
 		
+	}
+	
+	public void update (User user) {
+		this.userName = user.getUserName();
+		this.passWord = user.getPassWord();
+		this.balance = user.getBalance();
 	}
 
 }

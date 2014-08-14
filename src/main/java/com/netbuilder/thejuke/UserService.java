@@ -29,6 +29,26 @@ public class UserService {
 		}
 	}
 	
+	public List<User> readAll() {
+		
+		List<User> list = entityManager.createQuery("Select a from User a", User.class).getResultList();
+		return list;
+		
+	}
+	
+	public User read(long key) {
+		
+		return entityManager.find(User.class, key);
+	}
+	
+	public void update(long key, User user) {
+		
+		User get = entityManager.find(User.class, key);
+		
+		entityManager.getTransaction().begin();
+		get.update(user);
+		entityManager.getTransaction().commit();
+	}
 
 }
 
