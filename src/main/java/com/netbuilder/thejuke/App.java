@@ -42,7 +42,8 @@ public class App {
 
 		GenreService genreService = new GenreService(em);
 //		genreService.persistGenres(genreList);
-		genreService.listGenres();
+//		genreService.listGenres();
+		System.out.println(genreService.readAll());
 
 		SongService songService = new SongService(em);
 //		songService.persistSongs(songList);
