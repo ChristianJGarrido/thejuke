@@ -5,10 +5,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(name = User.FIND_BY_USERNAME, query = "SELECT u FROM User u WHERE u.userName = :name"),
+    @NamedQuery(name = User.FIND_BY_PASSWORD, query = "SELECT u FROM User u WHERE u.userName = :userName AND u.password = :password"),
+    @NamedQuery(name = User.FIND_ALL, query = "SELECT u FROM User u")
+})
 @Table(name = "User")
 public class User {
 	
@@ -22,21 +29,24 @@ public class User {
 	
 	@Column(name="passWord", nullable = false, length = 45)
 	@NotNull
-	private String passWord;
+	private String password;
 	
 	@Column(name = "balance")
 	@NotNull
 	private float balance;
 	
+	public static final String FIND_BY_USERNAME="User.findByUsername";
+	public static final String FIND_BY_PASSWORD="User.findByPassword";
+	public static final String FIND_ALL="User.findAll";
 	public User(String userName, String passWord) {
 		
 		this.userName =  userName;
-		this.passWord = passWord;
-	}	
+		this.password = passWord;
+	}
 	public User() {
 		id=0;
 		userName="not set";
-		passWord="";
+		password="";
 		balance=0;
 	}
 	public long getId() {
@@ -52,10 +62,10 @@ public class User {
 		this.userName = userName;
 	}
 	public String getPassWord() {
-		return passWord;
+		return password;
 	}
 	public void setPassWord(String passWord) {
-		this.passWord = passWord;
+		this.password = passWord;
 	}
 	public float getBalance() {
 		return balance;
@@ -63,12 +73,13 @@ public class User {
 	public void setBalance(float balance) {
 		this.balance = balance;
 	}
+
 	public String toString(){
 		final StringBuilder sb = new StringBuilder();
 		sb.append("User {");
 		sb.append("id='").append(id).append("', ");
 		sb.append("userNamee='").append(userName).append("', ");
-		sb.append("passWord='").append(passWord).append("', ");
+		sb.append("passWord='").append(password).append("', ");
 		sb.append("balance='").append(balance).append("'}\n");
 		return sb.toString();
 		
@@ -76,7 +87,7 @@ public class User {
 	
 	public void update (User user) {
 		this.userName = user.getUserName();
-		this.passWord = user.getPassWord();
+		this.password = user.getPassWord();
 		this.balance = user.getBalance();
 	}
 
