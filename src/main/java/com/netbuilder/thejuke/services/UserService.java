@@ -13,10 +13,15 @@ public class UserService {
 		this.entityManager = entity;
 	}
 	
-	public void persistUser(List<User> list){
-		for(User User : list){
-			entityManager.persist(User);
+	public void persistUser(List<User> list)
+	{
+		for(User user : list){
+			entityManager.persist(user);
 		}
+	}
+	public void persistUser(User user)
+	{
+			entityManager.persist(user);
 	}
 	
 	
