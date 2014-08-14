@@ -22,6 +22,8 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="Song")
+
+//Named Queries for easy reference for SongService.java
 @NamedQueries({
     @NamedQuery(name = Song.FIND_BY_SONG_ID, query = "SELECT i FROM Song i WHERE i.id = :songId"),
     @NamedQuery(name = Song.FIND_BY_GENRE_ID, query = "SELECT i FROM Song i WHERE i.genre.id = :genreId"),
@@ -60,6 +62,7 @@ public class Song
     )
     private List<Album> albumList;   
 	
+	//Statics names for the named queries to reference
 	public static final String FIND_BY_SONG_ID = "Song.findBySongId";
 	public static final String FIND_BY_GENRE_ID = "Song.findByGenreId";
 	public static final String FIND_BY_SONG_NAME = "Song.findBySongName";

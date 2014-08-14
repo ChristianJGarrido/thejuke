@@ -3,13 +3,20 @@ package com.netbuilder.thejuke;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
+//import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
 
-public class SongService {
-	private EntityManager entityManager;
 
+public class SongService {
+	
+	private EntityManager entityManager;
+	
+	
+	/**
+	 * 
+	 * @param entity
+	 */
 	public SongService(EntityManager entity) 
 	{
 		this.entityManager = entity;
@@ -38,6 +45,10 @@ public class SongService {
 		}
 	}
 	
+	/**
+	 * Queries database for all songs and returns them in a List<Song>
+	 * @return List<Song>
+	 */
 	public List<Song> findAllSongs() {
 		
         TypedQuery<Song> typedQuery = entityManager.createNamedQuery(Song.FIND_ALL, Song.class);
@@ -45,6 +56,11 @@ public class SongService {
 		
 	}
 	
+	/**
+	 * Searches through songs by primary key and returns the song
+	 * @param key
+	 * @return Song
+	 */
 	public Song findSong(final Long key) {
 		
 		if (key == null)
@@ -53,6 +69,11 @@ public class SongService {
         return entityManager.find(Song.class, key);
 	}
 	
+	/**
+	 * Updates song in database and returns the Song
+	 * @param song
+	 * @return Song
+	 */
 	public Song updateSong(Song song) {
 		if(song == null) {
 			throw new ValidationException("Song object is null");
@@ -61,7 +82,12 @@ public class SongService {
 		return entityManager.merge(song);
 	}
 	
-	 public Song createItem(Song song) {
+	/**
+	 * Creates song in the database and creates Genre for it in database
+	 * @param song
+	 * @return
+	 */
+	 public Song createSong(Song song) {
 	        if (song == null)
 	            throw new ValidationException("Song object is null");
 
@@ -73,13 +99,10 @@ public class SongService {
 	        return song;
 	    }
 	
-	public Song read(String name) {
-		
-		Query query = entityManager.createQuery("Select a from Song a where a.name = :sname");
-		query.setParameter("sname", name);
-		return (Song)query.getSingleResult();
-	}
-	
+	/**
+	 * Removes song in Database by searching by Song object
+	 * @param song
+	 */
 	public void removeSong(Song song) {
 	        if (song == null)
 	            throw new ValidationException("Song object is null");
@@ -87,14 +110,23 @@ public class SongService {
 	        entityManager.remove(entityManager.merge(song));
 	}
 
-	public void removeItem(Long songId) {
+	/**
+	 * Removes song in Database by searching by Song ID
+	 * @param songId
+	 */
+	public void removeSong(Long songId) {
 		if (songId == null)
 	            throw new ValidationException("itemId is null");
 
 	        removeSong(findSong(songId));
 	}
 	
-	 public List<Song> findByGenre(Genre g) {
+	/**
+	 * Searches database for songs with the specified Genre and returns a song list
+	 * @param g
+	 * @return List<Song>
+	 */
+	public List<Song> findByGenre(Genre g) {
 		 if (g == null)
 			 throw new ValidationException("Invalid genre");
 
@@ -102,9 +134,14 @@ public class SongService {
 	     	typedQuery.setParameter("genreId", g.getId());
 	     	
 	     return typedQuery.getResultList();
-	 }
-	 
-	 public List<Song> findBySongName(String name) {
+	}
+	
+	/**
+	 * Searches database for songs by name and returns a song list
+	 * @param name
+	 * @return List<Song>
+	 */
+	public List<Song> findBySongName(String name) {
 		 if (name == null)
 			 throw new ValidationException("Invalid name");
 
@@ -112,9 +149,14 @@ public class SongService {
 	     	typedQuery.setParameter("songName", name);
 	     	
 	     return typedQuery.getResultList();
-	 }
-	 
-	 public List<Song> searchItems(String keyword) {
+	}
+	
+	/**
+	 * Searches through database based on a keyword and returns a song list that is similar to name or genre
+	 * @param keyword
+	 * @return
+	 */
+	public List<Song> searchItems(String keyword) {
 		 if (keyword == null)
 	            keyword = "";
 		 
@@ -122,7 +164,7 @@ public class SongService {
 		 typedQuery.setParameter("keyword", "%" + keyword.toUpperCase() + "%");
 	        
 		 return typedQuery.getResultList();
-	 }
+	}
 	 
 	
 }
