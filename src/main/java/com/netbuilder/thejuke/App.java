@@ -132,11 +132,11 @@ public class App implements Serializable {
 		List<Song> result = new ArrayList<Song>();
 		
 		result.add(new Song("Smells like Teen Spirit", 5.01f, 
-				"C:\\Music\\Nirvana\\Nevermind\\SmellsTeenSpirit.mp3", genreList.get(1)));
+				"C:\\Music\\Nirvana\\Nevermind\\SmellsTeenSpirit.mp3", genreList.get(1),0.25F));
 		result.add(new Song("Come as you are", 3.38f, 
-				"C:\\Music\\Nirvana\\Nevermind\\Comeasyouare.mp3", genreList.get(1)));
+				"C:\\Music\\Nirvana\\Nevermind\\Comeasyouare.mp3", genreList.get(1),0.25F));
 		result.add(new Song("Lithium", 4.16f, 
-				"C:\\Music\\Nirvana\\Nevermind\\Lithium.mp3", genreList.get(1)));
+				"C:\\Music\\Nirvana\\Nevermind\\Lithium.mp3", genreList.get(1),0.25F));
 		songList.addAll(result);
 		return result;
 	}
@@ -144,15 +144,15 @@ public class App implements Serializable {
 	private static List<Song> populateSongList() {
 		List<Song> result = new ArrayList<Song>();
 		result.add(new Song("Hail To The Hammer", 3.00F,
-				"C:\\Music\\Tyr\\HailToTheHammer.mp3", genreList.get(2)));
+				"C:\\Music\\Tyr\\HailToTheHammer.mp3", genreList.get(2),0.25F));
 		return result;
 	}
 	
 	private static List<User> populateUserList(){
 		List<User> result = new ArrayList<User>();
 		
-		result.add(new User("Alorty", "pass"));
-		result.add(new User("Erlym", "pass2"));
+		result.add(new User("Alorty", "pass",0.0F));
+		result.add(new User("Erlym", "pass2",0.0F));
 		return result;
 	}
 	

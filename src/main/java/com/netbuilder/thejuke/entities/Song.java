@@ -65,11 +65,12 @@ public class Song {
 	public static final String FIND_ALL = "Song.findAll";
 
 	// Constructor
-	public Song(String name, float length, String audioPath, Genre genre) {
+	public Song(String name, float length, String audioPath, Genre genre,float cost) {
 		this.name = name;
 		this.length = length;
 		this.audioPath = audioPath;
 		this.genre = genre;
+		this.cost=cost;
 	}
 
 	// Getters and Setters
@@ -135,6 +136,7 @@ public class Song {
 
 		this.audioPath = "";
 		this.genre = new Genre();
+		this.cost=0.25F;
 	}
 
 	// toString for easy testing.
