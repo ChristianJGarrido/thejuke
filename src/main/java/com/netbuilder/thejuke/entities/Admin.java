@@ -43,8 +43,8 @@ public class Admin {
 		this.id = id;
 	}
 	
-	public void update(Admin admin) {
-	
+	public void update(Admin admin) 
+	{
 		this.user = admin.getUser();
 	}
 }
