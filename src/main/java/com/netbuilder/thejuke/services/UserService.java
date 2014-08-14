@@ -1,8 +1,10 @@
-package com.netbuilder.thejuke;
+package com.netbuilder.thejuke.services;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
+
+import com.netbuilder.thejuke.entities.User;
 
 public class UserService {
 	private EntityManager entityManager;

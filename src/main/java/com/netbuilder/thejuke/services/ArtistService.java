@@ -1,9 +1,11 @@
-package com.netbuilder.thejuke;
+package com.netbuilder.thejuke.services;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+
+import com.netbuilder.thejuke.entities.Artist;
 
 /**
  * @author Taylor Hunter
