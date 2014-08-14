@@ -36,7 +36,7 @@ public class PlayListService {
 		
 	}
 	
-	public PlayList find(long key) {
+	public PlayList read(long key) {
 		
 		return entityManager.find(PlayList.class, key);
 	}

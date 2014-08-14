@@ -36,7 +36,7 @@ public class UserService {
 		
 	}
 	
-	public User find(long key) {
+	public User read(long key) {
 		
 		return entityManager.find(User.class, key);
 	}

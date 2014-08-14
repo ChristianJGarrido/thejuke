@@ -42,7 +42,7 @@ public class SongService {
 		
 	}
 	
-	public Song find(long key) {
+	public Song read(long key) {
 		
 		return entityManager.find(Song.class, key);
 	}

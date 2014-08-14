@@ -35,7 +35,7 @@ public class AdminService {
 		
 	}
 	
-	public Admin find(long key) {
+	public Admin read(long key) {
 		
 		return entityManager.find(Admin.class, key);
 	}
