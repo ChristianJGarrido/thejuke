@@ -38,10 +38,11 @@ public class User {
 	public static final String FIND_BY_PASSWORD = "User.findByPassword";
 	public static final String FIND_ALL = "User.findAll";
 
-	public User(String userName, String passWord) {
+	public User(String userName, String passWord,float balance) {
 
 		this.userName = userName;
 		this.password = passWord;
+		this.balance=balance;
 	}
 
 	public User() {

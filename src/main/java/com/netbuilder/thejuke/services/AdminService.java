@@ -1,13 +1,21 @@
 package com.netbuilder.thejuke.services;
 
+import java.io.Serializable;
 import java.util.List;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.validation.ValidationException;
 
 import com.netbuilder.thejuke.entities.Admin;
+import com.netbuilder.thejuke.util.Loggable;
 
-public class AdminService {
+@Stateless
+@Loggable
+public class AdminService implements Serializable {
+	
+	@Inject
 	private EntityManager entityManager;
 
 	public AdminService(EntityManager entity) {

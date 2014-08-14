@@ -1,5 +1,6 @@
 package com.netbuilder.thejuke.services;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -7,9 +8,19 @@ import javax.validation.ValidationException;
 
 import com.netbuilder.thejuke.entities.Genre;
 
-public class GenreService {
+public class GenreService  implements Serializable{
 	private EntityManager entityManager;
 
+	public GenreService()
+	{
+		
+	}
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
 	public GenreService(EntityManager entity) {
 		this.entityManager = entity;
 	}

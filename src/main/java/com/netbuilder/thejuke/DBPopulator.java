@@ -98,7 +98,7 @@ import com.netbuilder.thejuke.services.*;
 	  private static void initSongs() {
 		  	em.getTransaction().begin();
 			song1 = new Song("Hail To The Hammer", 3.00F,
-				"C:\\Music\\Tyr\\HailToTheHammer.mp3", genreList.get(2));
+				"C:\\Music\\Tyr\\HailToTheHammer.mp3", genreList.get(2), 25F);
 			songService.persistSong(song1);  
 			em.getTransaction().commit();
 			System.out.println(song1);
@@ -160,11 +160,11 @@ import com.netbuilder.thejuke.services.*;
 			List<Song> result = new ArrayList<Song>();
 		
 			result.add(new Song("Smells like Teen Spirit", 5.01f, 
-				"C:\\Music\\Nirvana\\Nevermind\\SmellsTeenSpirit.mp3", genreList.get(1)));
+				"C:\\Music\\Nirvana\\Nevermind\\SmellsTeenSpirit.mp3", genreList.get(1), .25F));
 			result.add(new Song("Come as you are", 3.38f, 
-				"C:\\Music\\Nirvana\\Nevermind\\Comeasyouare.mp3", genreList.get(1)));
+				"C:\\Music\\Nirvana\\Nevermind\\Comeasyouare.mp3", genreList.get(1), 25F));
 			result.add(new Song("Lithium", 4.16f, 
-				"C:\\Music\\Nirvana\\Nevermind\\Lithium.mp3", genreList.get(1)));
+				"C:\\Music\\Nirvana\\Nevermind\\Lithium.mp3", genreList.get(1), .25F));
 			songList.addAll(result);
 		return result;
 	  }
