@@ -9,27 +9,27 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="Genre")
+@Table(name = "Genre")
 public class Genre {
-	
+
 	@Id
 	@GeneratedValue
 	private int id;
-	
+
 	@Column(name = "name", nullable = false, length = 45)
 	@NotNull
 	@Size(min = 1, max = 45)
 	private String name;
-	
-	public Genre(String name){
+
+	public Genre(String name) {
 		this.name = name;
 	}
-	
-	public Genre(){
+
+	public Genre() {
 		name = "Not Found";
 	}
-	
-	public String toString(){
+
+	public String toString() {
 		final StringBuilder builder = new StringBuilder();
 		builder.append("Genre {");
 		builder.append("id='").append(id).append("', ");
@@ -48,7 +48,5 @@ public class Genre {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
 
 }

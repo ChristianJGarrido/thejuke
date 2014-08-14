@@ -67,7 +67,7 @@ public class App {
 		
 
 		AlbumService albumService = new AlbumService(em);
-		albumService.persistAlbum(albumList);
+		albumService.persistAlbums(albumList);
 		albumService.listAlbums();
 
 		UserService userService = new UserService(em);
@@ -93,10 +93,6 @@ public class App {
 
 		em.close();
 		emf.close();
-	}
-	
-	private static void populateDB(){
-		
 	}
 
 	private static List<Artist> populateArtistList() {
