@@ -52,7 +52,7 @@ public class App {
 		playlistList = populatePlayListList();		
 
 		ArtistService artistService = new ArtistService(em);
-		artistService.persistArtist(artistList);
+		artistService.persistArtists(artistList);
 		artistService.listArtists();
 
 		GenreService genreService = new GenreService(em);

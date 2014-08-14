@@ -6,16 +6,18 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import com.netbuilder.thejuke.entities.Artist;
+import com.netbuilder.thejuke.exceptions.ValidationException;
 
 /**
- * @author Taylor Hunter
- * Service for persisting and retrieving Artists
+ * Service for storing, retrieving, and updating
+ * @author training13
+ *
  */
 public class ArtistService {
 	private EntityManager em;
 
 	/**
-	 * Constructor that supplies a reference to the Entity Manager
+	 * Constructor that supplies a reference to the Entity Manager.
 	 * @param entity Entity Manager being used
 	 */
 	public ArtistService(EntityManager em) {
@@ -23,27 +25,60 @@ public class ArtistService {
 	}
 	
 	/**
-	 * 
+	 * Adds the supplied artists to the database
+	 * @param list List of artists to be added
+	 */
+	public void persistArtists(List<Artist> list){
+		em.getTransaction().begin();
+		for(Artist artist : list){
+			em.persist(artist);
+		}
+		
+		em.getTransaction().commit();
+	}
+	
+	/**
+	 * Create an entry in the Database for a new Artist
+	 * @param artist Artist to be added
+	 * @return The artist that was added
+	 */
+	public Artist persistArtist(final Artist artist){
+		if(artist == null)
+			throw new ValidationException("Artist Objext is null");
+		
+		em.persist(artist);
+		
+		return artist;
+	}
+	
+	/**
+	 * Finds the Artist with matching ID in the Database.
 	 * @param id Desired Artist.id to find
 	 * @return Returns the artist with the matching ID. May be null
 	 */
 	public Artist findArtist(Long id){
+		if(id == null)
+			throw new ValidationException("Invalid ID");
+		
 		return em.find(Artist.class, id);
 	}
 
 	/**
-	 * 
+	 * Finds all artists with a matching name.
 	 * @param name Desired Artist.name to find 
 	 * @return List of all artists with matching name
 	 */
 	public List<Artist> findArtist(final String name){
+		if(name == null)
+			throw new ValidationException("Invalid name");
+		
 		TypedQuery<Artist> tq = em.createNamedQuery(Artist.FIND_BY_NAME, Artist.class);
 		tq.setParameter("name", name);
 		return tq.getResultList();
 	}
 	
 	/**
-	 * 
+	 * Finds all artists stored in the database.
 	 * @return List of all artists
 	 */
 	public List<Artist> findAllArtists(){
@@ -60,9 +95,10 @@ public class ArtistService {
 	 * @return The updated artist
 	 */
 	public Artist updateArtist(final Artist artist){
-		em.merge(artist);
+		if(artist == null)
+			throw new ValidationException("Artist object is null");
 		
-		return artist;
+		return em.merge(artist);
 	}
 	
 	/**
@@ -70,20 +106,10 @@ public class ArtistService {
 	 * @param artist Removes an artist by object if it exists, otherwise does nothing.
 	 */
 	public void removeArtist(final Artist artist){
-		em.remove(em.merge(artist));
-	}
-	
-	/**
-	 * Adds the supplied artists to the database
-	 * @param list List of artists to be added
-	 */
-	public void persistArtist(List<Artist> list){
-		em.getTransaction().begin();
-		for(Artist artist : list){
-			em.persist(artist);
-		}
+		if(artist == null)
+			throw new ValidationException("Artist object is null");
 		
-		em.getTransaction().commit();
+		em.remove(em.merge(artist));
 	}
 	
 	/**
@@ -95,6 +121,4 @@ public class ArtistService {
 			System.out.println(artist.toString());
 		}
 	}
-	
-
 }
