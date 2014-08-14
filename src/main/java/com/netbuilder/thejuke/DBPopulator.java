@@ -52,8 +52,8 @@ import com.netbuilder.thejuke.services.*;
 	  
 	  private static void initUsers() {
 		em.getTransaction().begin();
-		user1 = new User("Bob", "Builder");
-		user2 = new User("Christian James", "I suck");
+		user1 = new User("Bob", "Builder", 100F);
+		user2 = new User("Christian James", "I suck", 100F);
 		userService.persistUser(user1);  
 		em.getTransaction().commit();
 		System.out.println(user1);
