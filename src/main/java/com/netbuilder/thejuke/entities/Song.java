@@ -72,6 +72,14 @@ public class Song {
 		this.genre = genre;
 		this.cost=cost;
 	}
+	
+	public Song(String name, float length, String audioPath, Genre genre) {
+		this.name = name;
+		this.length = length;
+		this.audioPath = audioPath;
+		this.genre = genre;
+		this.cost = .25f;
+	}
 
 	// Getters and Setters
 	public List<Album> getAlbumList() {
