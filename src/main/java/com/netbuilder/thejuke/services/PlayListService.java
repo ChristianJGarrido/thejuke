@@ -92,7 +92,7 @@ public class PlayListService {
 
 		if (pl.getAdminId() != null && (Long) (pl.getAdminId().getId()) == null) {
 			entityManager.persist(pl.getAdminId());
-			System.out.println("Here!");
+			//System.out.println("Here!");
 		}
 
 		entityManager.persist(pl);

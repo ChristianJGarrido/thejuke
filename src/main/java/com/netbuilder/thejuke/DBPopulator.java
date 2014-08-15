@@ -55,7 +55,7 @@ import com.netbuilder.thejuke.services.*;
 		user1 = new User("Bob", "Builder", 100F);
 		user2 = new User("Christian James", "I suck", 100F);
 		userService.persistUser(user1);
-		//userService.persistUser(user2);
+		userService.persistUser(user2);
 		em.getTransaction().commit();
 		//System.out.println(user1);
 		System.out.println(user2);

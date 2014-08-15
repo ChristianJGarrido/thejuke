@@ -31,7 +31,17 @@ public class AdminService implements Serializable {
 			entityManager.persist(admin);
 		}
 	}
-
+	
+	public Admin persistAdmin(Admin admin) {
+		if (admin == null) {
+			throw new ValidationException("Admin object is null");
+		}
+		//System.out.println("Here!");
+		if (admin.getUser() != null && (Long)admin.getUser().getId() == null)
+            entityManager.persist(admin.getUser());
+		entityManager.persist(admin);
+		return admin;
+	}
 	/** Prints out all Admins **/
 	public void listAdmins() {
 		List<Admin> list = entityManager.createQuery("SELECT a FROM Admin a",
@@ -57,10 +67,11 @@ public class AdminService implements Serializable {
 	}
 
 	/** Commits updated Admin to Database **/
-	public Admin persistAdmin(Admin admin) {
+	public Admin updateAdmin(Admin admin) {
 		if (admin == null) {
 			throw new ValidationException("Admin object is null");
 		}
+		//System.out.println("Here!");
 		entityManager.merge(admin);
 		return admin;
 	}
