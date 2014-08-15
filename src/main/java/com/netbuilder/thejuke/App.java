@@ -61,7 +61,7 @@ public class App implements Serializable {
 
 //		genreService.persistGenres(genreList);
 //		genreService.listGenres();
-		System.out.println(genreService.readAll());
+		System.out.println(genreService.findAllGenres());
 
 		SongService songService = new SongService(em);
 		songService.persistSongs(songList);
