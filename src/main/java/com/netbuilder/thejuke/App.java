@@ -77,8 +77,8 @@ public class App implements Serializable {
 		userService.listUsers();
 		
 		AdminService adminService = new AdminService(em);
-		//adminService.persistAdmin(adminList);
-		adminService.listAdmins();
+		
+		adminService.persistAdmins(adminList);
 		
 		PlayListService playlistService = new PlayListService(em);
 		playlistService.persistPlayLists(playlistList);
