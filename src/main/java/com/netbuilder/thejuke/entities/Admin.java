@@ -34,11 +34,11 @@ public class Admin {
 
 	public void setUser(User user) {
 		this.user = user;
-		this.user.setAdmin(true);
 	}
 
 	public Admin(User user) {
 		this.user = user;
+		this.user.setAdmin(true);
 	}
 
 	public Admin() {

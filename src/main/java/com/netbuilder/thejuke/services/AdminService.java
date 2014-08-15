@@ -71,7 +71,7 @@ public class AdminService implements Serializable {
 	public Admin findByUserId(long key) {
 			
 		 TypedQuery<Admin> typedQuery = entityManager.createNamedQuery(Admin.FIND_BY_USER_ID, Admin.class);
-		 typedQuery.setParameter("userId", key);
+		 typedQuery.setParameter("userID", key);
 		 return typedQuery.getSingleResult();
 
 	}
