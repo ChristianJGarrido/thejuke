@@ -1,5 +1,12 @@
 package com.netbuilder.thejuke;
 
-public class SongCatalogue {
+import javax.ejb.Remote;
+
+import com.netbuilder.thejuke.entities.User;
+
+@Remote
+public interface SongCatalogue {
+	
+	public void initialize(User user);
 
 }
