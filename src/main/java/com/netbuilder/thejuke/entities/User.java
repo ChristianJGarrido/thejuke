@@ -5,11 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import javax.persistence.CascadeType;
 @Entity
 @NamedQueries({
 		@NamedQuery(name = User.FIND_BY_USERNAME, query = "SELECT u FROM User u WHERE u.userName = :name"),
@@ -17,6 +20,14 @@ import javax.validation.constraints.NotNull;
 		@NamedQuery(name = User.FIND_ALL, query = "SELECT u FROM User u") })
 @Table(name = "User")
 public class User {
+
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,10 +40,12 @@ public class User {
 	@Column(name = "passWord", nullable = false, length = 45)
 	@NotNull
 	private String password;
-
+	
 	@Column(name = "balance")
 	@NotNull
 	private float balance;
+	
+	private boolean admin = false;
 
 	public static final String FIND_BY_USERNAME = "User.findByUsername";
 	public static final String FIND_BY_PASSWORD = "User.findByPassword";

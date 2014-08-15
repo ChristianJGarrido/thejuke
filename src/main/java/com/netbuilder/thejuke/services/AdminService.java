@@ -6,9 +6,11 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
 
 import com.netbuilder.thejuke.entities.Admin;
+import com.netbuilder.thejuke.entities.User;
 import com.netbuilder.thejuke.util.Loggable;
 
 @Stateless
@@ -65,6 +67,14 @@ public class AdminService implements Serializable {
 
 		return entityManager.find(Admin.class, key);
 	}
+	
+	public Admin findByUserId(long key) {
+			
+		 TypedQuery<Admin> typedQuery = entityManager.createNamedQuery(Admin.FIND_BY_USER_ID, Admin.class);
+		 typedQuery.setParameter("userId", key);
+		 return typedQuery.getSingleResult();
+
+	}
 
 	/** Commits updated Admin to Database **/
 	public Admin updateAdmin(Admin admin) {
@@ -77,10 +87,13 @@ public class AdminService implements Serializable {
 	}
 
 	/** Removes selected Admin from Database **/
-	public void removeAdmin(final Admin admin) {
+	public void removeAdmin(Admin admin) {
+		
 		if (admin == null) {
 			throw new ValidationException("Admin object is null");
 		}
+		admin.getUser().setAdmin(false);
+		
 		entityManager.remove(entityManager.merge(admin));
 	}
 

@@ -33,7 +33,7 @@ public class PlayList {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@ManyToOne(optional = false, cascade=CascadeType.ALL)
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "Admin_ID", referencedColumnName = "id")
 	private Admin adminId;
 

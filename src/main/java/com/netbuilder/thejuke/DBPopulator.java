@@ -57,7 +57,7 @@ import com.netbuilder.thejuke.services.*;
 		userService.persistUser(user1);
 		userService.persistUser(user2);
 		em.getTransaction().commit();
-		//System.out.println(user1);
+		System.out.println(user1);
 		System.out.println(user2);
 	  }
 	  
@@ -138,21 +138,21 @@ import com.netbuilder.thejuke.services.*;
 	  private static void clearDB() {
 		
 		em.getTransaction().begin();
-//		adminService.removeAdmin(admin1);
-//		//playListService.removePlayList(pl1);
-//		
-//		for(Artist a: artistList)
-//			artistService.removeArtist(a);
-//		for(Album a: albumList)
-//			albumService.removeAlbum(a);
-//		songService.removeSong(song1);
-//
-//		for(Genre g: genreList) {
-//			genreService.removeGenre(g);
-//		}
-//		
-//		userService.removeUser(user1);
-//		//userService.removeUser(user2);
+		//adminService.removeAdmin(admin1);
+		//playListService.removePlayList(pl1);
+		
+		//for(Artist a: artistList)
+		//	artistService.removeArtist(a);
+		//for(Album a: albumList)
+		//	albumService.removeAlbum(a);
+		//songService.removeSong(song1);
+
+		//for(Genre g: genreList) {
+		//	genreService.removeGenre(g);
+		//}
+		
+		userService.removeUser(user1);
+		userService.removeUser(user2);
 		em.getTransaction().commit();  
 		
 	  }
