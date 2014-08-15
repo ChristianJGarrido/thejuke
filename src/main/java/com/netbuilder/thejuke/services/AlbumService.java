@@ -2,11 +2,14 @@ package com.netbuilder.thejuke.services;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import com.netbuilder.thejuke.entities.Album;
 import com.netbuilder.thejuke.exceptions.ValidationException;
+import com.netbuilder.thejuke.util.Loggable;
 
 /**
  * Provides methods to create, read, update, and destroy album objects from the
@@ -15,7 +18,12 @@ import com.netbuilder.thejuke.exceptions.ValidationException;
  * @author Taylor Hunter
  *
  */
+
+@Stateless
+@Loggable
 public class AlbumService {
+	
+	@Inject
 	private EntityManager entityManager;
 
 	/**
