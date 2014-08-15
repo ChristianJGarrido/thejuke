@@ -2,19 +2,27 @@ package com.netbuilder.thejuke.services;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import com.netbuilder.thejuke.entities.Artist;
 import com.netbuilder.thejuke.exceptions.ValidationException;
+import com.netbuilder.thejuke.util.Loggable;
 
 /**
  * Service for storing, retrieving, and updating
  * 
- * @author training13
+ * @author Taylor Hunter
  *
  */
+
+@Stateless
+@Loggable
 public class ArtistService {
+	
+	@Inject	
 	private EntityManager em;
 
 	/**

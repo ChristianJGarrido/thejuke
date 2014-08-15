@@ -4,17 +4,48 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.annotation.sql.DataSourceDefinition;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import com.netbuilder.thejuke.entities.*;
-import com.netbuilder.thejuke.services.*;
+import com.netbuilder.thejuke.entities.Admin;
+import com.netbuilder.thejuke.entities.Album;
+import com.netbuilder.thejuke.entities.Artist;
+import com.netbuilder.thejuke.entities.Genre;
+import com.netbuilder.thejuke.entities.PlayList;
+import com.netbuilder.thejuke.entities.Song;
+import com.netbuilder.thejuke.entities.User;
+import com.netbuilder.thejuke.services.AdminService;
+import com.netbuilder.thejuke.services.AlbumService;
+import com.netbuilder.thejuke.services.ArtistService;
+import com.netbuilder.thejuke.services.GenreService;
+import com.netbuilder.thejuke.services.PlayListService;
+import com.netbuilder.thejuke.services.SongService;
+import com.netbuilder.thejuke.services.UserService;
+import com.netbuilder.thejuke.util.Loggable;
 
 /**
  * Hello world!
  *
  */
+
+@Singleton
+@Startup
+@Loggable
+@DataSourceDefinition(
+		className = "org.apache.derby.jdbc.EmbeddedDataSource",
+        name = "java:global/jdbc/applicationPetstoreDS",
+        user = "root",
+        password = "P4ssword",
+        databaseName = "thejukedb",
+        properties = {"connectionAttributes=;create=true"}
+		)
   public class DBPopulator {
 	  private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("TheJuke");
 	  private static EntityManager em = emf.createEntityManager();
@@ -24,21 +55,36 @@ import com.netbuilder.thejuke.services.*;
 	  private static Admin admin1;
 	  private static PlayList pl1;
 	  private static PlayList pl2;
+	  
 	  private static List<Artist> artistList = new ArrayList<Artist>();
 	  private static List<Album> albumList = new ArrayList<Album>();
 	  private static List<Song> songList = new ArrayList<Song>();
 	  private static List<Genre> genreList = new ArrayList<Genre>();
 	
-	  private static UserService userService = new UserService(em);
-	  private static AdminService adminService = new AdminService(em);
-	  private static ArtistService artistService = new ArtistService(em);
-	  private static AlbumService albumService = new AlbumService(em);
-	  private static SongService songService = new SongService(em);
-	  private static GenreService genreService = new GenreService(em);
-	  private static PlayListService playListService = new PlayListService(em);
+	  @Inject
+	  private static UserService userService;
+		
+	  @Inject
+	  private static AdminService adminService;
+		
+	  @Inject
+	  private static ArtistService artistService;
+		
+	  @Inject
+	  private static AlbumService albumService;
+		
+	  @Inject
+	  private static SongService songService;
+		
+	  @Inject
+	  private static GenreService genreService;
+		
+	  @Inject
+	  private static PlayListService playListService;
 	  
 	  private static Song song1;
 	  
+	  @PostConstruct
 	  private static void populateDB() {
 		  initUsers();
 		  initAdmin();
@@ -134,6 +180,7 @@ import com.netbuilder.thejuke.services.*;
 		  System.out.println(pl1);
 	  }
 	  
+	  @PreDestroy
 	  private static void clearDB() {
 		
 		em.getTransaction().begin();
