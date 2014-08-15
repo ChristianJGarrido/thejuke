@@ -115,8 +115,12 @@ public class UserService {
 	 */
 	public void removeUser(User user)
 	{
+		AdminService a = new AdminService(entityManager);
 		if (user==null)
 			throw new ValidationException("Invalid user ID");
+		if(user.isAdmin()) {
+			a.removeAdmin(a.findByUserId(user.getId()));
+		}
 		
 		entityManager.remove(entityManager.merge(user));
 	}

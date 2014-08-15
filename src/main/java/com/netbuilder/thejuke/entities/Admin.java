@@ -6,18 +6,23 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Admin")
+@NamedQueries({
+	@NamedQuery(name = Admin.FIND_BY_USER_ID, query = "SELECT u FROM Admin u WHERE u.user.id = :userID"),
+ })
 public class Admin {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@OneToOne(optional = false, cascade=CascadeType.ALL)
+	@OneToOne(optional = false, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "User_id", referencedColumnName = "id")
 	private User user;
 	
-	@OneToMany(mappedBy = "adminId", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "adminId", cascade = CascadeType.REMOVE)
 	private List<PlayList> plList;
+	
+	public static final String FIND_BY_USER_ID = "Admin.findByUserId";
 
 	public List<PlayList> getPlList() {
 		return plList;
@@ -33,6 +38,7 @@ public class Admin {
 
 	public Admin(User user) {
 		this.user = user;
+		this.user.setAdmin(true);
 	}
 
 	public Admin() {

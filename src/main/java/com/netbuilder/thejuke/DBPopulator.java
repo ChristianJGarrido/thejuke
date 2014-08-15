@@ -62,25 +62,25 @@ import com.netbuilder.thejuke.util.Loggable;
 	  private static List<Genre> genreList = new ArrayList<Genre>();
 	
 	  @Inject
-	  private static UserService userService;
+	  private static UserService userService = new UserService(em);
 		
 	  @Inject
-	  private static AdminService adminService;
+	  private static AdminService adminService = new AdminService(em);
 		
 	  @Inject
-	  private static ArtistService artistService;
+	  private static ArtistService artistService = new ArtistService(em);
 		
 	  @Inject
-	  private static AlbumService albumService;
+	  private static AlbumService albumService = new AlbumService(em);
 		
 	  @Inject
-	  private static SongService songService;
+	  private static SongService songService = new SongService(em);
 		
 	  @Inject
-	  private static GenreService genreService;
+	  private static GenreService genreService = new GenreService(em);
 		
 	  @Inject
-	  private static PlayListService playListService;
+	  private static PlayListService playListService = new PlayListService(em);
 	  
 	  private static Song song1;
 	  
@@ -88,11 +88,11 @@ import com.netbuilder.thejuke.util.Loggable;
 	  private static void populateDB() {
 		  initUsers();
 		  initAdmin();
-		  initArtists();
-		  initGenres();
-		  initSongs();
-		  initAlbums();
-		  initPlayLists();
+		  //initArtists();
+		  //initGenres();
+		  //initSongs();
+		  //initAlbums();
+		  //initPlayLists();
 		 
 	  }
 	  
@@ -103,7 +103,7 @@ import com.netbuilder.thejuke.util.Loggable;
 		userService.persistUser(user1);
 		userService.persistUser(user2);
 		em.getTransaction().commit();
-		//System.out.println(user1);
+		System.out.println(user1);
 		System.out.println(user2);
 	  }
 	  
@@ -185,21 +185,21 @@ import com.netbuilder.thejuke.util.Loggable;
 	  private static void clearDB() {
 		
 		em.getTransaction().begin();
-//		adminService.removeAdmin(admin1);
-//		//playListService.removePlayList(pl1);
-//		
-//		for(Artist a: artistList)
-//			artistService.removeArtist(a);
-//		for(Album a: albumList)
-//			albumService.removeAlbum(a);
-//		songService.removeSong(song1);
-//
-//		for(Genre g: genreList) {
-//			genreService.removeGenre(g);
-//		}
-//		
-//		userService.removeUser(user1);
-//		//userService.removeUser(user2);
+		adminService.removeAdmin(admin1);
+		//playListService.removePlayList(pl1);
+		
+		//for(Artist a: artistList)
+		//	artistService.removeArtist(a);
+		//for(Album a: albumList)
+		//	albumService.removeAlbum(a);
+		//songService.removeSong(song1);
+
+		//for(Genre g: genreList) {
+		//	genreService.removeGenre(g);
+		//}
+		
+		userService.removeUser(user1);
+		//userService.removeUser(user2);
 		em.getTransaction().commit();  
 		
 	  }
@@ -221,7 +221,10 @@ import com.netbuilder.thejuke.util.Loggable;
 	  public static void main(String[] args) {
 		  
 		  populateDB();
-		  //clearDB();
+		  System.out.println(user2.isAdmin());
+		  clearDB();
+		  System.out.println(user2.isAdmin());
+		  
 		  em.close();
 		  emf.close();
 		
