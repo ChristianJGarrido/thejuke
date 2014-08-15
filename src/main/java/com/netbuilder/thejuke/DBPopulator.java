@@ -100,9 +100,10 @@ import com.netbuilder.thejuke.util.Loggable;
 		em.getTransaction().begin();
 		user1 = new User("Bob", "Builder", 100F);
 		user2 = new User("Christian James", "I suck", 100F);
-		userService.persistUser(user1);  
+		userService.persistUser(user1);
+		userService.persistUser(user2);
 		em.getTransaction().commit();
-		System.out.println(user1);
+		//System.out.println(user1);
 		System.out.println(user2);
 	  }
 	  
@@ -220,7 +221,7 @@ import com.netbuilder.thejuke.util.Loggable;
 	  public static void main(String[] args) {
 		  
 		  populateDB();
-		  clearDB();
+		  //clearDB();
 		  em.close();
 		  emf.close();
 		

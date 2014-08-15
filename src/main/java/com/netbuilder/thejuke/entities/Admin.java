@@ -1,5 +1,7 @@
 package com.netbuilder.thejuke.entities;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,6 +15,21 @@ public class Admin {
 	@OneToOne(optional = false, cascade=CascadeType.ALL)
 	@JoinColumn(name = "User_id", referencedColumnName = "id")
 	private User user;
+	
+	@OneToMany(mappedBy = "adminId", cascade = CascadeType.ALL)
+	private List<PlayList> plList;
+
+	public List<PlayList> getPlList() {
+		return plList;
+	}
+
+	public void setPlList(List<PlayList> plList) {
+		this.plList = plList;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public Admin(User user) {
 		this.user = user;
