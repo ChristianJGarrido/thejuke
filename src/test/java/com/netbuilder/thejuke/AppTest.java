@@ -11,9 +11,11 @@ import javax.persistence.Persistence;
 import junit.framework.TestCase;
 
 import com.netbuilder.thejuke.entities.Album;
+import com.netbuilder.thejuke.entities.Artist;
 import com.netbuilder.thejuke.entities.Genre;
 import com.netbuilder.thejuke.entities.Song;
 import com.netbuilder.thejuke.services.AlbumService;
+import com.netbuilder.thejuke.services.ArtistService;
 import com.netbuilder.thejuke.services.GenreService;
 import com.netbuilder.thejuke.services.SearchController;
 import com.netbuilder.thejuke.services.SongService;
@@ -30,6 +32,7 @@ public class AppTest
 	GenreService genreService;
 	SongService songService;
 	AlbumService albumService;
+	ArtistService artistService;
 	SearchController searchController;
 	/**Runs after every test. **/
 	@Override
@@ -39,6 +42,11 @@ public class AppTest
 		for(Album album : albumList)
 		{
 			albumService.removeAlbum(album);
+		}
+		List<Artist> artistList= artistService.findAllArtists();
+		for(Artist artist : artistList)
+		{
+			artistService.removeArtist(artist);
 		}
 		List<Song> songList= songService.findAllSongs();
 		for(Song song : songList)
@@ -71,7 +79,8 @@ public class AppTest
 		genreService = new GenreService(em);
 		songService = new SongService(em);
 		albumService = new AlbumService(em);
-		searchController= new SearchController(songService,albumService,genreService);
+		artistService = new ArtistService(em);
+		searchController= new SearchController(songService,albumService,genreService,artistService);
 		em.getTransaction().begin();
 		super.setUp();
 	}
@@ -223,5 +232,40 @@ public class AppTest
     	
     	List<Song> songList2=searchController.searchByGenre(null);
     	assertTrue(songList2.size()==0);
+    }
+    public void testSearchByArtist()
+    {
+    	Genre metal = new Genre("metal");
+    	List<Genre> genreList = new ArrayList<Genre>();
+    	genreList.add(metal);
+    	genreService.persistGenres(genreList);
+    	
+    	List<Song> songList1=new ArrayList<Song>();
+    	songList1.add(new Song("Power of thy Sword", 3.00F, "C:\\music\\PowerOfThySword.mp3", metal));
+    	songService.persistSongs(songList1);
+    	List<Song> songList2=new ArrayList<Song>();
+    	songList2.add(new Song("Penny Lane", 3.00F, "C:\\music\\PennyLane.mp3", metal));
+    	songService.persistSongs(songList2);
+    	
+    	List<Artist> artistList1 = new ArrayList<Artist>();
+    	artistList1.add(new Artist("Manowar", "An Italian Heavy Metal band."));
+    	
+    	List<Artist> artistList2 = new ArrayList<Artist>();
+    	artistList2.add(new Artist("Beatles", "Its the Beatles."));
+    	
+    	
+    	List<Album> albumList1 = new ArrayList<Album>();
+    	albumList1.add(new Album("Man O War", "producer",new Date(0), "C:\\PowerOfThySword.png", artistList1 , songList1));
+    	List<Album> albumList2 = new ArrayList<Album>();
+    	albumList2.add(new Album("Beatles", "producer",new Date(0), "C:\\PennyLane.png", artistList2 , songList2));
+    	artistList1.get(0).setAlbumList(albumList1);
+    	artistList2.get(0).setAlbumList(albumList2);
+    	albumService.persistAlbums(albumList1); 
+    	albumService.persistAlbums(albumList2); 
+    	artistService.persistArtists(artistList1);
+    	artistService.persistArtists(artistList2);
+    	
+    	List<Song> songList3=searchController.searchByArtist("Manowar");
+    	assertTrue(songList3.get(0).getName().equals("Power of thy Sword"));
     }
 }
