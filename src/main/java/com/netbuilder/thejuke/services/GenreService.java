@@ -16,7 +16,7 @@ import com.netbuilder.thejuke.util.Loggable;
 @Loggable
 public class GenreService  implements Serializable{
 	
-	@Inject
+	@PersistenceContext
 	private EntityManager entityManager;
 
 	public GenreService(){

@@ -14,7 +14,7 @@ import com.netbuilder.thejuke.entities.PlayList;
 
 public class PlayListService implements Serializable {
 	
-	@Inject
+	@PersistenceContext
 	private EntityManager entityManager;
 
 	public PlayListService(){

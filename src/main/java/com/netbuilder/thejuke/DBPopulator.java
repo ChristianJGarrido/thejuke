@@ -47,9 +47,6 @@ import com.netbuilder.thejuke.util.Loggable;
  )
 public class DBPopulator {
 
-	@PersistenceContext
-	private static EntityManager em;
-
 	private static User user1;
 	private static User user2;
 	private static Admin admin1;
@@ -97,21 +94,17 @@ public class DBPopulator {
 	}
 
 	private static void initUsers() {
-		em.getTransaction().begin();
 		user1 = new User("Bob", "Builder", 100F);
 		user2 = new User("Christian James", "I suck", 100F);
 		userService.persistUser(user1);
 		userService.persistUser(user2);
-		em.getTransaction().commit();
 		System.out.println(user1);
 		System.out.println(user2);
 	}
 
 	private static void initAdmin() {
-		em.getTransaction().begin();
 		admin1 = new Admin(user2);
 		adminService.persistAdmin(admin1);
-		em.getTransaction().commit();
 		System.out.println(admin1);
 
 	}
@@ -123,9 +116,7 @@ public class DBPopulator {
 		artistList.add(new Artist("Rattatat", "More Muzak"));
 		artistList.add(new Artist("MGMT", "I like these guys"));
 		artistList.add(new Artist("Kanye West", "Gay Fish"));
-		em.getTransaction().begin();
 		artistService.persistArtists(artistList);
-		em.getTransaction().commit();
 		System.out.println(artistList);
 
 	}
@@ -135,19 +126,15 @@ public class DBPopulator {
 		genreList.add(new Genre("Electronica"));
 		genreList.add(new Genre("Rock Alternative"));
 		genreList.add(new Genre("Metal"));
-		em.getTransaction().begin();
 		genreService.persistGenres(genreList);
-		em.getTransaction().commit();
 		System.out.println(genreList);
 
 	}
 
 	private static void initSongs() {
-		em.getTransaction().begin();
 		song1 = new Song("Hail To The Hammer", 3.00F,
 				"C:\\Music\\Tyr\\HailToTheHammer.mp3", genreList.get(2), 25F);
 		songService.persistSong(song1);
-		em.getTransaction().commit();
 		System.out.println(song1);
 
 	}
@@ -160,9 +147,7 @@ public class DBPopulator {
 		albumList.add(new Album("Nevermind", "Yalort", Date
 				.valueOf("1991-6-30"), "path", arr, getNirvanaSongs()));
 
-		em.getTransaction().begin();
 		albumService.persistAlbums(albumList);
-		em.getTransaction().commit();
 		System.out.println(albumList.get(0));
 
 	}
@@ -172,17 +157,14 @@ public class DBPopulator {
 		List<Song> playSongs = new ArrayList<Song>();
 		playSongs.add(songList.get(0));
 		playSongs.add(songList.get(1));
-		em.getTransaction().begin();
 		pl1 = new PlayList("My PlayList", playSongs, admin1);
 		playListService.persistPlayList(pl1);
-		em.getTransaction().commit();
 		System.out.println(pl1);
 	}
 
 	@PreDestroy
 	private static void clearDB() {
 
-		em.getTransaction().begin();
 		adminService.removeAdmin(admin1);
 		// playListService.removePlayList(pl1);
 
@@ -198,7 +180,6 @@ public class DBPopulator {
 
 		userService.removeUser(user1);
 		// userService.removeUser(user2);
-		em.getTransaction().commit();
 
 	}
 

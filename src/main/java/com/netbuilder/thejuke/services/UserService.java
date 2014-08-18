@@ -15,7 +15,7 @@ import com.netbuilder.thejuke.services.AdminService;
 
 public class UserService implements Serializable {
 	
-	@Inject
+	@PersistenceContext
 	private EntityManager entityManager;
 
 	public UserService(){

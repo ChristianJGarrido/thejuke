@@ -12,10 +12,16 @@
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jukedb"/> 
             <property name="javax.persistence.jdbc.user" value="root"/>
             <property name="javax.persistence.jdbc.password" value="P4ssword"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            
+            <!-- Properties for EclipseLink -->
+            <property name="eclipselink.target-database" value="DERBY"/>
+            <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+            <property name="eclipselink.logging.level" value="INFO"/>
+            
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>          
+            <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyTenSevenDialect"/>
             
         </properties>
 	</persistence-unit> 

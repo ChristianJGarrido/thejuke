@@ -18,7 +18,7 @@ import com.netbuilder.thejuke.util.Loggable;
 @Loggable
 public class SongService implements Serializable {
 
-	@Inject
+	@PersistenceContext
 	private EntityManager entityManager;
 	
 	public SongService(){

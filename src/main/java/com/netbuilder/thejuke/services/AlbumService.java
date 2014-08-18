@@ -25,7 +25,7 @@ import com.netbuilder.thejuke.util.Loggable;
 @Loggable
 public class AlbumService implements Serializable {
 	
-	@Inject
+	@PersistenceContext
 	private EntityManager entityManager;
 
 	public AlbumService(){
