@@ -52,7 +52,7 @@ public class GenreService  implements Serializable{
 	}
 
 	/** Returns all the genres in the database **/
-	public List<Genre> readAll() {
+	public List<Genre> findAllGenres() {
 		List<Genre> list = entityManager.createQuery("Select g from Genre g",
 				Genre.class).getResultList();
 		return list;
