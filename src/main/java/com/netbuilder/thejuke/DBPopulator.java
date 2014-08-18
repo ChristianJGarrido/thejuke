@@ -42,19 +42,13 @@ import com.netbuilder.thejuke.util.Loggable;
 @Loggable
 @DataSourceDefinition(
 		className = "org.apache.derby.jdbc.EmbeddedDataSource",
-        name = "java:global/jdbc/applicationPetstoreDS",
+        name = "java:localhost/jdbc/thejuke",
         user = "root",
         password = "P4ssword",
         databaseName = "thejukedb",
         properties = {"connectionAttributes=;create=true"}
 		)
   public class DBPopulator {
-	  private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("TheJuke");
-	  
-	  @Produces
-	  @PersistenceContext
-	  private static EntityManager em; 
-//	  private static EntityManager em = emf.createEntityManager();
 	  
 	  private static User user1;
 	  private static User user2;
@@ -68,25 +62,25 @@ import com.netbuilder.thejuke.util.Loggable;
 	  private static List<Genre> genreList = new ArrayList<Genre>();
 	
 	  @Inject
-	  private static UserService userService = new UserService(em);
+	  private static UserService userService;
 		
 	  @Inject
-	  private static AdminService adminService = new AdminService(em);
+	  private static AdminService adminService;
 		
 	  @Inject
-	  private static ArtistService artistService = new ArtistService(em);
+	  private static ArtistService artistService;
 		
 	  @Inject
-	  private static AlbumService albumService = new AlbumService(em);
+	  private static AlbumService albumService;
 		
 	  @Inject
-	  private static SongService songService = new SongService(em);
+	  private static SongService songService;
 		
 	  @Inject
-	  private static GenreService genreService = new GenreService(em);
+	  private static GenreService genreService;
 		
 	  @Inject
-	  private static PlayListService playListService = new PlayListService(em);
+	  private static PlayListService playListService;
 	  
 	  private static Song song1;
 	  
@@ -103,21 +97,21 @@ import com.netbuilder.thejuke.util.Loggable;
 	  }
 	  
 	  private static void initUsers() {
-		em.getTransaction().begin();
+		//em.getTransaction().begin();
 		user1 = new User("Bob", "Builder", 100F);
 		user2 = new User("Christian James", "I suck", 100F);
 		userService.persistUser(user1);
 		userService.persistUser(user2);
-		em.getTransaction().commit();
+		//em.getTransaction().commit();
 		System.out.println(user1);
 		System.out.println(user2);
 	  }
 	  
 	  private static void initAdmin() {
-		  em.getTransaction().begin();
+		  //em.getTransaction().begin();
 		  admin1 = new Admin(user2);
 		  adminService.persistAdmin(admin1);
-		  em.getTransaction().commit();
+		  //em.getTransaction().commit();
 		  System.out.println(admin1);
 		  
 	  }
@@ -129,9 +123,9 @@ import com.netbuilder.thejuke.util.Loggable;
   		artistList.add(new Artist("Rattatat", "More Muzak"));
   		artistList.add(new Artist("MGMT", "I like these guys"));
   		artistList.add(new Artist("Kanye West", "Gay Fish"));
-  		  em.getTransaction().begin();
+  		 // em.getTransaction().begin();
 		  artistService.persistArtists(artistList);
-		  em.getTransaction().commit();
+		 // em.getTransaction().commit();
 		  System.out.println(artistList);
   		
 	  }
@@ -141,19 +135,19 @@ import com.netbuilder.thejuke.util.Loggable;
 			genreList.add(new Genre("Electronica"));
 			genreList.add(new Genre("Rock Alternative"));
 			genreList.add(new Genre("Metal"));
-			em.getTransaction().begin();
+			//em.getTransaction().begin();
 			genreService.persistGenres(genreList);
-			  em.getTransaction().commit();
+			  //em.getTransaction().commit();
 			  System.out.println(genreList);
 		
 	  }
 	  
 	  private static void initSongs() {
-		  	em.getTransaction().begin();
+		  	//em.getTransaction().begin();
 			song1 = new Song("Hail To The Hammer", 3.00F,
 				"C:\\Music\\Tyr\\HailToTheHammer.mp3", genreList.get(2), 25F);
 			songService.persistSong(song1);  
-			em.getTransaction().commit();
+			//em.getTransaction().commit();
 			System.out.println(song1);
 		
 		  
@@ -168,9 +162,9 @@ import com.netbuilder.thejuke.util.Loggable;
 			albumList.add(new Album("Nevermind", "Yalort", Date.valueOf("1991-6-30"), "path", 
 						  arr, getNirvanaSongs()));
 			
-			em.getTransaction().begin();
+			//em.getTransaction().begin();
 			albumService.persistAlbums(albumList);
-			em.getTransaction().commit();
+			//em.getTransaction().commit();
 			System.out.println(albumList.get(0));
 		
 	  }
@@ -180,17 +174,17 @@ import com.netbuilder.thejuke.util.Loggable;
 		  List<Song>playSongs = new ArrayList<Song>();
 	  	  playSongs.add(songList.get(0));
 	  	  playSongs.add(songList.get(1));
-		  em.getTransaction().begin();
+		 // em.getTransaction().begin();
 		  pl1 = new PlayList("My PlayList", playSongs, admin1);
 		  playListService.persistPlayList(pl1);
-		  em.getTransaction().commit();
+		  //em.getTransaction().commit();
 		  System.out.println(pl1);
 	  }
 	  
 	  @PreDestroy
 	  private static void clearDB() {
 		
-		em.getTransaction().begin();
+		//em.getTransaction().begin();
 		adminService.removeAdmin(admin1);
 		//playListService.removePlayList(pl1);
 		
@@ -206,7 +200,7 @@ import com.netbuilder.thejuke.util.Loggable;
 		
 		userService.removeUser(user1);
 		//userService.removeUser(user2);
-		em.getTransaction().commit();  
+		//em.getTransaction().commit();  
 		
 	  }
 	  
@@ -231,8 +225,8 @@ import com.netbuilder.thejuke.util.Loggable;
 		  clearDB();
 		  System.out.println(user2.isAdmin());
 		  
-		  em.close();
-		  emf.close();
+		  //em.close();
+		  //emf.close();
 		
 		  
 	  	
