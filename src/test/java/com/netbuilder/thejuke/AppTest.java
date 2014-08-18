@@ -17,8 +17,8 @@ import com.netbuilder.thejuke.entities.Song;
 import com.netbuilder.thejuke.services.AlbumService;
 import com.netbuilder.thejuke.services.ArtistService;
 import com.netbuilder.thejuke.services.GenreService;
-import com.netbuilder.thejuke.services.SearchController;
 import com.netbuilder.thejuke.services.SongService;
+import com.netbuilder.thejuke.web.SearchController;
 
 /**
  * Unit test for simple App.

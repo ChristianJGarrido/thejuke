@@ -1,17 +1,26 @@
 package com.netbuilder.thejuke.services;
 
+import java.io.Serializable;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
 
 import com.netbuilder.thejuke.entities.User;
+import com.netbuilder.thejuke.services.AdminService;
 
-public class UserService {
+public class UserService implements Serializable {
+	
+	@Inject
 	private EntityManager entityManager;
 
+	public UserService(){
+		
+	}
+	
 	public UserService(EntityManager entity) {
 		this.entityManager = entity;
 	}

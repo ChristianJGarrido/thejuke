@@ -19,6 +19,10 @@ public class SongService implements Serializable {
 
 	@Inject
 	private EntityManager entityManager;
+	
+	public SongService(){
+		
+	}
 
 	/**
 	 * Constructor

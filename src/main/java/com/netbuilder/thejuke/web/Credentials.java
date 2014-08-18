@@ -1,4 +1,4 @@
-package com.netbuilder.thejuke.controllers;
+package com.netbuilder.thejuke.web;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;

@@ -1,7 +1,9 @@
 package com.netbuilder.thejuke.services;
 
+import java.io.Serializable;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
@@ -9,9 +11,15 @@ import javax.validation.ValidationException;
 import com.netbuilder.thejuke.entities.Admin;
 import com.netbuilder.thejuke.entities.PlayList;
 
-public class PlayListService {
+public class PlayListService implements Serializable {
+	
+	@Inject
 	private EntityManager entityManager;
 
+	public PlayListService(){
+		
+	}
+	
 	// Constructor
 	public PlayListService(EntityManager entity) {
 		this.entityManager = entity;

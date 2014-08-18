@@ -1,4 +1,4 @@
-package com.netbuilder.thejuke.controllers;
+package com.netbuilder.thejuke.web;
 
 
 import java.text.MessageFormat;

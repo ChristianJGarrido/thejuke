@@ -1,5 +1,6 @@
 package com.netbuilder.thejuke.services;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -20,11 +21,15 @@ import com.netbuilder.thejuke.util.Loggable;
 
 @Stateless
 @Loggable
-public class ArtistService {
+public class ArtistService implements Serializable {
 	
 	@Inject	
 	private EntityManager em;
 
+	public ArtistService(){
+		
+	}
+	
 	/**
 	 * Constructor that supplies a reference to the Entity Manager.
 	 * 

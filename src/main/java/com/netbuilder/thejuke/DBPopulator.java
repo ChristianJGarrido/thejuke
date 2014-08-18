@@ -35,8 +35,8 @@ import com.netbuilder.thejuke.util.Loggable;
  *
  */
 
-@Singleton
-@Startup
+//@Singleton
+//@Startup
 @Loggable
 @DataSourceDefinition(
 		className = "org.apache.derby.jdbc.EmbeddedDataSource",
