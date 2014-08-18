@@ -20,6 +20,9 @@ public class AdminService implements Serializable {
 	@Inject
 	private EntityManager entityManager;
 
+	public AdminService() {
+	}
+
 	public AdminService(EntityManager entity) {
 		this.entityManager = entity;
 	}

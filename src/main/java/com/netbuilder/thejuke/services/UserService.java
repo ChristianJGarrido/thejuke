@@ -1,5 +1,6 @@
 package com.netbuilder.thejuke.services;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,8 +10,12 @@ import javax.validation.ValidationException;
 
 import com.netbuilder.thejuke.entities.User;
 
-public class UserService {
+public class UserService implements Serializable {
 	private EntityManager entityManager;
+	
+	public UserService(){
+		
+	}
 
 	public UserService(EntityManager entity) {
 		this.entityManager = entity;
