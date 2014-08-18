@@ -37,63 +37,64 @@ import com.netbuilder.thejuke.util.Loggable;
 @Singleton
 @Startup
 @Loggable
- @DataSourceDefinition(
- className = "org.apache.derby.jdbc.EmbeddedDataSource",
- name = "java:global/jdbc/applicationPetstoreDS",
- user = "root",
- password = "P4ssword",
- databaseName = "thejukedb",
- properties = {"connectionAttributes=;create=true"}
- )
-public class DBPopulator {
-
-	private static User user1;
-	private static User user2;
-	private static Admin admin1;
-	private static PlayList pl1;
-	private static PlayList pl2;
-
-	private static List<Artist> artistList = new ArrayList<Artist>();
-	private static List<Album> albumList = new ArrayList<Album>();
-	private static List<Song> songList = new ArrayList<Song>();
-	private static List<Genre> genreList = new ArrayList<Genre>();
-
-	@Inject
-	private static UserService userService;// = new UserService(em);
-
-	@Inject
-	private static AdminService adminService;// = new AdminService(em);
-
-	@Inject
-	private static ArtistService artistService;// = new ArtistService(em);
-
-	@Inject
-	private static AlbumService albumService;// = new AlbumService(em);
-
-	@Inject
-	private static SongService songService;// = new SongService(em);
-
-	@Inject
-	private static GenreService genreService;// = new GenreService(em);
-
-	@Inject
-	private static PlayListService playListService;// = new PlayListService(em);
-
-	private static Song song1;
-
-	@PostConstruct
-	private static void populateDB() {
-		// initUsers();
-		// initAdmin();
-		// initArtists();
-		// initGenres();
-		// initSongs();
-		// initAlbums();
-		// initPlayLists();
-
-	}
-
-	private static void initUsers() {
+@DataSourceDefinition(
+		className = "org.apache.derby.jdbc.EmbeddedDataSource",
+        name = "java:localhost/jdbc/thejuke",
+        user = "root",
+        password = "P4ssword",
+        databaseName = "thejukedb",
+        properties = {"connectionAttributes=;create=true"}
+		)
+  public class DBPopulator {
+	  
+	  private static User user1;
+	  private static User user2;
+	  private static Admin admin1;
+	  private static PlayList pl1;
+	  private static PlayList pl2;
+	  
+	  private static List<Artist> artistList = new ArrayList<Artist>();
+	  private static List<Album> albumList = new ArrayList<Album>();
+	  private static List<Song> songList = new ArrayList<Song>();
+	  private static List<Genre> genreList = new ArrayList<Genre>();
+	
+	  @Inject
+	  private static UserService userService;
+		
+	  @Inject
+	  private static AdminService adminService;
+		
+	  @Inject
+	  private static ArtistService artistService;
+		
+	  @Inject
+	  private static AlbumService albumService;
+		
+	  @Inject
+	  private static SongService songService;
+		
+	  @Inject
+	  private static GenreService genreService;
+		
+	  @Inject
+	  private static PlayListService playListService;
+	  
+	  private static Song song1;
+	  
+	  @PostConstruct
+	  private static void populateDB() {
+		  //initUsers();
+		  //initAdmin();
+		  //initArtists();
+		  //initGenres();
+		  //initSongs();
+		  //initAlbums();
+		  //initPlayLists();
+		 
+	  }
+	  
+	  private static void initUsers() {
+		//em.getTransaction().begin();
 		user1 = new User("Bob", "Builder", 100F);
 		user2 = new User("Christian James", "I suck", 100F);
 		userService.persistUser(user1);
@@ -164,7 +165,6 @@ public class DBPopulator {
 
 	@PreDestroy
 	private static void clearDB() {
-
 		adminService.removeAdmin(admin1);
 		// playListService.removePlayList(pl1);
 
