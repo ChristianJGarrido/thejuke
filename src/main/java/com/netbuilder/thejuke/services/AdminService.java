@@ -10,7 +10,6 @@ import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
 
 import com.netbuilder.thejuke.entities.Admin;
-import com.netbuilder.thejuke.entities.User;
 import com.netbuilder.thejuke.util.Loggable;
 
 @Stateless

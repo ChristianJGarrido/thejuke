@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import com.netbuilder.thejuke.entities.Artist;
@@ -23,7 +24,7 @@ import com.netbuilder.thejuke.util.Loggable;
 @Loggable
 public class ArtistService implements Serializable {
 	
-	@Inject	
+	@Inject
 	private EntityManager em;
 
 	public ArtistService(){

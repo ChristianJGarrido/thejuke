@@ -9,10 +9,12 @@ import javax.annotation.PreDestroy;
 import javax.annotation.sql.DataSourceDefinition;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 
 import com.netbuilder.thejuke.entities.Admin;
 import com.netbuilder.thejuke.entities.Album;
@@ -35,8 +37,8 @@ import com.netbuilder.thejuke.util.Loggable;
  *
  */
 
-//@Singleton
-//@Startup
+@Singleton
+@Startup
 @Loggable
 @DataSourceDefinition(
 		className = "org.apache.derby.jdbc.EmbeddedDataSource",
@@ -48,7 +50,11 @@ import com.netbuilder.thejuke.util.Loggable;
 		)
   public class DBPopulator {
 	  private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("TheJuke");
-	  private static EntityManager em = emf.createEntityManager();
+	  
+	  @Produces
+	  @PersistenceContext
+	  private static EntityManager em; 
+//	  private static EntityManager em = emf.createEntityManager();
 	  
 	  private static User user1;
 	  private static User user2;
@@ -86,8 +92,8 @@ import com.netbuilder.thejuke.util.Loggable;
 	  
 	  @PostConstruct
 	  private static void populateDB() {
-		  initUsers();
-		  initAdmin();
+		  //initUsers();
+		  //initAdmin();
 		  //initArtists();
 		  //initGenres();
 		  //initSongs();
