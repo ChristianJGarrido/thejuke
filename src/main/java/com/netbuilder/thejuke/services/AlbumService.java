@@ -1,10 +1,12 @@
 package com.netbuilder.thejuke.services;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import com.netbuilder.thejuke.entities.Album;
@@ -21,11 +23,15 @@ import com.netbuilder.thejuke.util.Loggable;
 
 @Stateless
 @Loggable
-public class AlbumService {
+public class AlbumService implements Serializable {
 	
-	@Inject
+	@PersistenceContext
 	private EntityManager entityManager;
 
+	public AlbumService(){
+		
+	}
+	
 	/**
 	 * Sets up the service with the EntityManager in use
 	 * 

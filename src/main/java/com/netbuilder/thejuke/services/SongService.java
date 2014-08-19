@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
 
@@ -17,8 +18,12 @@ import com.netbuilder.thejuke.util.Loggable;
 @Loggable
 public class SongService implements Serializable {
 
-	@Inject
+	@PersistenceContext
 	private EntityManager entityManager;
+	
+	public SongService(){
+		
+	}
 
 	/**
 	 * Constructor
