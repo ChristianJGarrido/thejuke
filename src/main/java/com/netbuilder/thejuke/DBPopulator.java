@@ -10,8 +10,6 @@ import javax.annotation.sql.DataSourceDefinition;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import com.netbuilder.thejuke.entities.Admin;
 import com.netbuilder.thejuke.entities.Album;

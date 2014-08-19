@@ -1,25 +1,41 @@
 package com.netbuilder.thejuke.web;
 
-import javax.enterprise.context.SessionScoped;
-import javax.inject.*;
-import javax.security.auth.login.LoginContext;
-import com.netbuilder.thejuke.entities.*;
-import com.netbuilder.thejuke.util.Loggable;
 import java.io.Serializable;
+
+import javax.enterprise.context.SessionScoped;
+import javax.enterprise.inject.Produces;
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.security.auth.login.LoginContext;
+
+import com.netbuilder.thejuke.entities.User;
+import com.netbuilder.thejuke.services.UserService;
+import com.netbuilder.thejuke.util.Loggable;
 
 @Named
 @SessionScoped
 @Loggable
 public class UserController implements Serializable {
 	
+	@Inject
+	private UserService userService;
+	
+	@Inject
 	private Credentials credentials;
 	
+	@Produces
 	private User loggedinUser;
 	
+//	@Inject
+//	@SessionScoped
 	private transient LoginContext loginContext;
 	
 	public UserController(){
 		
+	}
+	
+	public String doCreateNewAccount(){
+		return "";
 	}
 
 	public Credentials getCredentials() {
