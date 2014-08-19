@@ -39,7 +39,7 @@ import com.netbuilder.thejuke.util.Loggable;
 @Loggable
 @DataSourceDefinition(
 		className = "org.apache.derby.jdbc.EmbeddedDataSource",
-        name = "java:localhost/jdbc/thejuke",
+        name = "jukedb",
         user = "root",
         password = "P4ssword",
         databaseName = "thejukedb",
