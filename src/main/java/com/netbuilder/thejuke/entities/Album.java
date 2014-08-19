@@ -22,7 +22,7 @@ import javax.validation.constraints.Size;
 @Entity
 @NamedQueries({
 		@NamedQuery(name = Album.FIND_ALL, query = "SELECT a FROM Album a"),
-		@NamedQuery(name = Album.FIND_BY_NAME, query = "SELECT a FROM Album a WHERE a.name = :name") })
+		@NamedQuery(name = Album.FIND_BY_NAME, query = "SELECT a FROM Album a WHERE a.name = :name")})
 @Table(name = "Album")
 public class Album {
 
