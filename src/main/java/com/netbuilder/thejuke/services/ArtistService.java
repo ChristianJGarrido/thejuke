@@ -24,22 +24,8 @@ import com.netbuilder.thejuke.util.Loggable;
 @Loggable
 public class ArtistService implements Serializable {
 	
-	@PersistenceContext
+	@Inject
 	private EntityManager em;
-
-	public ArtistService(){
-		
-	}
-	
-	/**
-	 * Constructor that supplies a reference to the Entity Manager.
-	 * 
-	 * @param entity
-	 *            Entity Manager being used
-	 */
-	public ArtistService(EntityManager em) {
-		this.em = em;
-	}
 
 	/**
 	 * Adds the supplied artists to the database
@@ -61,6 +47,8 @@ public class ArtistService implements Serializable {
 	 * @return The artist that was added
 	 */
 	public Artist persistArtist(final Artist artist) {
+		
+		System.out.println("Service exists");
 		if (artist == null)
 			throw new ValidationException("Artist Objext is null");
 
