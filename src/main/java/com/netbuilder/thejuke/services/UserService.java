@@ -3,6 +3,7 @@ package com.netbuilder.thejuke.services;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -12,7 +13,10 @@ import javax.validation.ValidationException;
 
 import com.netbuilder.thejuke.entities.User;
 import com.netbuilder.thejuke.services.AdminService;
+import com.netbuilder.thejuke.util.Loggable;
 
+@Stateless
+@Loggable
 public class UserService implements Serializable {
 	
 	@PersistenceContext
