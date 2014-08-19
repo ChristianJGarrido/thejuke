@@ -36,11 +36,12 @@ import com.netbuilder.thejuke.util.Loggable;
 @Startup
 @Loggable
 @DataSourceDefinition(
-		className = "org.apache.derby.jdbc.EmbeddedDataSource",
-        name = "java:localhost/jdbc/thejuke",
+		className = "com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource",
+        name = "jukedb",
         user = "root",
-        password = "P4ssword",
-        databaseName = "thejukedb",
+        password ="P4ssword",
+        databaseName = "jukedb",
+        //databaseName = "thejukedb",
         properties = {"connectionAttributes=;create=true"}
 		)
   public class DBPopulator {
@@ -83,11 +84,11 @@ import com.netbuilder.thejuke.util.Loggable;
 	  private static void populateDB() {
 		  //initUsers();
 		  //initAdmin();
-		  //initArtists();
-		  //initGenres();
-		  //initSongs();
-		  //initAlbums();
-		  //initPlayLists();
+		  initArtists();
+		  initGenres();
+		  initSongs();
+		  initAlbums();
+		  initPlayLists();
 		 
 	  }
 	  
@@ -102,6 +103,7 @@ import com.netbuilder.thejuke.util.Loggable;
 	}
 
 	private static void initAdmin() {
+		
 		admin1 = new Admin(user2);
 		adminService.persistAdmin(admin1);
 		System.out.println(admin1);
@@ -109,7 +111,8 @@ import com.netbuilder.thejuke.util.Loggable;
 	}
 
 	private static void initArtists() {
-
+		
+		System.out.println("ASDF ASDF");
 		artistList.add(new Artist("Nirvana", "The original grunge"));
 		artistList.add(new Artist("The Glitch Mob", "Popular electric music"));
 		artistList.add(new Artist("Rattatat", "More Muzak"));
