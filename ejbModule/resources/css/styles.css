@@ -1,10 +1,48 @@
-body {
-    padding-top: 50px;
-}
 
+* {margin: 0; padding: 0;}
+.sidenav {
+	background: rgb(50, 60, 60); width: 250px;
+	position:absolute; left: 0; top: 0; bottom: 0; padding-top: 100px; padding-left: 20px;
+    color: white; text-decoration: none;
+
+    
+}
+.temp{
+	
+width:100%;
+	
+}
+.sidenav li
+{	
+	width:100%;
+	
+	list-style-type:none;
+
+}
+.buttons{
+	padding-top: 30px;
+}
+.picture{
+	padding: 60px 20px 20px 0px;
+	height: 270px;
+}
+.page-header{
+	font: bold 50px Montserrat; 
+}
+.main-body{
+	float: left;
+	position:relative;
+	padding: 20px 5px 5px 5px;
+	width:100%;
+	transform: translateX(250px);
+	max-width:60%;
+
+}
 .nav-list {
     font-size: 25px;
+    
 }
+
 
 .menu-fr {
     background: transparent url("#{resource['icons/fr.gif']}") no-repeat center left;
