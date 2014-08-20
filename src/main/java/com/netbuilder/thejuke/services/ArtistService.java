@@ -24,8 +24,16 @@ import com.netbuilder.thejuke.util.Loggable;
 @Loggable
 public class ArtistService implements Serializable {
 	
-	@Inject
+	@PersistenceContext
 	private EntityManager em;
+
+	public EntityManager getEm() {
+		return em;
+	}
+
+	public void setEm(EntityManager em) {
+		this.em = em;
+	}
 
 	/**
 	 * Adds the supplied artists to the database

@@ -7,9 +7,14 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.sql.DataSourceDefinition;
+import javax.ejb.EJBTransactionRequiredException;
+import javax.ejb.EJBTransactionRolledbackException;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
+
+
+
 
 import com.netbuilder.thejuke.entities.Admin;
 import com.netbuilder.thejuke.entities.Album;
@@ -46,63 +51,77 @@ import com.netbuilder.thejuke.util.Loggable;
 		)
   public class DBPopulator {
 	  
-	  private static User user1;
-	  private static User user2;
-	  private static Admin admin1;
-	  private static PlayList pl1;
-	  private static PlayList pl2;
+	  private  User user1;
+	  private  User user2;
+	  private  Admin admin1;
+	  private  PlayList pl1;
+	  private  PlayList pl2;
 	  
-	  private static List<Artist> artistList = new ArrayList<Artist>();
-	  private static List<Album> albumList = new ArrayList<Album>();
-	  private static List<Song> songList = new ArrayList<Song>();
-	  private static List<Genre> genreList = new ArrayList<Genre>();
+	  private  List<Artist> artistList = new ArrayList<Artist>();
+	  private  List<Album> albumList = new ArrayList<Album>();
+	  private  List<Song> songList = new ArrayList<Song>();
+	  private  List<Genre> genreList = new ArrayList<Genre>();
 	
 	  @Inject
-	  private static UserService userService;
+	  private UserService userService;
 		
 	  @Inject
-	  private static AdminService adminService;
+	  private AdminService adminService;
 		
 	  @Inject
-	  private static ArtistService artistService;
+	  private  ArtistService artistService;
 		
 	  @Inject
-	  private static AlbumService albumService;
+	  private  AlbumService albumService;
 		
 	  @Inject
-	  private static SongService songService;
+	  private  SongService songService;
 		
 	  @Inject
-	  private static GenreService genreService;
+	  private  GenreService genreService;
 		
 	  @Inject
-	  private static PlayListService playListService;
+	  private  PlayListService playListService;
 	  
-	  private static Song song1;
+	  private  Song song1;
 	  
 	  @PostConstruct
-	  private static void populateDB() {
-		  //initUsers();
-		  //initAdmin();
-		  initArtists();
-		  initGenres();
-		  initSongs();
-		  initAlbums();
-		  initPlayLists();
+	  private  void populateDB() {
+		  
+
+				initUsers();
+				 //initAdmin();
+				  //initArtists();
+				  //initGenres();
+				  //initSongs();
+				  //initAlbums();
+				  //initPlayLists();
+		
+			 
+	            
+		  
 		 
 	  }
 	  
-	  private static void initUsers() {
+	  private  void initUsers(){
 		//em.getTransaction().begin();
 		user1 = new User("Bob", "Builder", 100F);
 		user2 = new User("Christian James", "I suck", 100F);
-		userService.persistUser(user1);
-		userService.persistUser(user2);
+		
+		try {
+			userService.persistUser(user1);
+			userService.persistUser(user2);
+		} catch (EJBTransactionRolledbackException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println(userService);
 		System.out.println(user1);
 		System.out.println(user2);
 	}
 
-	private static void initAdmin() {
+	private  void initAdmin() {
 		
 		admin1 = new Admin(user2);
 		adminService.persistAdmin(admin1);
@@ -110,7 +129,7 @@ import com.netbuilder.thejuke.util.Loggable;
 
 	}
 
-	private static void initArtists() {
+	private  void initArtists() {
 		
 		System.out.println("ASDF ASDF");
 		artistList.add(new Artist("Nirvana", "The original grunge"));
@@ -118,12 +137,13 @@ import com.netbuilder.thejuke.util.Loggable;
 		artistList.add(new Artist("Rattatat", "More Muzak"));
 		artistList.add(new Artist("MGMT", "I like these guys"));
 		artistList.add(new Artist("Kanye West", "Gay Fish"));
-		artistService.persistArtists(artistList);
 		System.out.println(artistList);
+		artistService.persistArtists(artistList);
+	
 
 	}
 
-	private static void initGenres() {
+	private  void initGenres() {
 
 		genreList.add(new Genre("Electronica"));
 		genreList.add(new Genre("Rock Alternative"));
@@ -133,7 +153,7 @@ import com.netbuilder.thejuke.util.Loggable;
 
 	}
 
-	private static void initSongs() {
+	private  void initSongs() {
 		song1 = new Song("Hail To The Hammer", 3.00F,
 				"C:\\Music\\Tyr\\HailToTheHammer.mp3", genreList.get(2), 25F);
 		songService.persistSong(song1);
@@ -141,7 +161,7 @@ import com.netbuilder.thejuke.util.Loggable;
 
 	}
 
-	private static void initAlbums() {
+	private  void initAlbums() {
 
 		// albumList.add(artistList.get(0));
 		List<Artist> arr = new ArrayList<Artist>();
@@ -154,7 +174,7 @@ import com.netbuilder.thejuke.util.Loggable;
 
 	}
 
-	private static void initPlayLists() {
+	private  void initPlayLists() {
 
 		List<Song> playSongs = new ArrayList<Song>();
 		playSongs.add(songList.get(0));
@@ -165,7 +185,7 @@ import com.netbuilder.thejuke.util.Loggable;
 	}
 
 	@PreDestroy
-	private static void clearDB() {
+	private  void clearDB() {
 		adminService.removeAdmin(admin1);
 		// playListService.removePlayList(pl1);
 
@@ -184,7 +204,7 @@ import com.netbuilder.thejuke.util.Loggable;
 
 	}
 
-	private static List<Song> getNirvanaSongs() {
+	private  List<Song> getNirvanaSongs() {
 		List<Song> result = new ArrayList<Song>();
 
 		result.add(new Song("Smells like Teen Spirit", 5.01f,
@@ -201,7 +221,7 @@ import com.netbuilder.thejuke.util.Loggable;
 	}
 
 	//
-	// public static void main(String[] args) {
+	// public  void main(String[] args) {
 	//
 	// populateDB();
 	// System.out.println(user2.isAdmin());

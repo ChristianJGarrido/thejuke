@@ -79,7 +79,7 @@ public class AppTest
 		genreService = new GenreService(em);
 		songService = new SongService(em);
 		albumService = new AlbumService(em);
-		artistService = new ArtistService(em);
+		//artistService = new ArtistService(em);
 		searchController= new SearchController(songService,albumService,genreService,artistService);
 		em.getTransaction().begin();
 		super.setUp();
