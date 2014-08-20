@@ -108,13 +108,13 @@ import com.netbuilder.thejuke.util.Loggable;
 		user1 = new User("Bob", "Builder", 100F);
 		user2 = new User("Christian James", "I suck", 100F);
 		
-		try {
+		//try {
 			userService.persistUser(user1);
 			userService.persistUser(user2);
-		} catch (EJBTransactionRolledbackException e) {
+		//} catch (EJBTransactionRolledbackException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			//e.printStackTrace();
+		//}
 		
 		System.out.println(userService);
 		System.out.println(user1);
@@ -186,7 +186,7 @@ import com.netbuilder.thejuke.util.Loggable;
 
 	@PreDestroy
 	private  void clearDB() {
-		adminService.removeAdmin(admin1);
+		//adminService.removeAdmin(admin1);
 		// playListService.removePlayList(pl1);
 
 		// for(Artist a: artistList)
@@ -199,7 +199,7 @@ import com.netbuilder.thejuke.util.Loggable;
 		// genreService.removeGenre(g);
 		// }
 
-		userService.removeUser(user1);
+		//userService.removeUser(user1);
 		// userService.removeUser(user2);
 
 	}

@@ -9,12 +9,12 @@ import javax.inject.Inject;
 
 import com.netbuilder.thejuke.entities.Song;
 import com.netbuilder.thejuke.entities.User;
-@SessionScoped
+//@SessionScoped
 public class SongQueueController  implements Serializable
 {
-	@Inject
+	//@Inject
 	private LinkedList<Song> songQueue;
-	@Inject
+	//@Inject
 	private User linkedUser;
 	public SongQueueController()
 	{
