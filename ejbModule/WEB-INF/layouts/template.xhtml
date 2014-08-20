@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="#{localeBean.language}" xmlns="http://www.w3.org/1999/xhtml">
+<f:view locale="#{localeBean.locale}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" contentType="text/html"
+	encoding="UTF-8">
+
+	<h:head>
+		<meta name="Author" content="Jonathan Weng" />
+		<meta name="File type" content="Template" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<h:outputStylesheet library="css" name="bootstrap.css" />
+		<h:outputStylesheet library="css" name="styles.css" />
+		<ui:insert name="data"></ui:insert>
+	</h:head>
+
+	<h:body>
+	<div class="temp">
+
+		<div class="sidenav">
+
+			<div class="search bar">
+				<form>
+					<input type="text" class="search-input wb"
+						placeholder="Search by Song/Artist/Album..." /> <input
+						type="submit" class="search-button wb" value="Search" />
+				</form>
+			</div>
+
+			<div class="buttons">
+				<input type="submit" class="tools-button" value="Session Tools" />
+			</div>
+
+			<div class="picture">PICTURE PLACEHOLDER HERE</div>
+
+			<div class="queue list">
+				<h>
+				<b>Queue</b></h>
+				<ul>
+					<li>song 1</li>
+					<li>song 2</li>
+					<li>song 3</li>
+				</ul>
+			</div>
+
+			<div class="player controls">VOLUME CONTROLS/PLAYER</div>
+
+		</div>
+		<div class="main-body">
+			<div class="container-fluid">
+				<div class="page-header">
+					<ui:insert name="pagetitle">Default Page Title</ui:insert>
+				</div>
+				<div class="well">
+					<ui:insert name="body">Default content</ui:insert>
+				</div>
+			</div>
+		</div>
+	</div>
+	</h:body>
+
+</f:view>
+</html>
