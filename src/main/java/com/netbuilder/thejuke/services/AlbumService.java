@@ -1,6 +1,7 @@
 package com.netbuilder.thejuke.services;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -10,6 +11,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import com.netbuilder.thejuke.entities.Album;
+import com.netbuilder.thejuke.entities.Artist;
+import com.netbuilder.thejuke.entities.Genre;
+import com.netbuilder.thejuke.entities.Song;
 import com.netbuilder.thejuke.exceptions.ValidationException;
 import com.netbuilder.thejuke.util.Loggable;
 
@@ -145,6 +149,24 @@ public class AlbumService implements Serializable {
 				Album.class).getResultList();
 		for (Album album : list) {
 			System.out.println(album.toString());
+		}
+	}
+
+	public List<Album> findByArtist(Artist artist) 
+	{
+		{
+			if (artist == null)
+			{
+				throw new ValidationException("Invalid genre");
+			}
+
+			List<Album> albumList = entityManager.createQuery(
+					"Select g from album g join artist_has_album on Album.id = artist_has_album.album_id Where artist_has_album.artist_id=" + artist.getId(), Album.class)
+					.getResultList();
+			if (albumList.size() == 0) {
+				return null;
+			}
+			return albumList;
 		}
 	}
 }

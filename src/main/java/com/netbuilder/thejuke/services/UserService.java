@@ -3,11 +3,13 @@ package com.netbuilder.thejuke.services;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
 
@@ -19,16 +21,9 @@ import com.netbuilder.thejuke.util.Loggable;
 @Loggable
 public class UserService implements Serializable {
 	
-	@PersistenceContext
+	@PersistenceContext(unitName = "TheJuke")
 	private EntityManager entityManager;
-
-	public UserService(){
-		
-	}
 	
-	public UserService(EntityManager entity) {
-		this.entityManager = entity;
-	}
 	/**
 	 * Create multiple users at once
 	 * @param pass in list of users
@@ -46,6 +41,10 @@ public class UserService implements Serializable {
 	 */
 	public User persistUser(User user)
 	{
+		if(entityManager.isOpen()) {
+			System.out.println(entityManager);
+			
+		}
 		if(user==null)
 			throw new ValidationException("Customer object is null");
 		entityManager.persist(user);

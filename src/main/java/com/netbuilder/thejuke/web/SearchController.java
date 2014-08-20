@@ -80,5 +80,24 @@ public class SearchController implements Serializable {
 		}
 		return songList;
 	}
+	public List<Artist> searchArtistByName(String artistName)
+	{
+		return(artistService.findArtist(artistName));
+	}
+
+	public List<Album> searchAlbumByName(String albumName) {
+		return(albumService.findAlbum(albumName));
+	}
+
+	public List<Album> searchAlbumByArtist(String artistName) {
+		List<Artist> artistList =artistService.findArtist(artistName);
+		List<Album> albumList = new ArrayList<Album>();
+		if (artistList != null) {
+			for (Artist artist : artistList) {
+				albumList.addAll(albumService.findByArtist(artist));
+			}
+		}
+		return albumList;
+	}
 
 }

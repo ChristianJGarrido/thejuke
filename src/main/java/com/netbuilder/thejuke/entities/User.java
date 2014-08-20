@@ -113,5 +113,18 @@ public class User {
 		this.password = user.getPassWord();
 		this.balance = user.getBalance();
 	}
+	/**Attempts to subtract a given amount from the balance. Returns true if it succeeds. False otherwise. **/
+	public boolean subtractFrombalance(float price)
+	{
+		if(balance-price>=0)
+		{
+			balance=balance-price;
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 
 }

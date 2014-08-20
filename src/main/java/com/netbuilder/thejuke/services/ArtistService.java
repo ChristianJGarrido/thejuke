@@ -27,17 +27,11 @@ public class ArtistService implements Serializable {
 	@PersistenceContext
 	private EntityManager em;
 
-	public ArtistService(){
-		
+	public EntityManager getEm() {
+		return em;
 	}
-	
-	/**
-	 * Constructor that supplies a reference to the Entity Manager.
-	 * 
-	 * @param entity
-	 *            Entity Manager being used
-	 */
-	public ArtistService(EntityManager em) {
+
+	public void setEm(EntityManager em) {
 		this.em = em;
 	}
 
@@ -61,6 +55,8 @@ public class ArtistService implements Serializable {
 	 * @return The artist that was added
 	 */
 	public Artist persistArtist(final Artist artist) {
+		
+		System.out.println("Service exists");
 		if (artist == null)
 			throw new ValidationException("Artist Objext is null");
 
