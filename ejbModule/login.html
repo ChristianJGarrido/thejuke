@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                template="WEB-INF/layouts/template.html">
+
+
+	<center>
+    	<h2>#{i18n.signon_signIn}</h2>
+
+
+        <div class="row-fluid">
+            <div class="span5">
+                <h:form>
+                    <h:panelGrid columns="2">
+                       
+                        <h:outputLabel value="#{i18n.customer_login}" for="login"/>
+                        <h:inputText id="login" value="#{credentials.login}" maxlength="10" size="12"/>
+                        <h:outputLabel value="#{i18n.customer_password}" for="password"/>
+                        <h:inputSecret id="password" value="#{credentials.password}" maxlength="10" size="12"/>
+                        <f:facet name="footer">
+                            <h:commandButton value="#{i18n.signon_signIn}" action="#{userController.doLogin}"
+                                             type="submit"/>
+                            <h:outputLabel value="user/user - admin/admin"/>
+                        </f:facet>
+                    </h:panelGrid>
+                </h:form>
+            </div>
+        </div>
+    </center>
+
+  
