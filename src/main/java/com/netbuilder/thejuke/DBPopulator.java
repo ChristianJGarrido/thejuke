@@ -89,15 +89,15 @@ import com.netbuilder.thejuke.util.Loggable;
 	  private  void populateDB() {
 		  
 
-				initUsers();
+				 //initUsers();
 				 //initAdmin();
-				  //initArtists();
-				  //initGenres();
-				  //initSongs();
-				  //initAlbums();
-				  //initPlayLists();
-		
-			 
+//				  initArtists();
+//				  initGenres();
+//				 initSongs();
+//				 initAlbums();
+//				initPlayLists();
+//		
+			 //clearDB();
 	            
 		  
 		 
@@ -186,21 +186,21 @@ import com.netbuilder.thejuke.util.Loggable;
 
 	@PreDestroy
 	private  void clearDB() {
-		//adminService.removeAdmin(admin1);
-		// playListService.removePlayList(pl1);
-
-		// for(Artist a: artistList)
-		// artistService.removeArtist(a);
-		// for(Album a: albumList)
-		// albumService.removeAlbum(a);
-		// songService.removeSong(song1);
-
-		// for(Genre g: genreList) {
-		// genreService.removeGenre(g);
-		// }
-
-		//userService.removeUser(user1);
-		// userService.removeUser(user2);
+		adminService.removeAdmin(admin1);
+//		playListService.removePlayList(pl1);
+//
+//		for(Artist a: artistList)
+//		artistService.removeArtist(a);
+//		for(Album a: albumList)
+//		 albumService.removeAlbum(a);
+//		 songService.removeSong(song1);
+//
+//		 for(Genre g: genreList) {
+//		 genreService.removeGenre(g);
+//		 }
+//
+//		userService.removeUser(user1);
+//	    userService.removeUser(user2);
 
 	}
 

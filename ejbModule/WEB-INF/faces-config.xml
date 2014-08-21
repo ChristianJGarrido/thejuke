@@ -14,4 +14,14 @@
             <var>i18n</var>
         </resource-bundle>
     </application>
+    <managed-bean>
+    	<managed-bean-name>registerController</managed-bean-name>
+    	<managed-bean-class>com.netbuilder.thejuke.web.RegisterController</managed-bean-class>
+    	<managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+    	<managed-bean-name>entityManager</managed-bean-name>
+    	<managed-bean-class>javax.persistence.EntityManager</managed-bean-class>
+    	<managed-bean-scope>none</managed-bean-scope>
+    </managed-bean>
 </faces-config>
