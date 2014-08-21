@@ -26,8 +26,8 @@ abstract class Controller {
     // =             Attributes             =
     // ======================================
 
-    @Inject
-    private transient Logger logger;
+//    @Inject
+//    private transient Logger logger;
 
     // ======================================
     // =          Protected Methods         =
