@@ -35,4 +35,5 @@ public class Credentials {
     public void setPassword2(String password2) {
         this.password2 = password2;
     }
+
 }

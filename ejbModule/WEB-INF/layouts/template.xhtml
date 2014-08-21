@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- <!DOCTYPE html        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> -->
+        <!DOCTYPE html>
 <html lang="#{localeBean.language}" xmlns="http://www.w3.org/1999/xhtml">
 <f:view locale="#{localeBean.locale}"
 	xmlns="http://www.w3.org/1999/xhtml"
@@ -15,7 +16,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<h:outputStylesheet library="css" name="bootstrap.css" />
 		<h:outputStylesheet library="css" name="styles.css" />
-		<ui:insert name="data"></ui:insert>
+		<ui:insert name="data"> </ui:insert>
+
 	</h:head>
 
 	<h:body>
@@ -56,6 +58,7 @@
 					<ui:insert name="pagetitle">Default Page Title</ui:insert>
 				</div>
 				<div class="well">
+					<embed height="100" width="500" src="CCmixtape_-_01_-_Over_Clouds.mp3" style="visibility:visible;"></embed>
 					<ui:insert name="body">Default content</ui:insert>
 				</div>
 			</div>
