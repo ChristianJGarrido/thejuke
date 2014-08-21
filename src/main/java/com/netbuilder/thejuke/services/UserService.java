@@ -81,7 +81,7 @@ public class UserService implements Serializable {
 	        throw new ValidationException("Invalid User Name");
 	
 	    TypedQuery<User> typedQuery = entityManager.createNamedQuery(User.FIND_BY_USERNAME, User.class);
-	    typedQuery.setParameter("userName", userName);
+	    typedQuery.setParameter("name", userName);
 	
 	    try {
 	        return typedQuery.getSingleResult();

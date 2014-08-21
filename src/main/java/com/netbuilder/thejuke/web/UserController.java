@@ -6,7 +6,10 @@ import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceUnit;
 import javax.security.auth.login.LoginContext;
+import javax.security.auth.login.LoginException;
 
 import com.netbuilder.thejuke.entities.User;
 import com.netbuilder.thejuke.services.UserService;
@@ -24,15 +27,28 @@ public class UserController implements Serializable {
 	private Credentials credentials;
 	
 	@Produces
+	@LoggedIn
 	private User loggedinUser;
 	
-//	@Inject
-//	@SessionScoped
+	@Inject
+	@SessionScoped
 	private transient LoginContext loginContext;
 	
-	public UserController(){
-		
-	}
+	public String doLogin() throws LoginException {
+        if ("".equals(credentials.getLogin())) {
+            //addWarningMessage("id_filled");
+            return null;
+        }
+        if ("".equals(credentials.getPassword())) {
+            //addWarningMessage("pwd_filled");
+            return null;
+        }
+
+        loginContext.login();
+        loggedinUser = userService.findUser(credentials.getLogin());
+        return "main.faces";
+        //return "index.xhtml";
+    }
 	
 	public String doCreateNewAccount(){
 		return "";
