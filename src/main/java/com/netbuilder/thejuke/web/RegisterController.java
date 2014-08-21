@@ -54,21 +54,31 @@ public class RegisterController
 	String password2;
     public String doCreateNewAccount()
     {
-		if(password.equals(password2))
-		{
-			try {
-			System.out.println(login);
-			System.out.println(password+"2");
-			userService.persistUser(new User(login,password,0F));
-			} catch (SecurityException | IllegalStateException e) 
+    	//Usernames are all caps.
+    	String userName=login.toLowerCase();
+    	if(userService.findUser(userName)==null)
+    	{
+	    	//Password must be confirmed
+			if(password.equals(password2))
 			{
-				e.printStackTrace();
+				try {
+				System.out.println(login);
+				System.out.println(password+"2");
+				userService.persistUser(new User(userName,password,0F));
+				} catch (SecurityException | IllegalStateException e) 
+				{
+					e.printStackTrace();
+				}
 			}
-		}
-		else
-		{
-			System.out.println("Passwords don't match.");
-		}
+			else
+			{
+				System.out.println("Passwords don't match.");
+			}	
+    	}
+    	else
+    	{
+    		System.out.println("User already exists.");
+    	}
 		
 		return "index";
     }
