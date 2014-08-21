@@ -19,6 +19,10 @@
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
 	
+	<login-config>
+   		<auth-method>FORM</auth-method>
+   		<realm-name>SimpleLoginModule</realm-name>
+	</login-config> 
     <!-- To define a datasource we use the @Datasource annotation -->
     <!--<data-source>-->
     <!--<name>java:global/jdbc/applicationPetstoreDS</name>-->

@@ -7,10 +7,35 @@
                 template="WEB-INF/layouts/template.html">
 
 
-    <ui:define name="pagetitle">INDEX TESTER!!!</ui:define>
-	<!-- <ui:define name="data"><style> .sidenav {visibility:hidden; }</style> </ui:define> -->
+<<<<<<< HEAD
+    <ui:define name="pagetitle"><center>The Juke</center></ui:define>
+
     <ui:define name="body">
-	    RANDOM INFOS!
+	<center>
+    	<h2>#{i18n.signon_signIn}</h2>
+
+
+        <div class="row-fluid">
+            <div class="span5">
+                <h:form>
+                    <h:panelGrid columns="2">
+                       
+                        <h:outputLabel value="#{i18n.customer_login}" for="login"/>
+                        <h:inputText id="login" value="#{credentials.login}" maxlength="10" size="12"/>
+                        <h:outputLabel value="#{i18n.customer_password}" for="password"/>
+                        <h:inputSecret id="password" value="#{credentials.password}" maxlength="10" size="12"/>
+                        <f:facet name="footer">
+                            <h:commandButton value="#{i18n.signon_signIn}" action="#{userController.doLogin}"
+                                             type="submit"/>
+                            <h:outputLabel value="user/user - admin/admin"/>
+                        </f:facet>
+                    </h:panelGrid>
+                </h:form>
+            </div>
+        </div>
+    </center>
+
+  
 	</ui:define>
 
 
