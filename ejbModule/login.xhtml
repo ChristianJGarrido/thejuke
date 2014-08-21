@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -6,7 +7,9 @@
 				xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
                 template="WEB-INF/layouts/template.html">
 
-
+	 <ui:define name="pagetitle">Log In</ui:define>
+	
+    <ui:define name="body">
 	<center>
     	<h2>#{i18n.signon_signIn}</h2>
 
@@ -30,5 +33,6 @@
             </div>
         </div>
     </center>
-
+    </ui:define>
+</ui:composition>
   

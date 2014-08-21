@@ -98,6 +98,6 @@ public class RegisterController
     		System.out.println("User already exists.");
     	}
 		
-		return "index";
+		return "index.faces";
     }
 }
