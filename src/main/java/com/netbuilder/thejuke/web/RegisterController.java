@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.security.auth.login.LoginException;
 import javax.transaction.UserTransaction;
 
 import com.netbuilder.thejuke.entities.User;
@@ -15,11 +16,20 @@ import com.netbuilder.thejuke.services.UserService;
 @RequestScoped
 public class RegisterController 
 {
-	@PersistenceContext(unitName = "TheJuke")
-	private EntityManager entityManager;
+//	@PersistenceContext(unitName = "TheJuke")
+//	private EntityManager entityManager;
 	
-	@Resource private UserTransaction utx; 
+	@Inject
+	private UserController userController;
 	
+//	@Resource private UserTransaction utx; 
+	
+	public UserController getUserController() {
+		return userController;
+	}
+	public void setUserController(UserController userController) {
+		this.userController = userController;
+	}
 	String login;
 	
 	//private UserService userService=new UserService();
@@ -64,7 +74,15 @@ public class RegisterController
 				try {
 				System.out.println(login);
 				System.out.println(password+"2");
-				userService.persistUser(new User(userName,password,0F));
+				User registeredUser=new User(userName,password,0F);
+				userService.persistUser(registeredUser);
+				Credentials credentials = new Credentials();
+				credentials.setLogin(userName);
+				credentials.setPassword(password);
+				credentials.setPassword2(password2);
+				//userController.setCredentials(credentials);
+				//userController.doLogin();
+				userController.setLoggedinUser(registeredUser);
 				} catch (SecurityException | IllegalStateException e) 
 				{
 					e.printStackTrace();
