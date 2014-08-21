@@ -22,8 +22,16 @@ public class RegisterController
 	@Inject
 	private UserController userController;
 	
+	private String errorMessage="";
+	
 //	@Resource private UserTransaction utx; 
 	
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
+	}
 	public UserController getUserController() {
 		return userController;
 	}
@@ -64,6 +72,21 @@ public class RegisterController
 	String password2;
     public String doCreateNewAccount()
     {
+    	if(login.length()==0 || password.length()==0 || password2.length()==0)
+    	{
+    		errorMessage="Please fill in the entire form";
+			return"#";
+    	}
+    	if(login.length()<5)
+    	{
+    		errorMessage="Username has to be 5 characters or longer";
+			return"#";
+    	}
+    	if(password.length()<5)
+    	{
+    		errorMessage="Password must have at least 5 characters";
+			return"#";
+    	}
     	//Usernames are all caps.
     	String userName=login.toLowerCase();
     	if(userService.findUser(userName)==null)
@@ -90,12 +113,14 @@ public class RegisterController
 			}
 			else
 			{
-				System.out.println("Passwords don't match.");
+				errorMessage="Passwords don't match.";
+				return"#";
 			}	
     	}
     	else
     	{
-    		System.out.println("User already exists.");
+    		errorMessage="User already exists.";
+    		return"#";
     	}
 		
 		return "index";
