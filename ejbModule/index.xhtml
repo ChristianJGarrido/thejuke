@@ -4,6 +4,7 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
                 template="WEB-INF/layouts/template.html">
 
 
@@ -11,6 +12,9 @@
 
     <ui:define name="body">
     	RANDOM INFOS!!!!!!
+    	<audio p:controls>
+    		<source src="resources/soundExample/CCmixtape_-_01_-_Over_Clouds.mp3" type="audio/mpeg"/>
+    	</audio>
 	</ui:define>
 
 
