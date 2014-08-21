@@ -6,6 +6,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core" contentType="text/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
 	encoding="UTF-8">
 <h:head>
     <meta charset="utf-8"></meta>
@@ -17,13 +18,13 @@
    	<title>Dashboard Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <!-- <link href="ejbModule/META-INF/resources/css/bootstrap.css" type="text/css" rel="stylesheet"></link> -->
 	<h:outputStylesheet library="css" name="bootstrap.css" />
     <!-- Custom styles for this template -->
-    <!-- <link href="ejbModule/META-INF/resources/css/dashboard.css" type="text/css" rel="stylesheet"></link> -->
 	<h:outputStylesheet library="css" name="dashboard.css" />
+	
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -86,7 +87,26 @@
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Dashboard</h1>
+     		<ui:insert name="body">
+     		
+        	</ui:insert>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/docs.min.js"></script>
+  
+
+</body>
+</f:view>
+</html>
+
+<!--      <h1 class="page-header">Dashboard</h1>
 
           <div class="row placeholders">
             <div class="col-xs-6 col-sm-3 placeholder">
@@ -234,19 +254,4 @@
                 </tr>
               </tbody>
             </table>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <script src="../../assets/js/docs.min.js"></script>
-  
-
-</body>
-</f:view>
-</html>
+          </div> -->
