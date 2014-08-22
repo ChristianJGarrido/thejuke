@@ -5,17 +5,18 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
 				xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
-                template="WEB-INF/layouts/template.html">
+                template="WEB-INF/layouts/modalTemplate.html">
 
+<<<<<<< HEAD:ejbModule/login.xhtml
 	 <ui:define name="pagetitle">Log In</ui:define>
 	
     <ui:define name="body">
+=======
+<ui:define name="pageTitale"> </ui:define>
+
+<ui:define name="body">
+>>>>>>> 9ea3682966a0fc21fa9b75d418d1b1f5fa0032d1:ejbModule/login.xhtml
 	<center>
-    	<h2>#{i18n.signon_signIn}</h2>
-
-
-        <div class="row-fluid">
-            <div class="span5">
                 <h:form>
                     <h:panelGrid columns="2">
                        
@@ -30,9 +31,9 @@
                         </f:facet>
                     </h:panelGrid>
                 </h:form>
-            </div>
-        </div>
     </center>
     </ui:define>
+
 </ui:composition>
+
   

@@ -12,6 +12,7 @@
 	
     <ui:define name="body">
     	<h:form>
+    	<p style="color:red;">#{registerController.errorMessage}.</p>
             <h:panelGrid columns="2">
                 <h:outputText value="Name"></h:outputText>
                 <h:inputText value="#{registerController.login}"></h:inputText>
