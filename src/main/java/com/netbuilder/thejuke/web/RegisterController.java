@@ -18,7 +18,8 @@ public class RegisterController
 	@PersistenceContext(unitName = "TheJuke")
 	private EntityManager entityManager;
 	
-	@Resource private UserTransaction utx; 
+	@Resource 
+	private UserTransaction utx; 
 	
 	String login;
 	

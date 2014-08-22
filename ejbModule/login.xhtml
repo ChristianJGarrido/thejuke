@@ -4,15 +4,12 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
 				xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
-                template="WEB-INF/layouts/template.html">
+                template="WEB-INF/layouts/modalTemplate.html">
 
+<ui:define name="pageTitale"> </ui:define>
 
+<ui:define name="body">
 	<center>
-    	<h2>#{i18n.signon_signIn}</h2>
-
-
-        <div class="row-fluid">
-            <div class="span5">
                 <h:form>
                     <h:panelGrid columns="2">
                        
@@ -27,8 +24,8 @@
                         </f:facet>
                     </h:panelGrid>
                 </h:form>
-            </div>
-        </div>
     </center>
+    </ui:define>
+    </ui:composition>
 
   
