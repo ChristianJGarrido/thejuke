@@ -15,9 +15,15 @@
         <url-pattern>*.html</url-pattern>
     </servlet-mapping>
 	
-    <welcome-file-list>
+    <!-- <welcome-file-list>
         <welcome-file>index.html</welcome-file>
-    </welcome-file-list>
+    </welcome-file-list> -->
+	
+	<login-config>
+   		<auth-method>FORM</auth-method>
+   		<realm-name>SimpleLoginModule</realm-name>
+	</login-config> 
+	
 	
     <!-- To define a datasource we use the @Datasource annotation -->
     <!--<data-source>-->

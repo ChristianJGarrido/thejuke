@@ -21,6 +21,12 @@ import com.netbuilder.thejuke.util.Loggable;
 @Loggable
 public class UserService implements Serializable {
 	
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
 	@PersistenceContext(unitName = "TheJuke")
 	private EntityManager entityManager;
 	
@@ -81,7 +87,7 @@ public class UserService implements Serializable {
 	        throw new ValidationException("Invalid User Name");
 	
 	    TypedQuery<User> typedQuery = entityManager.createNamedQuery(User.FIND_BY_USERNAME, User.class);
-	    typedQuery.setParameter("userName", userName);
+	    typedQuery.setParameter("name", userName);
 	
 	    try {
 	        return typedQuery.getSingleResult();

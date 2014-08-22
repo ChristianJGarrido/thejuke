@@ -16,10 +16,18 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<h:outputStylesheet library="css" name="bootstrap.css" />
 		<h:outputStylesheet library="css" name="styles.css" />
-		<ui:insert name="data"></ui:insert>
+		<ui:insert name="data"> </ui:insert>
+
 	</h:head>
 
-	<h:body>
+	<ui:insert name="pagetitle">
+	
+	</ui:insert>
+
+	<ui:insert name="body">
+	
+	</ui:insert>
+	
 	<div class="temp">
 
 		<div class="sidenav">
@@ -62,7 +70,6 @@
 			</div>
 		</div>
 	</div>
-	</h:body>
 
 </f:view>
 </html>

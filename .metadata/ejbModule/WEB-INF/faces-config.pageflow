@@ -1,2 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageflow:Pageflow xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14084394996760" configfile="/thejuke/ejbModule/WEB-INF/faces-config.xml"/>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14084394996760" configfile="/thejuke/ejbModule/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="register.xhtml" x="191" y="183" id="pf14085388113170" path="/register.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="registered.xhtml" x="418" y="297" id="pf14085388113182" path="/registered.xhtml"/>
+</pageflow:Pageflow>
