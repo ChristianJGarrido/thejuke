@@ -49,7 +49,7 @@ public class UserController extends Controller implements Serializable {
 
         loginContext.login();
         loggedinUser = userService.findUser(credentials.getLogin());
-        return "main.faces";
+        return "#";
         //return "index.xhtml";
     }
 	
