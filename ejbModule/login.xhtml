@@ -11,13 +11,11 @@
 	 <ui:define name="pagetitle">Log In</ui:define>
 	
 
-<ui:define name="body">
-
-	<center>
+	 <ui:define name="body">
+	 	<center>
                 <h:form>
                     <h:panelGrid columns="2">
-                       
-                        <h:outputLabel value="#{i18n.customer_login}" for="login"/>
+                       	<h:outputLabel value="#{i18n.customer_login}" for="login"/>
                         <h:inputText id="login" value="#{credentials.login}" maxlength="10" size="12"/>
                         <h:outputLabel value="#{i18n.customer_password}" for="password"/>
                         <h:inputSecret id="password" value="#{credentials.password}" maxlength="10" size="12"/>
@@ -28,7 +26,7 @@
                         </f:facet>
                     </h:panelGrid>
                 </h:form>
-    </center>
+    	</center>
     </ui:define>
 
 </ui:composition>
