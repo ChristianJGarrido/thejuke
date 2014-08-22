@@ -1,34 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core"
-				xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
-                template="WEB-INF/layouts/modalTemplate.html">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	template="WEB-INF/layouts/modalTemplate.html">
 
+	<ui:define name="pageTitle">
+	</ui:define>
 
-	 <ui:define name="pagetitle">Log In</ui:define>
-	
-
-	 <ui:define name="body">
-	 	<center>
-                <h:form>
-                    <h:panelGrid columns="2">
-                       	<h:outputLabel value="#{i18n.customer_login}" for="login"/>
-                        <h:inputText id="login" value="#{credentials.login}" maxlength="10" size="12"/>
-                        <h:outputLabel value="#{i18n.customer_password}" for="password"/>
-                        <h:inputSecret id="password" value="#{credentials.password}" maxlength="10" size="12"/>
-                        <f:facet name="footer">
-                            <h:commandButton value="#{i18n.signon_signIn}" action="#{userController.doLogin}"
-                                             type="submit"/>
-                            <h:outputLabel value="user/user - admin/admin"/>
-                        </f:facet>
-                    </h:panelGrid>
-                </h:form>
-    	</center>
-    </ui:define>
-
+	<ui:define name="body">
+		<center>
+			<h:form>
+				<h:panelGrid columns="2">
+					<h:outputLabel value="User Name" for="login" />
+					<h:inputText id="login" value="#username" maxlength="10" size="12" />
+					<h:outputLabel value="Password" for="password" />
+					<h:inputSecret id="password" value="password" maxlength="10" size="12" />
+					<f:facet name="footer">
+						<h:commandButton value="Submit" action="#{userController.doLogin}" type="submit" />
+						<h:outputLabel value="user/user - admin/admin" />
+					</f:facet>
+				</h:panelGrid>
+			</h:form>
+		</center>
+	</ui:define>
 </ui:composition>
 
-  
+
+

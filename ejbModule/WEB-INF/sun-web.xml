@@ -5,5 +5,7 @@ GlassFish Application Server 3.1 Servlet 3.0//EN"
    <session-config>
       <session-manager/>
    </session-config>
-   <property name="alternatedocroot_1" value="from=/songs/* dir=C:/Users/Training8/Desktop/"/>
+   
+   <!-- <property name="alternatedocroot_1" value="from=/songs/* dir=/../resources"/> -->
+   
 </sun-web-app>
