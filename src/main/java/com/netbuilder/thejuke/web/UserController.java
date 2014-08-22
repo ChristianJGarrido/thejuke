@@ -49,8 +49,8 @@ public class UserController extends Controller implements Serializable {
 
         loginContext.login();
         loggedinUser = userService.findUser(credentials.getLogin());
-        //return "index.faces";
         return "index.faces";
+        //return null;
     }
 	
 	public String doCreateNewAccount(){
