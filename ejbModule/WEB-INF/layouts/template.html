@@ -7,6 +7,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core" contentType="text/html"
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough" encoding="UTF-8">
+
 	<h:head>
 		<meta charset="utf-8"></meta>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
@@ -15,7 +16,6 @@
 		<meta name="author" content=""></meta>
 
 		<title>Dashboard Template for Bootstrap</title>
-
 		<h:outputScript library="js" name="jquery-2.1.1.js" />
 		<h:outputScript library="js" name="bootstrap.js" />
 
@@ -23,9 +23,7 @@
 		<h:outputStylesheet library="css" name="dashboard.css" />
 
 
-		<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-		<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
+		
 		<script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -50,12 +48,12 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
+
 					<a class="navbar-brand" href="#">Project name</a>
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#">Dashboard</a></li>
-						<li><a href="#">Settings</a></li>
+						
 						<li><a data-toggle="modal" href="login.html" data-target="#loginModal">Profile</a></li>
 						<li><a href="#">Help</a></li>
 					</ul>
@@ -66,37 +64,49 @@
 			</div>
 		</div>
 
-		<ui:insert name="pagetitle">
-
-		</ui:insert>
-
-		<ui:insert name="body">
-
-		</ui:insert>
 
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-sm-3 col-md-2 sidebar">
-					<ul class="nav nav-sidebar">
-						<li class="active"><a href="#">Overview</a></li>
-						<li><a href="#">Reports</a></li>
-						<li><a href="#">Analytics</a></li>
-						<li><a href="#">Export</a></li>
-					</ul>
-					<ul class="nav nav-sidebar">
-						<li><a href="">Nav item</a></li>
-						<li><a href="">Nav item again</a></li>
-						<li><a href="">One more nav</a></li>
-						<li><a href="">Another nav item</a></li>
-						<li><a href="">More navigation</a></li>
-					</ul>
-					<ul class="nav nav-sidebar">
-						<li><a href="">Nav item again</a></li>
-						<li><a href="">One more nav</a></li>
-						<li><a href="">Another nav item</a></li>
-					</ul>
+					<div class="picture">
+						<img
+							src="http://sarahandthegoonsquad.com/wp-content/uploads/2006/07/PinkFloyd-TheWall-300x300.jpg"></img>
+					</div>
+					<div class="table-responsive">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Playlist</th>
+								</tr>
+							</thead>
+							<tbody id="queueTable">
+								<ui:insert name="queueList">
+								</ui:insert>
+							</tbody>
+						</table>
+					</div>
 				</div>
-				
+				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+					<ui:insert name="pagetitle">
+
+					</ui:insert>
+					<ui:insert name="sectiontitle">
+
+					</ui:insert>
+					<ui:insert name="body">
+
+					</ui:insert>
+
+		<ui:insert name="pagetitle">
+
+		</ui:insert>
+
+
+		<ui:insert name="body">
+
+
+		</ui:insert>
+
 				<!-- Modal Area -->
 				<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
@@ -106,6 +116,7 @@
 						<!-- /.modal-content -->
 					</div>
 					<!-- /.modal-dialog -->
+
 				</div>
 			</div>
 		</div>
@@ -117,8 +128,6 @@
 			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="../../dist/js/bootstrap.min.js"></script>
 		<script src="../../assets/js/docs.min.js"></script>
-
-
 	</body>
 </f:view>
 </html>

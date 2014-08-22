@@ -123,6 +123,6 @@ public class RegisterController
     		return"#";
     	}
 		
-		return "index";
+		return "index.faces";
     }
 }
