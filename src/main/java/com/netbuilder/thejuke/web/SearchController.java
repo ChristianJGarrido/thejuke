@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.netbuilder.thejuke.entities.Album;
@@ -22,21 +23,24 @@ import com.netbuilder.thejuke.util.Loggable;
 @Loggable
 public class SearchController implements Serializable {
 	
+	@Inject
 	private SongService songService;
+	@Inject
 	private AlbumService albumService;
+	@Inject
 	private GenreService genreService;
+	@Inject
 	private ArtistService artistService;
 	
-	public SearchController(){
-		
+	private String keyword;
+
+
+	public String getKeyword() {
+		return keyword;
 	}
 
-	public SearchController(SongService songService, AlbumService albumService,
-			GenreService genreService, ArtistService artistService) {
-		this.songService = songService;
-		this.albumService = albumService;
-		this.genreService = genreService;
-		this.artistService = artistService;
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 
 	public List<Song> searchByName(String name) {
