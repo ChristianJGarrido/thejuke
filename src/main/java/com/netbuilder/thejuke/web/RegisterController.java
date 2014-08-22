@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.security.auth.login.LoginException;
 import javax.transaction.UserTransaction;
 
 import com.netbuilder.thejuke.entities.User;
@@ -15,12 +16,28 @@ import com.netbuilder.thejuke.services.UserService;
 @RequestScoped
 public class RegisterController 
 {
-	@PersistenceContext(unitName = "TheJuke")
-	private EntityManager entityManager;
+//	@PersistenceContext(unitName = "TheJuke")
+//	private EntityManager entityManager;
 	
-	@Resource 
-	private UserTransaction utx; 
+	@Inject
+	private UserController userController;
 	
+	private String errorMessage="";
+	
+//	@Resource private UserTransaction utx; 
+	
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
+	}
+	public UserController getUserController() {
+		return userController;
+	}
+	public void setUserController(UserController userController) {
+		this.userController = userController;
+	}
 	String login;
 	
 	//private UserService userService=new UserService();
@@ -55,6 +72,21 @@ public class RegisterController
 	String password2;
     public String doCreateNewAccount()
     {
+    	if(login.length()==0 || password.length()==0 || password2.length()==0)
+    	{
+    		errorMessage="Please fill in the entire form";
+			return"#";
+    	}
+    	if(login.length()<5)
+    	{
+    		errorMessage="Username has to be 5 characters or longer";
+			return"#";
+    	}
+    	if(password.length()<5)
+    	{
+    		errorMessage="Password must have at least 5 characters";
+			return"#";
+    	}
     	//Usernames are all caps.
     	String userName=login.toLowerCase();
     	if(userService.findUser(userName)==null)
@@ -65,7 +97,15 @@ public class RegisterController
 				try {
 				System.out.println(login);
 				System.out.println(password+"2");
-				userService.persistUser(new User(userName,password,0F));
+				User registeredUser=new User(userName,password,0F);
+				userService.persistUser(registeredUser);
+				Credentials credentials = new Credentials();
+				credentials.setLogin(userName);
+				credentials.setPassword(password);
+				credentials.setPassword2(password2);
+				//userController.setCredentials(credentials);
+				//userController.doLogin();
+				userController.setLoggedinUser(registeredUser);
 				} catch (SecurityException | IllegalStateException e) 
 				{
 					e.printStackTrace();
@@ -73,12 +113,14 @@ public class RegisterController
 			}
 			else
 			{
-				System.out.println("Passwords don't match.");
+				errorMessage="Passwords don't match.";
+				return"#";
 			}	
     	}
     	else
     	{
-    		System.out.println("User already exists.");
+    		errorMessage="User already exists.";
+    		return"#";
     	}
 		
 		return "index";

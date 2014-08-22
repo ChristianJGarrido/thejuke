@@ -5,13 +5,14 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
-                template="WEB-INF/layouts/template.xhtml">
+                template="WEB-INF/layouts/template.html">
 
 
     <ui:define name="pagetitle">REGISTRATION!!</ui:define>
 	
     <ui:define name="body">
     	<h:form>
+    	<p style="color:red;">#{registerController.errorMessage}.</p>
             <h:panelGrid columns="2">
                 <h:outputText value="Name"></h:outputText>
                 <h:inputText value="#{registerController.login}"></h:inputText>
