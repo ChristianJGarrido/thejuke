@@ -19,12 +19,12 @@ import com.netbuilder.thejuke.util.Loggable;
 public class CatalogueController implements Serializable
 
 {
+	@Inject
+	private SearchController searchController;
+	
 	private List<Song> songResultList;
 	private List<Artist> artistResultList;
 	private List<Album> albumResultList;
-
-	@Inject
-	private SearchController searchController;
 	
 	private String keyword;
 	
@@ -32,8 +32,10 @@ public class CatalogueController implements Serializable
 		doFindSongByName(keyword);
 		doFindArtistByName(keyword);
 		findAlbumByName(keyword);
+		System.out.println("LOVE!\tlove!");
 		return "searchresult.faces";
 	}
+	
 	public String doFindSongByName(String songName)
 	{
 		
@@ -66,5 +68,29 @@ public class CatalogueController implements Serializable
 	}
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
+	}
+	public List<Song> getSongResultList() {
+		return songResultList;
+	}
+	public void setSongResultList(List<Song> songResultList) {
+		this.songResultList = songResultList;
+	}
+	public List<Artist> getArtistResultList() {
+		return artistResultList;
+	}
+	public void setArtistResultList(List<Artist> artistResultList) {
+		this.artistResultList = artistResultList;
+	}
+	public List<Album> getAlbumResultList() {
+		return albumResultList;
+	}
+	public void setAlbumResultList(List<Album> albumResultList) {
+		this.albumResultList = albumResultList;
+	}
+	public SearchController getSearchController() {
+		return searchController;
+	}
+	public void setSearchController(SearchController searchController) {
+		this.searchController = searchController;
 	}
 }
