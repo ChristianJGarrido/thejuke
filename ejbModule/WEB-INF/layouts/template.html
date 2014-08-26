@@ -58,14 +58,15 @@
 							data-target="#loginModal">Profile</a></li>
 						<li><a href="#">Help</a></li>
 					</ul>
-					<form class="navbar-form navbar-right">
+					<h:form class="navbar-form navbar-right">
 
 						    <h:inputText class="search-query" value="#{catalogueController.keyword}"/>
-                                <h:commandButton action="#{catalogueController.doSearch}" value="#{i18n.search}"
-                                                 class="btn"/>
-
+                                <h:commandButton action = "#{catalogueController.doSearch}" value="#{i18n.search}"
+                                                 class="btn">
+                              <!-- <f:param name="action" value="#{catalogController.doSearch}" />  -->  	
+								</h:commandButton>
 						
-					</form>
+					</h:form>
 				</div>
 			</div>
 		</div>

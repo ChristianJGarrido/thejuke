@@ -16,9 +16,12 @@ import com.netbuilder.thejuke.util.Loggable;
 @SessionScoped
 @Loggable	
 @CatchException
-public class CatalogueController implements Serializable
+public class CatalogueController implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-{
 	@Inject
 	private SearchController searchController;
 	
@@ -29,11 +32,12 @@ public class CatalogueController implements Serializable
 	private String keyword;
 	
 	public String doSearch() {
+		
 		doFindSongByName(keyword);
 		doFindArtistByName(keyword);
 		findAlbumByName(keyword);
 		System.out.println("LOVE!\tlove!");
-		return "searchresult.faces";
+		return "searchresult.faces?keyword=" + keyword + "&faces-redirect=true";
 	}
 	
 	public String doFindSongByName(String songName)
