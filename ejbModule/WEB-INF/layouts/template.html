@@ -105,6 +105,10 @@
 					</ui:insert>
 
 					<!-- Modal Area -->
+					<h:link outcome="signon" value="#{i18n.logIn}"
+                                            rendered="#{!userController.loggedIn}">
+                                        <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
+                                  
 					<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
 						aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
@@ -114,6 +118,7 @@
 						<!-- /.modal-dialog -->
 
 					</div>
+					  </h:link>
 				</div>
 			</div>
 		</div>

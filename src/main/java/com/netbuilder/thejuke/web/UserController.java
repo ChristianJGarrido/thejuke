@@ -97,5 +97,8 @@ public class UserController extends Controller implements Serializable {
 		this.loginContext = loginContext;
 	}
 	
+	public boolean isLoggedIn() {
+        return loggedinUser != null;
+    }
 	
 }
