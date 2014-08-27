@@ -87,8 +87,6 @@ import com.netbuilder.thejuke.util.Loggable;
 	  
 	  @PostConstruct
 	  private  void populateDB() {
-		  
-
 				 initUsers();
 				 initAdmin();
 				  initArtists();
