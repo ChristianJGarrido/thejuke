@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	template="WEB-INF/layouts/template.html">
+	<ui:define name="title">#{i18n.accounts}</ui:define>
+
+	<ui:define name="body">
+
+		<h2>#{i18n.accounts}</h2>
+
+		<h:form>
+
+			<legend>#{i18n.confirmorder_personalInformation}</legend>
+			<h:panelGrid columns="2">
+				<h:outputText value="User Name :" />
+				<h:outputText value="#{userController.loggedinUser.userName}" />
+
+				<h:outputText value="Balance :" />
+				<h:outputText value="$#{userController.loggedinUser.balance}" />
+
+				<h:outputText value="Priveledge :" />
+				<h:outputText value="Admin"
+					rendered="#{userController.loggedinUser.admin}" />
+				<h:outputText value="User"
+					rendered="#{!userController.loggedinUser.admin}" />
+
+
+			</h:panelGrid>
+
+			<li>
+				<!--<i class="icon-off icon-white"></i>--> 
+				<h:commandLink
+					action="#{userController.doLogout}"
+					rendered="#{userController.loggedIn}">
+					<h:outputText value="${i18n.logOut}" />
+				</h:commandLink>
+			</li>
+
+			<div style="margin-top: 20px">
+				<h:commandLink action="updateaccount" styleClass="user-edit">
+					<h:outputText value="#{i18n.showAccount_edit}" />
+				</h:commandLink>
+			</div>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

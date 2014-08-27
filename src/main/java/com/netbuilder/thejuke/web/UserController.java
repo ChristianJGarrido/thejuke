@@ -101,4 +101,12 @@ public class UserController extends Controller implements Serializable {
         return loggedinUser != null;
     }
 	
+	  public String doLogout() {
+	        loggedinUser = null;
+	        // Stop conversation
+	      
+	        //addInformationMessage("been_loggedout");
+	        return "index.faces";
+	    }
+	
 }
