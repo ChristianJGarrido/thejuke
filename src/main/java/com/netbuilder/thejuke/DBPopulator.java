@@ -87,13 +87,13 @@ import com.netbuilder.thejuke.util.Loggable;
 	  
 	  @PostConstruct
 	  private  void populateDB() {
-				 initUsers();
-				 initAdmin();
-				  initArtists();
-				  initGenres();
-				 initSongs();
-				 initAlbums();
-				initPlayLists();
+				 //initUsers();
+				 //initAdmin();
+				  //initArtists();
+				  //initGenres();
+				 //initSongs();
+				 //initAlbums();
+				//initPlayLists();
 			 //clearDB();
 	            
 		  
@@ -103,7 +103,8 @@ import com.netbuilder.thejuke.util.Loggable;
 	  private  void initUsers(){
 		//em.getTransaction().begin();
 		user1 = new User("Bob", "Builder", 100F);
-		user2 = new User("Christian James", "I suck", 100F);
+		user2 = new User("christian", "christian", 100F);
+		
 		
 		//try {
 			userService.persistUser(user1);

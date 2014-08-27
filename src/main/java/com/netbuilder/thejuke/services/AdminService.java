@@ -6,24 +6,26 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
 
 import com.netbuilder.thejuke.entities.Admin;
+import com.netbuilder.thejuke.entities.User;
 import com.netbuilder.thejuke.util.Loggable;
 
 @Stateless
 @Loggable
 public class AdminService implements Serializable {
-	
+
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public AdminService(){
-		
+	public AdminService() {
+
 	}
-	
+
 	public AdminService(EntityManager entity) {
 		this.entityManager = entity;
 	}
@@ -37,17 +39,19 @@ public class AdminService implements Serializable {
 			entityManager.persist(admin);
 		}
 	}
-	
+
 	public Admin persistAdmin(Admin admin) {
 		if (admin == null) {
 			throw new ValidationException("Admin object is null");
 		}
-		//System.out.println("Here!");
-		if (admin.getUser() != null && (Long)admin.getUser().getId() == null)
-            entityManager.persist(admin.getUser());
+		// System.out.println("Here!");
+		if (admin.getUser() != null && (Long) admin.getUser().getId() == null)
+			entityManager.persist(admin.getUser());
+		
 		entityManager.persist(admin);
 		return admin;
 	}
+
 	/** Prints out all Admins **/
 	public void listAdmins() {
 		List<Admin> list = entityManager.createQuery("SELECT a FROM Admin a",
@@ -71,12 +75,18 @@ public class AdminService implements Serializable {
 
 		return entityManager.find(Admin.class, key);
 	}
-	
+
 	public Admin findByUserId(long key) {
-			
-		 TypedQuery<Admin> typedQuery = entityManager.createNamedQuery(Admin.FIND_BY_USER_ID, Admin.class);
-		 typedQuery.setParameter("userID", key);
-		 return typedQuery.getSingleResult();
+
+		TypedQuery<Admin> typedQuery = entityManager.createNamedQuery(
+				Admin.FIND_BY_USER_ID, Admin.class);
+		typedQuery.setParameter("userID", key);
+
+		try {
+			return typedQuery.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
 
 	}
 
@@ -85,19 +95,19 @@ public class AdminService implements Serializable {
 		if (admin == null) {
 			throw new ValidationException("Admin object is null");
 		}
-		//System.out.println("Here!");
+		// System.out.println("Here!");
 		entityManager.merge(admin);
 		return admin;
 	}
 
 	/** Removes selected Admin from Database **/
 	public void removeAdmin(Admin admin) {
-		
+
 		if (admin == null) {
 			throw new ValidationException("Admin object is null");
 		}
 		admin.getUser().setAdmin(false);
-		
+
 		entityManager.remove(entityManager.merge(admin));
 	}
 
