@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<html>
+<body>
+	<h3>Frame loaded</h3>
+	<h:panelGroup rendered="#{queueController.songs}">
+		<h4>Muzak</h4>
+		<audio id="jukeplayer" onended="#{queueController.playNext()}; nextSong();" autoplay="autoplay">
+			<source src="#{queueController.getCurrentSong().audioPath}"
+				type="audio/wav" style="display: none;" />
+		</audio>
+		<script>
+			function nextSong(){
+				setTimeout(function(){
+					   window.location.reload(1);
+					}, 700);
+			}
+		</script>
+	</h:panelGroup>
+	<h:panelGroup rendered="#{!queueController.songs}">
+		<h4>reloading...</h4>
+		<script>
+		setTimeout(function(){
+			   window.location.reload(1); #{queueController.print()}
+			}, 5000);
+		</script>
+	</h:panelGroup>
+</body>
+	</html>
+</ui:composition>

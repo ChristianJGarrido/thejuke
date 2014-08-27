@@ -115,7 +115,7 @@ public class Song {
 	}
 
 	public String getAudioPath() {
-		return audioPath;
+		return "http://pc-czc4164zw7:8080/thejuke/songs/"+audioPath;
 	}
 
 	public void setAudioPath(String audioPath) {
