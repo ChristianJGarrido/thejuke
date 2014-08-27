@@ -47,7 +47,7 @@
             </h:column>
             <h:column>
              <h:form>
-                        <h:commandButton value="+" class="btn" action='#{queueController.doAddSongToQueue(oneItem)}' type="submit"/>
+                        <h:commandButton value="+" class="btn" rendered="#{userController.loggedIn}" action='#{queueController.doAddSongToQueue(oneItem)}' type="submit"/>
              </h:form>
             </h:column>
             
