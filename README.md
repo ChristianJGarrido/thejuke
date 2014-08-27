@@ -1,4 +1,4 @@
 thejuke
 =======
 
-netBuilder JavaEE Project
+NETbuilder JavaEE Project

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                template="WEB-INF/layouts/template.html">
+
+    <f:metadata>
+        <f:viewParam name="keyword" value="#{catalogueController.keyword}"/>
+        <f:event type="preRenderView" listener="#{catalogueController.doSearch}"/>
+    </f:metadata>
+
+    <ui:define name="title">#{i18n.searchResult_searchFor} #{catalogueController.keyword}</ui:define>
+
+    <ui:define name="body">
+	<center>
+        <h2>#{i18n.searchResult_searchFor} : #{catalogueController.keyword}</h2>
+
+        <h:outputText value="#{i18n.noItemsFound}"
+                      rendered="#{catalogueController.songResultList == null || catalogueController.songResultList.size() ==0}"/>
+
+        <h:dataTable value="#{catalogueController.songResultList}" var="oneItem" rendered="#{catalogueController.songResultList.size() > 0}"
+                     styleClass="table">
+            <h:column>
+             
+                        <h3>
+                            <h:link outcome="showitem" includeViewParams="true" value="#{oneItem.name}">
+                                
+                            </h:link>
+                        </h3>
+                        <h4>#{oneItem.albumList.get(0)} - #{oneItem.albumList.get(0).getArtistList().get(0)}</h4>
+                     
+                 
+          
+            </h:column>
+        </h:dataTable>
+	</center>
+    </ui:define>
+</ui:composition>
