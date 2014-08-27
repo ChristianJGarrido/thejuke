@@ -96,7 +96,6 @@ import com.netbuilder.thejuke.util.Loggable;
 				 initSongs();
 				 initAlbums();
 				initPlayLists();
-//		
 			 //clearDB();
 	            
 		  

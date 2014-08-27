@@ -22,7 +22,6 @@ import com.netbuilder.thejuke.util.Loggable;
 @SessionScoped
 @Loggable
 public class SearchController implements Serializable {
-	
 	@Inject
 	private SongService songService;
 	@Inject
