@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.netbuilder.thejuke.entities.Album;
@@ -21,10 +22,13 @@ import com.netbuilder.thejuke.util.Loggable;
 @SessionScoped
 @Loggable
 public class SearchController implements Serializable {
-	
+	@Inject
 	private SongService songService;
+	@Inject
 	private AlbumService albumService;
+	@Inject
 	private GenreService genreService;
+	@Inject
 	private ArtistService artistService;
 	
 	public SearchController(){

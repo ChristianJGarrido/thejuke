@@ -89,14 +89,14 @@ import com.netbuilder.thejuke.util.Loggable;
 	  private  void populateDB() {
 		  
 
-				 //initUsers();
-				 //initAdmin();
+//				 initUsers();
+//				 initAdmin();
 //				  initArtists();
 //				  initGenres();
 //				 initSongs();
 //				 initAlbums();
 //				initPlayLists();
-//		
+		
 			 //clearDB();
 	            
 		  
