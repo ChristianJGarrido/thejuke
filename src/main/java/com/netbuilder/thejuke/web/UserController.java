@@ -37,19 +37,34 @@ public class UserController extends Controller implements Serializable {
 	@SessionScoped
 	private transient LoginContext loginContext;
 	
+	private String errorMessage="";
+	
 	public String doLogin() throws LoginException {
         if ("".equals(credentials.getLogin())) {
             //addWarningMessage("id_filled");
-            return null;
+        	errorMessage="username not filled";
+            return "flogin.faces";
         }
         if ("".equals(credentials.getPassword())) {
             //addWarningMessage("pwd_filled");
-            return null;
+        	errorMessage="password not filled";
+        	return "flogin.faces";
         }
 
+        User check = userService.findUser(credentials.getLogin());
+        if(check == null) {
+        	errorMessage="invalid username";
+        	return "flogin.faces";
+        }
+        else if(!credentials.getPassword().equals(check.getPassWord())) {
+        	errorMessage="invalid password";
+        	return "flogin.faces";
+        }
         loginContext.login();
         loggedinUser = userService.findUser(credentials.getLogin());
+        
         //return "#";
+        errorMessage="";
         return "index.faces";
     }
 	
@@ -108,5 +123,13 @@ public class UserController extends Controller implements Serializable {
 	        //addInformationMessage("been_loggedout");
 	        return "index.faces";
 	    }
+
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
+	}
 	
 }
