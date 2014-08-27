@@ -32,11 +32,16 @@ public class CatalogueController implements Serializable {
 	private String keyword;
 	
 	public String doSearch() {
-		
+		if(keyword.equals(""))
+		{
+			//keyword="?";
+			return "#";
+		}
+		System.out.println("Running code with keyword "+keyword);
 		doFindSongByName(keyword);
 		doFindArtistByName(keyword);
 		findAlbumByName(keyword);
-		System.out.println("LOVE!\tlove!");
+		//System.out.println("LOVE!\tlove!");
 		return "searchresult.faces?keyword=" + keyword + "&faces-redirect=true";
 	}
 	

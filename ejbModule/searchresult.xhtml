@@ -26,16 +26,31 @@
                      styleClass="table">
             <h:column>
              
-                        <h3>
+                        <b>
                             <h:link outcome="showitem" includeViewParams="true" value="#{oneItem.name}">
-                                
                             </h:link>
-                        </h3>
-                        <h4>#{oneItem.albumList.get(0)} - #{oneItem.albumList.get(0).getArtistList().get(0)}</h4>
-                     
-                 
-          
+                        </b>
             </h:column>
+           <h:column>
+             
+                        <b>
+                            <h:link outcome="showitem" includeViewParams="true" value="Artist: #{oneItem.albumList.get(0).getArtistList().get(0).getName()}">
+                            </h:link>
+                        </b>
+            </h:column>
+             <h:column>
+             
+                        <b>
+                            <h:link outcome="showitem" includeViewParams="true" value="Album: #{oneItem.albumList.get(0).getName()}">
+                            </h:link>
+                        </b>
+            </h:column>
+            <h:column>
+             <h:form>
+                        <h:commandButton value="+" class="btn" action='#{queueController.doAddSongToQueue(oneItem)}' type="submit"/>
+             </h:form>
+            </h:column>
+            
         </h:dataTable>
 	</center>
     </ui:define>
