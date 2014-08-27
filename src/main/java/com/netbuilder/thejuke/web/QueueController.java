@@ -5,14 +5,22 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.netbuilder.thejuke.entities.Song;
+import com.netbuilder.thejuke.entities.User;
+import com.netbuilder.thejuke.services.UserService;
 @Named
 @SessionScoped
 public class QueueController implements Serializable
 {
 	private Queue<Song> songQueue;
+	
+	@Inject
+	UserController userController;
+	@Inject
+	UserService userService;
 	
 	public QueueController()
 	{
@@ -28,7 +36,17 @@ public class QueueController implements Serializable
 	}
 	public String doAddSongToQueue(Song song)
 	{
-		songQueue.add(song);
+		User loggedInUser= userController.getLoggedinUser();
+		float balance=loggedInUser.getBalance();
+		float cost = song.getCost();
+		if((balance-cost)>=0)
+		{
+			System.out.println("BALANCE WILL BE"+(balance-cost));
+			loggedInUser.setBalance(balance-cost);
+			userService.updateUser(loggedInUser);
+			songQueue.add(song);
+			
+		}
 		return "#";
 	}
 	public String doRemoveSongFromQueue(Song song)
