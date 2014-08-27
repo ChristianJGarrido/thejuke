@@ -31,16 +31,15 @@ public class SearchController implements Serializable {
 	@Inject
 	private ArtistService artistService;
 	
-	public SearchController(){
-		
+	private String keyword;
+
+
+	public String getKeyword() {
+		return keyword;
 	}
 
-	public SearchController(SongService songService, AlbumService albumService,
-			GenreService genreService, ArtistService artistService) {
-		this.songService = songService;
-		this.albumService = albumService;
-		this.genreService = genreService;
-		this.artistService = artistService;
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 
 	public List<Song> searchByName(String name) {

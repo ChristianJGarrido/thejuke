@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import com.netbuilder.thejuke.entities.Album;
@@ -157,12 +158,35 @@ public class AlbumService implements Serializable {
 		{
 			if (artist == null)
 			{
-				throw new ValidationException("Invalid genre");
+				throw new ValidationException("Invalid artist");
 			}
 
 			List<Album> albumList = entityManager.createQuery(
-					"Select g from album g join artist_has_album on Album.id = artist_has_album.album_id Where artist_has_album.artist_id=" + artist.getId(), Album.class)
+					"Select g from Album g join artist_has_album on Album.id = artist_has_album.album_id Where artist_has_album.artist_id=" + artist.getId(), Album.class)
 					.getResultList();
+			if (albumList.size() == 0) {
+				return null;
+			}
+			return albumList;
+		}
+	}
+	
+	//TODO This still doesn't work
+	public List<Album> findBySong(Song song) 
+	{
+		{
+			System.out.println(song);
+			if (song == null)
+			{
+				throw new ValidationException("Invalid song");
+			}
+
+//			List<Album> albumList = entityManager.createQuery(
+//					"Select a from Album a join album_has_song on Album.id = album_has_song.album_id Where album_has_song.song_id=" + song.getId(), Album.class)
+//					.getResultList();
+			List<Album> albumList = entityManager.createQuery(
+			"Select a from Album a", Album.class)
+			.getResultList();
 			if (albumList.size() == 0) {
 				return null;
 			}
