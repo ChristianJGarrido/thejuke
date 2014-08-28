@@ -4,23 +4,29 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
->
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 	<center>
-						<h:dataTable value="#{queueController.songQueue}" var="oneItem" rendered="#{queueController.songQueue.size() > 0}"
-                     styleClass="table">
-				            <h:column>
-				                        <b>
-				                            <h:link outcome="showitem" includeViewParams="true" value="#{oneItem.name}">
-				                            </h:link>
-				                        </b>
-				            </h:column>
-				            <h:column rendered="#{userController.loggedinUser.isAdmin()}">
-             					<h:form>
-                        				<h:commandButton value="X" class="btn" action='#{queueController.doRemoveSongFromQueue(oneItem)}' type="submit"/>
-             					</h:form>
-				            </h:column>
-		            	</h:dataTable>
-		    </center>        	
-		          
+		<h:dataTable value="#{queueController.songQueue}" var="oneItem"
+			rendered="#{queueController.songQueue.size() > 0}" styleClass="table">
+			<h:column>
+				
+				<b> <h:link 
+						outcome="showitem" includeViewParams="true"
+						value="#{oneItem.name}">
+					</h:link>
+				</b>
+				
+			</h:column>
+			<h:column rendered="#{userController.loggedinUser.isAdmin()}">
+	
+				<h:form>
+					<h:commandButton value="X" class="btn"
+						action='#{queueController.doRemoveSongFromQueue(oneItem)}'
+						type="submit" />
+				</h:form>
+		
+			</h:column>
+		</h:dataTable>
+	</center>
+
 </ui:composition>

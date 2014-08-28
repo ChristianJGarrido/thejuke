@@ -87,7 +87,7 @@ public class Album {
 	}
 
 	public String getArtPath() {
-		return artPath;
+		return "http://christian-pc:8080/thejuke/songs/"+artPath;
 	}
 
 	public void setArtPath(String artPath) {

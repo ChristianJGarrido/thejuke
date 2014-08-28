@@ -45,7 +45,7 @@ public class Song {
 
 	@Column(name = "audioPath")
 	private String audioPath;
-	
+
 	@Column(name = "cost")
 	private float cost;
 
@@ -65,14 +65,20 @@ public class Song {
 	public static final String FIND_ALL = "Song.findAll";
 
 	// Constructor
-	public Song(String name, float length, String audioPath, Genre genre,float cost) {
+
+	public Song(String empty) {
+		this.name = empty;
+	}
+
+	public Song(String name, float length, String audioPath, Genre genre,
+			float cost) {
 		this.name = name;
 		this.length = length;
 		this.audioPath = audioPath;
 		this.genre = genre;
-		this.cost=cost;
+		this.cost = cost;
 	}
-	
+
 	public Song(String name, float length, String audioPath, Genre genre) {
 		this.name = name;
 		this.length = length;
@@ -115,8 +121,8 @@ public class Song {
 	}
 
 	public String getAudioPath() {
-		//return "http://pc-czc4164zw7:8080/thejuke/songs/"+audioPath;
-		return "http://christian-pc:8080/thejuke/songs/"+audioPath;
+		// return "http://pc-czc4164zw7:8080/thejuke/songs/"+audioPath;
+		return "http://christian-pc:8080/thejuke/songs/" + audioPath;
 	}
 
 	public void setAudioPath(String audioPath) {
@@ -145,7 +151,12 @@ public class Song {
 
 		this.audioPath = "";
 		this.genre = new Genre();
-		this.cost=0.25F;
+		this.cost = 0.25F;
+	}
+
+	public boolean emptyName() {
+
+		return name.equals("empty");
 	}
 
 	// toString for easy testing.

@@ -87,13 +87,13 @@ import com.netbuilder.thejuke.util.Loggable;
 	  
 	  @PostConstruct
 	  private  void populateDB() {
-				initUsers();
-				initAdmin();
-				initArtists();
-				initGenres();
-				initSongs();
-				initAlbums();
-				initPlayLists();
+				//initUsers();
+				//initAdmin();
+				//initArtists();
+				//initGenres();
+				//initSongs();
+				//initAlbums();
+				//initPlayLists();
 			 //clearDB();
 	            
 		  
@@ -165,7 +165,7 @@ import com.netbuilder.thejuke.util.Loggable;
 		List<Artist> arr = new ArrayList<Artist>();
 		arr.add(artistList.get(0));
 		albumList.add(new Album("Nevermind", "Yalort", Date
-				.valueOf("1991-6-30"), "path", arr, getNirvanaSongs()));
+				.valueOf("1991-6-30"), "placeholder.png", arr, getNirvanaSongs()));
 
 		albumService.persistAlbums(albumList);
 		System.out.println(albumList.get(0));
@@ -206,14 +206,14 @@ import com.netbuilder.thejuke.util.Loggable;
 		List<Song> result = new ArrayList<Song>();
 
 		result.add(new Song("Smells like Teen Spirit", 5.01f,
-				"C:\\Music\\Nirvana\\Nevermind\\SmellsTeenSpirit.mp3",
-				genreList.get(1), .25F));
+				"acidbeat.wav",
+				genreList.get(1), 0f));
 		result.add(new Song("Come as you are", 3.38f,
-				"C:\\Music\\Nirvana\\Nevermind\\Comeasyouare.mp3", genreList
-						.get(1), 25F));
+				"beats.wav", genreList
+						.get(1), 0f));
 		result.add(new Song("Lithium", 4.16f,
-				"C:\\Music\\Nirvana\\Nevermind\\Lithium.mp3", genreList.get(1),
-				.25F));
+				"beats.wav", genreList.get(1),
+				0f));
 		songList.addAll(result);
 		return result;
 	}

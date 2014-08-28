@@ -35,7 +35,8 @@ public class CatalogueController implements Serializable {
 		if(keyword.equals(""))
 		{
 			//keyword="?";
-			return "#";
+			songResultList = searchController.findAllSongs();
+			return "searchresult.faces?keyword=" + keyword + "&faces-redirect=true";
 		}
 		System.out.println("Running code with keyword "+keyword);
 		doFindSongByName(keyword);

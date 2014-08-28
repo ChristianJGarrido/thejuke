@@ -102,5 +102,10 @@ public class SearchController implements Serializable {
 		}
 		return albumList;
 	}
+	
+	public List<Song> findAllSongs() {
+		
+		return songService.findAllSongs();
+	}
 
 }

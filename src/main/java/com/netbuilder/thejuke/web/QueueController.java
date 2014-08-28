@@ -44,33 +44,35 @@ public class QueueController implements Serializable {
 			System.out.println("BALANCE WILL BE" + (balance - cost));
 			loggedInUser.setBalance(balance - cost);
 			userService.updateUser(loggedInUser);
+			if(songs==false) {
+			songQueue.add(new Song(""));
+			}
 			songQueue.add(song);
-
 		}
-		return "#";
+		return "faces-redirect=true";
 	}
 
 	public String doRemoveSongFromQueue(Song song) {
 		if (song == null) {
 			System.out.println("Song is null");
-			return "#";
+			return "home.faces"+"faces-redirect=true";
 		}
 		songQueue.remove(song);
-		return "#";
+		return "home.faces"+"faces-redirect=true";
 	}
 
 	public String doRemoveSongFromQueue() {
 		if (songQueue == null) {
 			System.out.println("Song Queue is null");
-			return "#";
+			return "home.faces"+"faces-redirect=true";
 		}
 		if (songQueue.size() < 1) {
 			System.out.println("Song Queue is empty");
-			return "#";
+			return "home.faces"+"faces-redirect=true";
 		}
 		songQueue.remove();
 		System.out.println(songQueue);
-		return "#";
+		return "home.faces"+"faces-redirect=true";
 	}
 
 	public boolean isSongs() {
@@ -99,7 +101,7 @@ public class QueueController implements Serializable {
 	}
 	
 	public void print(){
-		System.out.println(songQueue);
+		//System.out.println(songQueue);
 		
 	}
 
