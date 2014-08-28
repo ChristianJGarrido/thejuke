@@ -6,16 +6,19 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 	<center>
+	
+		<b><h:outputText value = "Now playing: " rendered = "#{queueController.songQueue.size() > 0}"/></b>
 		<h:dataTable value="#{queueController.songQueue}" var="oneItem"
-			rendered="#{queueController.songQueue.size() > 0}" styleClass="table">
+			rendered="#{queueController.songQueue.size() > 0}" styleClass="table">			
 			<h:column>
 				
 				<b> <h:link 
 						outcome="showitem" includeViewParams="true"
 						value="#{oneItem.name}">
 					</h:link>
+					
 				</b>
-				
+					<h:outputText value="by #{oneItem.albumList.get(0).artistList.get(0).name}"/>
 			</h:column>
 			<h:column rendered="#{userController.loggedinUser.isAdmin()}">
 	

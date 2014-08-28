@@ -56,6 +56,8 @@ public class Song {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "Album_has_Song", joinColumns = @JoinColumn(name = "Song_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "Album_id", referencedColumnName = "id"))
 	private List<Album> albumList;
+	
+	private boolean empty;
 
 	// Statics names for the named queries to reference
 	public static final String FIND_BY_SONG_ID = "Song.findBySongId";
@@ -68,6 +70,7 @@ public class Song {
 
 	public Song(String empty) {
 		this.name = empty;
+		this.empty = true;
 	}
 
 	public Song(String name, float length, String audioPath, Genre genre,
@@ -121,8 +124,8 @@ public class Song {
 	}
 
 	public String getAudioPath() {
-		// return "http://pc-czc4164zw7:8080/thejuke/songs/"+audioPath;
-		return "http://christian-pc:8080/thejuke/songs/" + audioPath;
+		 return "http://pc-czc4164zw7:8080/thejuke/songs/"+audioPath;
+		//return "http://christian-pc:8080/thejuke/songs/" + audioPath;
 	}
 
 	public void setAudioPath(String audioPath) {
@@ -170,6 +173,14 @@ public class Song {
 		sb.append("cost='").append(cost).append("'}");
 		return sb.toString();
 
+	}
+
+	public boolean isEmpty() {
+		return empty;
+	}
+
+	public void setEmpty(boolean empty) {
+		this.empty = empty;
 	}
 
 }

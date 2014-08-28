@@ -87,8 +87,8 @@ import com.netbuilder.thejuke.util.Loggable;
 	  
 	  @PostConstruct
 	  private  void populateDB() {
-				//initUsers();
-				//initAdmin();
+				initUsers();
+				initAdmin();
 				//initArtists();
 				//initGenres();
 				//initSongs();
@@ -102,13 +102,13 @@ import com.netbuilder.thejuke.util.Loggable;
 	  
 	  private  void initUsers(){
 		//em.getTransaction().begin();
-		user1 = new User("Bob", "Builder", 100F);
-		user2 = new User("christian", "christian", 100F);
+		user1 = new User("admin", "admin", 15F);
+		//user2 = new User("christian", "christian", 100F);
 		
 		
 		//try {
 			userService.persistUser(user1);
-			userService.persistUser(user2);
+			//userService.persistUser(user2);
 		//} catch (EJBTransactionRolledbackException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
@@ -116,12 +116,12 @@ import com.netbuilder.thejuke.util.Loggable;
 		
 		System.out.println(userService);
 		System.out.println(user1);
-		System.out.println(user2);
+		//System.out.println(user2);
 	}
 
 	private  void initAdmin() {
 		
-		admin1 = new Admin(user2);
+		admin1 = new Admin(user1);
 		adminService.persistAdmin(admin1);
 		System.out.println(admin1);
 

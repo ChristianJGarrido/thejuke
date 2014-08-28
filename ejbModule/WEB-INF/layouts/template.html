@@ -14,7 +14,7 @@
 $(function() {
 	 setInterval(function() {
 	$("#queueLoad").load("queue.html"); 
-	 }, 100);
+	 }, 50);
 }); 
 </script> 
 
@@ -97,14 +97,16 @@ $(function() {
 						<table class="table table-striped">
 							<thead>
 								<tr>
-									<th>Playlist</th>
+									<th>Queue</th>
 								</tr>
+								
 							</thead>
 							<tbody id="queueTable">
 								<ui:insert name="queueList">
 								</ui:insert>
 							</tbody>
 						</table>
+						
 						<div id="queueLoad">
 <!-- 						Displays the Queue -->
 <!-- 						<h:dataTable value="#{queueController.songQueue}" var="oneItem" rendered="#{queueController.songQueue.size() > 0}" -->
@@ -126,10 +128,11 @@ $(function() {
 
 
 
- </div>
+
 <!--  <h1>This is why I rule</h1> -->
 
 					</div>
+					 </div>
 				</div>
 				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 					<ui:insert name="pagetitle">
