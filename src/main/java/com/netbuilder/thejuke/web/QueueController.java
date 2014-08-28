@@ -22,7 +22,7 @@ public class QueueController implements Serializable {
 	@Inject
 	UserService userService;
 	
-	private boolean songs;
+	private boolean songs = false;
 
 	public QueueController() {
 		songQueue = new LinkedList<Song>();
@@ -79,16 +79,28 @@ public class QueueController implements Serializable {
 	}
 
 	public Song getCurrentSong() {
-		return songQueue.peek();
+		Song peek = songQueue.peek();
+		if(peek != null)
+			System.out.println("Path is" + peek.getAudioPath());
+		else {
+			System.out.println("Peek is null");
+			songs = false;
+		}
+		return peek;
 	}
 
 	public void playNext() {
+		
+		if(songQueue.peek() != null)
 		songQueue.remove();
+		else
+		songs = false;
 		System.out.println("Play next song.");
 	}
 	
 	public void print(){
-		System.out.println("Javascript");
+		System.out.println(songQueue);
+		
 	}
 
 }

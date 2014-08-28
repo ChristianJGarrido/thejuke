@@ -65,7 +65,7 @@ public class UserController extends Controller implements Serializable {
         
         //return "#";
         errorMessage="";
-        return "index.faces";
+        return "home.faces";
     }
 	
 	public String doCreateNewAccount(){
@@ -121,7 +121,7 @@ public class UserController extends Controller implements Serializable {
 	        // Stop conversation
 	      
 	        //addInformationMessage("been_loggedout");
-	        return "index.faces";
+	        return "home.faces";
 	    }
 
 	public String getErrorMessage() {

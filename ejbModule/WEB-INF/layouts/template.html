@@ -9,6 +9,17 @@
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough" encoding="UTF-8">
 
 	<h:head>
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script> 
+<script>
+$(function() {
+	 setInterval(function() {
+	$("#queueLoad").load("queue.html"); 
+	 }, 100);
+}); 
+</script> 
+
+
+
 		<meta charset="utf-8"></meta>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
 		<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
@@ -94,21 +105,30 @@
 								</ui:insert>
 							</tbody>
 						</table>
-						<!-- Displays the Queue -->
-						<h:dataTable value="#{queueController.songQueue}" var="oneItem" rendered="#{queueController.songQueue.size() > 0}"
-                     styleClass="table">
-				            <h:column>
-				                        <b>
-				                            <h:link outcome="showitem" includeViewParams="true" value="#{oneItem.name}">
-				                            </h:link>
-				                        </b>
-				            </h:column>
-				            <h:column rendered="#{userController.loggedinUser.isAdmin()}">
-             					<h:form>
-                        				<h:commandButton value="X" class="btn" action='#{queueController.doRemoveSongFromQueue(oneItem)}' type="submit"/>
-             					</h:form>
-				            </h:column>
-		            	</h:dataTable>
+						<div id="queueLoad">
+<!-- 						Displays the Queue -->
+<!-- 						<h:dataTable value="#{queueController.songQueue}" var="oneItem" rendered="#{queueController.songQueue.size() > 0}" -->
+<!--                      styleClass="table"> -->
+<!-- 				            <h:column> -->
+<!-- 				                        <b> -->
+<!-- 				                            <h:link outcome="showitem" includeViewParams="true" value="#{oneItem.name}"> -->
+<!-- 				                            </h:link> -->
+<!-- 				                        </b> -->
+<!-- 				            </h:column> -->
+<!-- 				            <h:column rendered="#{userController.loggedinUser.isAdmin()}"> -->
+<!--              					<h:form> -->
+<!--                         				<h:commandButton value="X" class="btn" action='#{queueController.doRemoveSongFromQueue(oneItem)}' type="submit"/> -->
+<!--              					</h:form> -->
+<!-- 				            </h:column> -->
+<!-- 		            	</h:dataTable> -->
+					
+		
+
+
+
+ </div>
+<!--  <h1>This is why I rule</h1> -->
+
 					</div>
 				</div>
 				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

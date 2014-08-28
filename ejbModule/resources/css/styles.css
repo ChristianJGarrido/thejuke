@@ -131,6 +131,8 @@
 }
 
 #musicPlayer{
+	overflow: hidden;
 	visibility: hidden;
+	
 }
 }
